@@ -1,0 +1,51 @@
+2025-09-11 15:47:15,622 - __main__ - INFO - ==================================================
+2025-09-11 15:47:15,622 - __main__ - INFO - LSTM Model Training Test
+2025-09-11 15:47:15,622 - __main__ - INFO - ==================================================
+2025-09-11 15:47:15,622 - __main__ - INFO - Loading configuration...
+2025-09-11 15:47:15,626 - __main__ - INFO - ✅ Configuration loaded successfully
+2025-09-11 15:47:15,626 - __main__ - INFO - Creating test data...
+2025-09-11 15:47:15,626 - __main__ - INFO - Creating synthetic test data: 1000 samples
+2025-09-11 15:47:15,673 - __main__ - INFO - Generated data shapes - X: (1000, 64, 14), y: (1000,)
+2025-09-11 15:47:15,673 - __main__ - INFO - ✅ Test data created successfully
+2025-09-11 15:47:15,673 - __main__ - INFO - Splitting data...
+2025-09-11 15:47:15,681 - __main__ - INFO - ✅ Data split - Train: 800, Val: 200
+2025-09-11 15:47:15,681 - __main__ - INFO - Building model...
+2025-09-11 15:47:15,966 - __main__ - INFO - ✅ Model built successfully
+2025-09-11 15:47:15,972 - __main__ - INFO - Model: "LSTM_Classifier"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ lstm_layer_1 (LSTM)                  │ (None, 64, 16)              │           1,984 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 64, 16)              │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ layer_norm_1 (LayerNormalization)    │ (None, 64, 16)              │              32 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ lstm_layer_2 (LSTM)                  │ (None, 16)                  │           2,112 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_2 (Dropout)                  │ (None, 16)                  │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ layer_norm_2 (LayerNormalization)    │ (None, 16)                  │              32 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ classification_output (Dense)        │ (None, 5)                   │              85 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 4,245 (16.58 KB)
+ Trainable params: 4,245 (16.58 KB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-11 15:47:15,972 - __main__ - INFO - Setting up callbacks...
+2025-09-11 15:47:15,972 - __main__ - INFO - ✅ Callbacks configured
+2025-09-11 15:47:15,972 - __main__ - INFO - Starting training (test run - 3 epochs)...
+2025-09-11 15:47:24,994 - __main__ - INFO - ✅ Training completed successfully!
+2025-09-11 15:47:24,995 - __main__ - INFO - Final Metrics:
+2025-09-11 15:47:24,995 - __main__ - INFO -   final_train_loss: 1.7669
+2025-09-11 15:47:24,995 - __main__ - INFO -   final_val_loss: 1.7925
+2025-09-11 15:47:24,995 - __main__ - INFO -   final_train_accuracy: 0.2500
+2025-09-11 15:47:24,995 - __main__ - INFO -   final_val_accuracy: 0.1850
+2025-09-11 15:47:24,995 - __main__ - INFO -   total_epochs: 3.0000
+2025-09-11 15:47:24,995 - __main__ - INFO - Testing model prediction...
+2025-09-11 15:47:25,419 - __main__ - INFO - ✅ Prediction successful. Output shape: (5, 5)
+2025-09-11 15:47:25,419 - __main__ - INFO - ==================================================
+2025-09-11 15:47:25,419 - __main__ - INFO - ✅ ALL TESTS PASSED SUCCESSFULLY!
+2025-09-11 15:47:25,419 - __main__ - INFO - Test log saved to: training_test_20250911_154715.log
+2025-09-11 15:47:25,419 - __main__ - INFO - ==================================================

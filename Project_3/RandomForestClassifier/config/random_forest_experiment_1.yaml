@@ -1,0 +1,78 @@
+# Random Forest Model Configuration for Network Intrusion Detection
+# ==================================================================
+# 
+# THEORY - Configuration Design:
+# =============================
+# This configuration follows the principle of "Configuration as Code":
+# - All model parameters are externalized
+# - Easy to version control and track changes
+# - Enables experiment reproducibility
+# - Supports automated hyperparameter tuning
+
+# === Core Architecture Parameters ===
+input_dim: 14 # Number of features per sample (update to match dataset)
+num_classes: 5 # Classification categories: Recon, Exploitation, C&C, Attack, Benign
+
+# === Random Forest Specific Parameters ===
+n_estimators: 100 # Number of trees in the forest
+criterion: "gini" # Function to measure quality of split (gini or entropy)
+max_depth: null # Maximum depth of trees (null for unlimited)
+min_samples_split: 2 # Minimum samples required to split internal node
+min_samples_leaf: 1 # Minimum samples required in leaf node
+min_weight_fraction_leaf: 0.0 # Minimum weighted fraction in leaf
+max_features: "sqrt" # Number of features for best split (sqrt, log2, or int)
+max_leaf_nodes: null # Maximum number of leaf nodes (null for unlimited)
+min_impurity_decrease: 0.0 # Minimum impurity decrease for split
+
+# === Bootstrap and Sampling ===
+bootstrap: true # Whether to use bootstrap sampling
+oob_score: true # Whether to use out-of-bag samples for scoring
+max_samples: null # Number of samples for training each tree (null = n_samples)
+
+# === Regularization ===
+ccp_alpha: 0.0 # Complexity parameter for Minimal Cost-Complexity Pruning
+
+# === Performance and Parallelization ===
+n_jobs: -1 # Number of jobs for parallel processing (-1 for all cores)
+random_state: 42 # Random seed for reproducibility
+verbose: 0 # Verbosity level (0-3)
+warm_start: false # Reuse solution of previous call
+
+# === Class Balancing ===
+class_weight: "balanced" # Handle class imbalance (balanced, balanced_subsample, or dict)
+
+# === Training Configuration ===
+test_size: 0.2 # Fraction of data for testing (20%)
+validation_split: 0.2 # Fraction of training data for validation (20%)
+
+# === Feature Engineering ===
+feature_selection: false # Whether to perform feature selection
+feature_selection_method: "importance" # Method for feature selection
+n_features_to_select: null # Number of features to select (null for automatic)
+
+# === Evaluation Metrics ===
+metrics: # Performance metrics to track
+  - accuracy # Overall correctness
+  - precision # Positive predictive value
+  - recall # Sensitivity to positive class
+  - f1_score # Balance between precision and recall
+  - feature_importance # Feature importance analysis
+
+# === Model Persistence ===
+export_path: "models/saved_Models/random_forest_experiment1.joblib" # Where to save trained model
+
+# === Advanced Configuration (Optional) ===
+# Uncomment and modify these for advanced usage:
+# 
+# hyperparameter_tuning:
+#   enabled: true
+#   param_grid:
+#     n_estimators: [50, 100, 200]
+#     max_depth: [null, 10, 20, 30]
+#     min_samples_split: [2, 5, 10]
+#     min_samples_leaf: [1, 2, 4]
+# 
+# feature_engineering:
+#   feature_selection: true
+#   selection_method: "importance"
+#   n_features: 10

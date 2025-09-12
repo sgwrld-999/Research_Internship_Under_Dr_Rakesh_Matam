@@ -1,0 +1,71 @@
+# Voting Ensemble Model Configuration for Network Intrusion Detection
+# ====================================================================
+# 
+# THEORY - Configuration Design:
+# =============================
+# This configuration follows the principle of "Configuration as Code":
+# - All model parameters are externalized
+# - Easy to version control and track changes
+# - Enables experiment reproducibility
+# - Supports automated hyperparameter tuning
+
+# === Core Architecture Parameters ===
+input_dim: 14 # Number of features per sample (update to match dataset)
+num_classes: 5 # Classification categories: Recon, Exploitation, C&C, Attack, Benign
+
+# === Ensemble Configuration ===
+voting_type: "soft" # Use soft voting for better probability estimates
+estimator_weights: null # Equal weights for all estimators (null = automatic)
+n_jobs: -1 # Use all available CPU cores for parallel processing
+
+# === Base Estimators Selection ===
+use_random_forest: true # Include Random Forest classifier
+use_svm: true # Include Support Vector Machine
+use_logistic_regression: true # Include Logistic Regression
+use_gradient_boosting: true # Include Gradient Boosting
+
+# === Random Forest Parameters ===
+rf_n_estimators: 100 # Number of trees in Random Forest
+rf_max_depth: null # Maximum depth (null for unlimited)
+rf_random_state: 42 # Random seed for Random Forest
+
+# === SVM Parameters ===
+svm_kernel: "rbf" # Kernel type for SVM
+svm_c: 1.0 # Regularization parameter
+svm_gamma: "scale" # Kernel coefficient
+svm_probability: true # Enable probability estimates (required for soft voting)
+
+# === Logistic Regression Parameters ===
+lr_c: 1.0 # Inverse of regularization strength
+lr_max_iter: 1000 # Maximum iterations for convergence
+lr_solver: "lbfgs" # Optimization algorithm
+
+# === Gradient Boosting Parameters ===
+gb_n_estimators: 100 # Number of boosting stages
+gb_learning_rate: 0.1 # Learning rate for gradient boosting
+gb_max_depth: 3 # Maximum depth of individual trees
+
+# === Training Configuration ===
+test_size: 0.2 # Fraction of data for testing (20%)
+validation_split: 0.2 # Fraction of training data for validation (20%)
+random_state: 42 # Global random seed for reproducibility
+
+# === Evaluation Metrics ===
+metrics: # Performance metrics to track
+  - accuracy # Overall correctness
+  - precision # Positive predictive value
+  - recall # Sensitivity to positive class
+  - f1_score # Balance between precision and recall
+
+# === Model Persistence ===
+export_path: "models/saved_Models/voting_ensemble_experiment1.joblib" # Where to save trained model
+
+# === Advanced Configuration (Optional) ===
+# Uncomment and modify these for advanced usage:
+# 
+# estimator_weights: [0.3, 0.3, 0.2, 0.2] # Custom weights for [RF, SVM, LR, GB]
+# 
+# feature_engineering:
+#   feature_selection: true
+#   selection_method: "mutual_info"
+#   n_features: 10

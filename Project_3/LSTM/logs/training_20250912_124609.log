@@ -1,0 +1,120 @@
+2025-09-12 12:46:09,320 - __main__ - INFO - Training session started at 2025-09-12 12:46:09
+2025-09-12 12:46:09,320 - __main__ - INFO - Session logs will be saved to: training_20250912_124609.log
+2025-09-12 12:46:09,325 - __main__ - INFO - Configuration loaded successfully
+2025-09-12 12:46:09,325 - __main__ - INFO - Model configuration:
+LSTM Model Configuration Summary:
+================================
+Architecture:
+  - Input: 64 time steps × 14 features
+  - 3x LSTM layers (16 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~6,293
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.2
+  - Validation split: 0.2
+  - Early stopping patience: 3
+
+Monitoring:
+  - Metrics: accuracy, val_loss, precision, recall, f1_score
+  - Model save path: models/saved_Models/experiment3.keras
+2025-09-12 12:46:09,325 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-12 12:46:13,470 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-12 12:46:13,471 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-12 12:46:13,471 - __main__ - INFO - Target: label_stage_encoded
+2025-09-12 12:46:13,471 - __main__ - INFO - Preparing preprocessed data for LSTM training...
+2025-09-12 12:46:22,776 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-12 12:46:22,777 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-12 12:47:54,854 - __main__ - INFO - Created 499937 sequences of length 64
+2025-09-12 12:47:54,855 - __main__ - INFO - Sequence shape: (499937, 64, 14)
+2025-09-12 12:47:54,855 - __main__ - INFO - Target shape: (499937,)
+2025-09-12 12:47:54,855 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-12 12:47:54,855 - __main__ - INFO - Final sequence shape: (499937, 64, 14)
+2025-09-12 12:47:54,855 - __main__ - INFO - Final target shape: (499937,)
+2025-09-12 12:47:54,858 - __main__ - INFO - Class distribution: [100000  99937 100000 100000 100000]
+2025-09-12 12:47:54,861 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-12 12:47:54,962 - __main__ - INFO - No GPUs detected - using CPU only
+2025-09-12 12:47:54,971 - __main__ - INFO - TensorFlow configured for CPU usage. Test tensor device: /job:localhost/replica:0/task:0/device:CPU:0
+2025-09-12 12:47:54,971 - __main__ - INFO - Starting LSTM model training...
+2025-09-12 12:49:06,418 - __main__ - INFO - Training samples: 399949
+2025-09-12 12:49:06,419 - __main__ - INFO - Validation samples: 99988
+2025-09-12 12:49:06,632 - __main__ - INFO - Model built successfully
+2025-09-12 12:49:06,639 - __main__ - INFO - Model: "LSTM_Classifier"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ lstm_layer_1 (LSTM)                  │ (None, 64, 16)              │           1,984 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 64, 16)              │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ layer_norm_1 (LayerNormalization)    │ (None, 64, 16)              │              32 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ lstm_layer_2 (LSTM)                  │ (None, 64, 16)              │           2,112 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_2 (Dropout)                  │ (None, 64, 16)              │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ layer_norm_2 (LayerNormalization)    │ (None, 64, 16)              │              32 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ lstm_layer_3 (LSTM)                  │ (None, 16)                  │           2,112 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_3 (Dropout)                  │ (None, 16)                  │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ layer_norm_3 (LayerNormalization)    │ (None, 16)                  │              32 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ classification_output (Dense)        │ (None, 5)                   │              85 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 6,389 (24.96 KB)
+ Trainable params: 6,389 (24.96 KB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-12 12:49:06,640 - __main__ - INFO - Beginning training process...
+Epoch 1/15
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 0s 54ms/step - accuracy: 0.9504 - loss: 0.1370    
+Epoch 1: val_loss improved from None to 0.06844, saving model to models/saved_Models/experiment3.keras
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 1452s 58ms/step - accuracy: 0.9662 - loss: 0.0953 - val_accuracy: 0.9757 - val_loss: 0.0684 - learning_rate: 0.0010
+Epoch 2/15
+24996/24997 ━━━━━━━━━━━━━━━━━━━━ 0s 51ms/step - accuracy: 0.9753 - loss: 0.0698    
+Epoch 2: val_loss improved from 0.06844 to 0.06840, saving model to models/saved_Models/experiment3.keras
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 1376s 55ms/step - accuracy: 0.9744 - loss: 0.0720 - val_accuracy: 0.9751 - val_loss: 0.0684 - learning_rate: 0.0010
+Epoch 3/15
+24996/24997 ━━━━━━━━━━━━━━━━━━━━ 0s 57ms/step - accuracy: 0.9758 - loss: 0.0689    
+Epoch 3: val_loss improved from 0.06840 to 0.06262, saving model to models/saved_Models/experiment3.keras
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 1518s 61ms/step - accuracy: 0.9761 - loss: 0.0669 - val_accuracy: 0.9769 - val_loss: 0.0626 - learning_rate: 0.0010
+Epoch 4/15
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 0s 343ms/step - accuracy: 0.9769 - loss: 0.0645     
+Epoch 4: val_loss improved from 0.06262 to 0.06227, saving model to models/saved_Models/experiment3.keras
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 8684s 347ms/step - accuracy: 0.9767 - loss: 0.0641 - val_accuracy: 0.9769 - val_loss: 0.0623 - learning_rate: 0.0010
+Epoch 5/15
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 0s 65ms/step - accuracy: 0.9775 - loss: 0.0625      
+Epoch 5: val_loss improved from 0.06227 to 0.05766, saving model to models/saved_Models/experiment3.keras
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 1725s 69ms/step - accuracy: 0.9774 - loss: 0.0627 - val_accuracy: 0.9782 - val_loss: 0.0577 - learning_rate: 0.0010
+Epoch 6/15
+24996/24997 ━━━━━━━━━━━━━━━━━━━━ 0s 64ms/step - accuracy: 0.9773 - loss: 0.0620      
+Epoch 6: val_loss did not improve from 0.05766
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 1681s 67ms/step - accuracy: 0.9774 - loss: 0.0620 - val_accuracy: 0.9769 - val_loss: 0.0584 - learning_rate: 0.0010
+Epoch 7/15
+24996/24997 ━━━━━━━━━━━━━━━━━━━━ 0s 55ms/step - accuracy: 0.9772 - loss: 0.0618    
+Epoch 7: val_loss did not improve from 0.05766
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 1474s 59ms/step - accuracy: 0.9774 - loss: 0.0619 - val_accuracy: 0.9773 - val_loss: 0.0584 - learning_rate: 0.0010
+Epoch 8/15
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 0s 53ms/step - accuracy: 0.9779 - loss: 0.0609    
+Epoch 8: val_loss did not improve from 0.05766
+24997/24997 ━━━━━━━━━━━━━━━━━━━━ 1420s 57ms/step - accuracy: 0.9779 - loss: 0.0611 - val_accuracy: 0.9770 - val_loss: 0.0585 - learning_rate: 0.0010
+Epoch 8: early stopping
+Restoring model weights from the end of the best epoch: 5.
+2025-09-12 18:12:06,950 - __main__ - INFO - Training completed successfully
+2025-09-12 18:12:06,952 - __main__ - INFO - final_train_loss: 0.0611
+2025-09-12 18:12:06,952 - __main__ - INFO - final_val_loss: 0.0585
+2025-09-12 18:12:06,952 - __main__ - INFO - best_val_loss: 0.0577
+2025-09-12 18:12:06,952 - __main__ - INFO - total_epochs: 8.0000
+2025-09-12 18:12:06,952 - __main__ - INFO - final_train_accuracy: 0.9779
+2025-09-12 18:12:06,952 - __main__ - INFO - final_val_accuracy: 0.9770
+2025-09-12 18:12:06,952 - __main__ - INFO - best_val_accuracy: 0.9782
+2025-09-12 18:12:06,952 - __main__ - INFO - Training session completed at 2025-09-12 18:12:06
+2025-09-12 18:12:06,952 - __main__ - INFO - Timestamped log saved as: training_20250912_124609.log
+2025-09-12 18:12:06,952 - __main__ - INFO - CSV metrics saved as: training_metrics_20250912_124609.csv
+2025-09-12 18:12:07,240 - __main__ - INFO - Final model saved to: models/saved_Models/experiment3_final.keras
+2025-09-12 18:12:07,240 - __main__ - INFO - Training pipeline completed successfully!

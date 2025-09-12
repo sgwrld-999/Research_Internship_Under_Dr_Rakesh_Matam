@@ -1,0 +1,12 @@
+2025-09-12 16:49:09,172 - __main__ - INFO - Training session started at 2025-09-12 16:49:09
+2025-09-12 16:49:09,172 - __main__ - INFO - Session logs will be saved to: gru_training_20250912-164909.log
+2025-09-12 16:49:09,172 - __main__ - ERROR - Training pipeline failed: Configuration file not found: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/config/GRU_config_experiment_3.yaml
+2025-09-12 16:49:09,173 - __main__ - ERROR - Full traceback:
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/scripts/train.py", line 575, in main
+    config = GRUConfig.from_yaml(str(config_path))
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/gru/config_loader.py", line 223, in from_yaml
+    raise FileNotFoundError(
+        f"Configuration file not found: {config_path}"
+    )
+FileNotFoundError: Configuration file not found: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/config/GRU_config_experiment_3.yaml

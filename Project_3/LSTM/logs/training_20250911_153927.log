@@ -1,0 +1,69 @@
+2025-09-11 15:39:27,886 - __main__ - INFO - Training session started at 2025-09-11 15:39:27
+2025-09-11 15:39:27,886 - __main__ - INFO - Session logs will be saved to: training_20250911_153927.log
+2025-09-11 15:39:27,890 - __main__ - INFO - Configuration loaded successfully
+2025-09-11 15:39:27,890 - __main__ - INFO - Model configuration:
+LSTM Model Configuration Summary:
+================================
+Architecture:
+  - Input: 64 time steps × 14 features
+  - 2x LSTM layers (16 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~4,181
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, val_loss, precision, recall, f1_score
+  - Model save path: models/saved_Models/experiment1.keras
+2025-09-11 15:39:27,890 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-11 15:39:28,745 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-11 15:39:28,745 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-11 15:39:28,745 - __main__ - INFO - Target: label_stage_encoded
+2025-09-11 15:39:28,745 - __main__ - INFO - Preparing preprocessed data for LSTM training...
+2025-09-11 15:39:28,783 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-11 15:39:28,783 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-11 15:39:30,043 - __main__ - INFO - Created 499937 sequences of length 64
+2025-09-11 15:39:30,043 - __main__ - INFO - Sequence shape: (499937, 64, 14)
+2025-09-11 15:39:30,043 - __main__ - INFO - Target shape: (499937,)
+2025-09-11 15:39:30,043 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-11 15:39:30,043 - __main__ - INFO - Final sequence shape: (499937, 64, 14)
+2025-09-11 15:39:30,043 - __main__ - INFO - Final target shape: (499937,)
+2025-09-11 15:39:30,046 - __main__ - INFO - Class distribution: [100000  99937 100000 100000 100000]
+2025-09-11 15:39:30,047 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-11 15:39:30,152 - __main__ - INFO - No GPUs detected, using CPU
+2025-09-11 15:39:30,152 - __main__ - INFO - Starting LSTM model training...
+2025-09-11 15:39:30,982 - __main__ - INFO - Training samples: 399949
+2025-09-11 15:39:30,983 - __main__ - INFO - Validation samples: 99988
+2025-09-11 15:39:31,176 - __main__ - INFO - Model built successfully
+2025-09-11 15:39:31,182 - __main__ - INFO - Model: "LSTM_Classifier"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Layer (type)              ┃ Output Shape        ┃    Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
+│ lstm_layer_1 (LSTM)       │ (None, 64, 16)      │      1,984 │
+├───────────────────────────┼─────────────────────┼────────────┤
+│ dropout_1 (Dropout)       │ (None, 64, 16)      │          0 │
+├───────────────────────────┼─────────────────────┼────────────┤
+│ layer_norm_1              │ (None, 64, 16)      │         32 │
+│ (LayerNormalization)      │                     │            │
+├───────────────────────────┼─────────────────────┼────────────┤
+│ lstm_layer_2 (LSTM)       │ (None, 16)          │      2,112 │
+├───────────────────────────┼─────────────────────┼────────────┤
+│ dropout_2 (Dropout)       │ (None, 16)          │          0 │
+├───────────────────────────┼─────────────────────┼────────────┤
+│ layer_norm_2              │ (None, 16)          │         32 │
+│ (LayerNormalization)      │                     │            │
+├───────────────────────────┼─────────────────────┼────────────┤
+│ classification_output     │ (None, 5)           │         85 │
+│ (Dense)                   │                     │            │
+└───────────────────────────┴─────────────────────┴────────────┘
+ Total params: 4,245 (16.58 KB)
+ Trainable params: 4,245 (16.58 KB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-11 15:39:31,182 - __main__ - INFO - Beginning training process...
