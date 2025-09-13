@@ -1,0 +1,99 @@
+# XGBoost Model Configuration for Network Intrusion Detection
+# ============================================================
+# 
+# THEORY - Configuration Design:
+# =============================
+# This configuration follows the principle of "Configuration as Code":
+# - All model parameters are externalized
+# - Easy to version control and track changes
+# - Enables experiment reproducibility
+# - Supports automated hyperparameter tuning
+
+# === Core Architecture Parameters ===
+input_dim: 14 # Number of features per sample (update to match dataset)
+num_classes: 5 # Classification categories: Recon, Exploitation, C&C, Attack, Benign
+
+# === General Parameters ===
+booster: "gbtree" # Type of booster (gbtree, gblinear, dart)
+n_jobs: -1 # Number of parallel threads (-1 for all cores)
+random_state: 42 # Random seed for reproducibility
+
+# === Tree Booster Parameters ===
+n_estimators: 100 # Number of boosting rounds
+max_depth: 6 # Maximum depth of trees
+min_child_weight: 1.0 # Minimum sum of instance weights in child
+learning_rate: 0.1 # Step size shrinkage (eta)
+subsample: 0.8 # Fraction of samples used for training each tree
+colsample_bytree: 0.3 # Fraction of features used for training each tree
+colsample_bylevel: 1.0 # Fraction of features used for each level
+colsample_bynode: 1.0 # Fraction of features used for each split
+
+# === Regularization Parameters ===
+reg_alpha: 0.4 # L1 regularization term on weights
+reg_lambda: 0.6 # L2 regularization term on weights
+gamma: 0.0 # Minimum loss reduction required for split
+
+# === Learning Task Parameters ===
+objective: "multi:softprob" # Learning objective (multi:softprob for probabilities)
+eval_metric: "mlogloss" # Evaluation metric for validation data
+
+# === Training Control ===
+verbose: true # Print messages during training
+
+# === Advanced Parameters ===
+max_delta_step: 0.0 # Maximum delta step for weight estimation
+scale_pos_weight: 1.0 # Balancing of positive and negative weights
+
+# === Tree Method ===
+tree_method: "auto" # Tree construction algorithm (auto, exact, approx, hist)
+grow_policy: "depthwise" # Tree growth policy (depthwise, lossguide)
+max_leaves: 0 # Maximum number of leaves (0 for no limit)
+max_bin: 256 # Maximum number of discrete bins for features
+
+# === GPU Parameters ===
+gpu_id: -1 # GPU device ID (-1 for CPU)
+
+# === Training Configuration ===
+test_size: 0.2 # Fraction of data for testing (20%)
+validation_split: 0.2 # Fraction of training data for validation (20%)
+
+# === Feature Engineering ===
+feature_selection: false # Whether to perform feature selection
+feature_selection_method: "importance" # Method for feature selection (importance, gain, cover, weight)
+n_features_to_select: null # Number of features to select (null for automatic)
+
+# === Cross-Validation ===
+use_cv: false # Whether to use cross-validation for training
+cv_folds: 5 # Number of cross-validation folds
+
+# === Evaluation Metrics ===
+metrics: # Performance metrics to track
+  - accuracy # Overall correctness
+  - precision # Positive predictive value
+  - recall # Sensitivity to positive class
+  - f1_score # Balance between precision and recall
+  - feature_importance # Feature importance analysis
+
+# === Model Persistence ===
+export_path: "models/saved_Models/xgboost_experiment2.joblib" # Where to save trained model
+
+# === Advanced Configuration (Optional) ===
+# Uncomment and modify these for advanced usage:
+# 
+# hyperparameter_tuning:
+#   enabled: true
+#   param_grid:
+#     n_estimators: [50, 100, 200]
+#     max_depth: [3, 6, 9]
+#     learning_rate: [0.01, 0.1, 0.2]
+#     subsample: [0.8, 0.9, 1.0]
+# 
+# gpu_acceleration:
+#   enabled: false
+#   gpu_id: 0
+#   tree_method: "gpu_hist"
+# 
+# feature_engineering:
+#   feature_selection: true
+#   selection_method: "gain"
+#   n_features: 10

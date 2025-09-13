@@ -1,10 +1,10 @@
-# Ignore model files over GitHub's size limits
+# Ignore only model files over GitHub's size limits
 *.joblib
-models/saved_Models/
-*/*/models/
-*/*/models/saved_Models/
-*/*/outputs/
+*/*/models/saved_Models/*.joblib
 
-# Keep other standard file types
+# Keep other files including outputs, logs, and plots
+!*/*/outputs/
+!*/*/logs/
+!*/*/plots/
 !.gitignore
 !.gitattributes
