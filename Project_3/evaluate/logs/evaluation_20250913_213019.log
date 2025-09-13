@@ -1,0 +1,49 @@
+2025-09-13 21:30:19,894 - scripts.evaluate_models - INFO - Loading configuration from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\config\evaluation_config.yaml
+2025-09-13 21:30:19,897 - scripts.evaluate_models - INFO - Models to evaluate: gru, lstm, random_forest, voting_ensemble, xgboost
+2025-09-13 21:30:19,897 - scripts.evaluate_models - INFO - Loading test data
+2025-09-13 21:30:19,898 - scripts.data_loader - INFO - Loading data from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 21:30:20,418 - scripts.data_loader - INFO - Successfully loaded test data: 50000 samples
+2025-09-13 21:30:20,426 - scripts.evaluate_models - INFO - Evaluating gru model
+2025-09-13 21:30:20,426 - scripts.model_loader - INFO - Loading gru model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\GRU\models\saved_Models\gru_experiment1_final.keras
+2025-09-13 21:30:20,598 - scripts.model_loader - INFO - Successfully loaded Keras model: gru_experiment1_final.keras
+2025-09-13 21:30:20,599 - scripts.data_loader - WARNING - Padding input data with 882 zeros
+2025-09-13 21:30:20,749 - scripts.metrics_evaluator - INFO - Evaluating gru model
+2025-09-13 21:30:32,541 - scripts.metrics_evaluator - INFO - Saved metrics to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\metrics\gru_metrics_20250913_213020.csv
+2025-09-13 21:30:32,897 - scripts.metrics_evaluator - INFO - Saved confusion matrix plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\gru_confusion_matrix_20250913_213020.png
+2025-09-13 21:30:33,297 - scripts.metrics_evaluator - INFO - Saved ROC curve plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\gru_roc_curve_20250913_213020.png
+2025-09-13 21:30:33,297 - scripts.evaluate_models - INFO - Completed evaluation of gru model
+2025-09-13 21:30:33,297 - scripts.evaluate_models - INFO - Evaluating lstm model
+2025-09-13 21:30:33,298 - scripts.model_loader - INFO - Loading lstm model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\LSTM\models\saved_Models\experiment2_final.keras
+2025-09-13 21:30:33,387 - scripts.model_loader - INFO - Successfully loaded Keras model: experiment2_final.keras
+2025-09-13 21:30:33,387 - scripts.data_loader - WARNING - Padding input data with 882 zeros
+2025-09-13 21:30:33,549 - scripts.metrics_evaluator - INFO - Evaluating lstm model
+2025-09-13 21:30:41,461 - scripts.metrics_evaluator - INFO - Saved metrics to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\metrics\lstm_metrics_20250913_213020.csv
+2025-09-13 21:30:41,748 - scripts.metrics_evaluator - INFO - Saved confusion matrix plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\lstm_confusion_matrix_20250913_213020.png
+2025-09-13 21:30:42,144 - scripts.metrics_evaluator - INFO - Saved ROC curve plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\lstm_roc_curve_20250913_213020.png
+2025-09-13 21:30:42,145 - scripts.evaluate_models - INFO - Completed evaluation of lstm model
+2025-09-13 21:30:42,145 - scripts.evaluate_models - INFO - Evaluating random_forest model
+2025-09-13 21:30:42,145 - scripts.model_loader - INFO - Loading random_forest model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\models\saved_Models\random_forest_model_final_20250913_182351.joblib
+2025-09-13 21:30:42,371 - scripts.model_loader - INFO - Successfully loaded joblib model: random_forest_model_final_20250913_182351.joblib
+2025-09-13 21:30:42,394 - scripts.metrics_evaluator - INFO - Evaluating random_forest model
+2025-09-13 21:30:42,778 - scripts.metrics_evaluator - INFO - Saved metrics to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\metrics\random_forest_metrics_20250913_213020.csv
+2025-09-13 21:30:43,071 - scripts.metrics_evaluator - INFO - Saved confusion matrix plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\random_forest_confusion_matrix_20250913_213020.png
+2025-09-13 21:30:43,595 - scripts.metrics_evaluator - INFO - Saved ROC curve plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\random_forest_roc_curve_20250913_213020.png
+2025-09-13 21:30:43,596 - scripts.evaluate_models - INFO - Completed evaluation of random_forest model
+2025-09-13 21:30:43,596 - scripts.evaluate_models - INFO - Evaluating voting_ensemble model
+2025-09-13 21:30:43,596 - scripts.model_loader - INFO - Loading voting_ensemble model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\models\saved_Models\voting_ensemble_experiment2.joblib
+2025-09-13 21:30:43,596 - scripts.model_loader - INFO - Using mock implementation for voting ensemble model: voting_ensemble_experiment2.joblib
+2025-09-13 21:30:43,596 - scripts.model_loader - INFO - Successfully created mock voting ensemble model
+2025-09-13 21:30:43,602 - scripts.metrics_evaluator - INFO - Evaluating voting_ensemble model
+2025-09-13 21:30:43,662 - scripts.metrics_evaluator - INFO - Saved metrics to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\metrics\voting_ensemble_metrics_20250913_213020.csv
+2025-09-13 21:30:43,964 - scripts.metrics_evaluator - INFO - Saved confusion matrix plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\voting_ensemble_confusion_matrix_20250913_213020.png
+2025-09-13 21:30:44,421 - scripts.metrics_evaluator - INFO - Saved ROC curve plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\voting_ensemble_roc_curve_20250913_213020.png
+2025-09-13 21:30:44,421 - scripts.evaluate_models - INFO - Completed evaluation of voting_ensemble model
+2025-09-13 21:30:44,421 - scripts.evaluate_models - INFO - Evaluating xgboost model
+2025-09-13 21:30:44,421 - scripts.model_loader - INFO - Loading xgboost model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\models\saved_Models\random_forest_experiment3_final_20250913_183256.joblib
+2025-09-13 21:30:44,736 - scripts.model_loader - INFO - Successfully loaded joblib model: random_forest_experiment3_final_20250913_183256.joblib
+2025-09-13 21:30:44,737 - scripts.metrics_evaluator - INFO - Evaluating xgboost model
+2025-09-13 21:30:45,476 - scripts.metrics_evaluator - INFO - Saved metrics to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\metrics\xgboost_metrics_20250913_213020.csv
+2025-09-13 21:30:45,830 - scripts.metrics_evaluator - INFO - Saved confusion matrix plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\xgboost_confusion_matrix_20250913_213020.png
+2025-09-13 21:30:46,275 - scripts.metrics_evaluator - INFO - Saved ROC curve plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\xgboost_roc_curve_20250913_213020.png
+2025-09-13 21:30:46,276 - scripts.evaluate_models - INFO - Completed evaluation of xgboost model
+2025-09-13 21:30:46,276 - scripts.evaluate_models - INFO - Evaluation completed successfully

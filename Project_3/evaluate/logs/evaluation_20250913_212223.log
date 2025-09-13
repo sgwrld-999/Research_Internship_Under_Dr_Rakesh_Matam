@@ -1,0 +1,71 @@
+2025-09-13 21:22:23,057 - scripts.evaluate_models - INFO - Loading configuration from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\config\evaluation_config.yaml
+2025-09-13 21:22:23,061 - scripts.evaluate_models - INFO - Models to evaluate: gru, lstm, random_forest, voting_ensemble, xgboost
+2025-09-13 21:22:23,061 - scripts.evaluate_models - INFO - Loading test data
+2025-09-13 21:22:23,061 - scripts.data_loader - INFO - Loading data from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 21:22:23,592 - scripts.data_loader - INFO - Successfully loaded test data: 50000 samples
+2025-09-13 21:22:23,600 - scripts.evaluate_models - INFO - Evaluating gru model
+2025-09-13 21:22:23,601 - scripts.model_loader - INFO - Loading gru model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\GRU\models\saved_Models\gru_experiment1_final.keras
+2025-09-13 21:22:23,750 - scripts.model_loader - INFO - Successfully loaded Keras model: gru_experiment1_final.keras
+2025-09-13 21:22:23,751 - scripts.data_loader - WARNING - Padding input data with 882 zeros
+2025-09-13 21:22:23,874 - scripts.metrics_evaluator - INFO - Evaluating gru model
+2025-09-13 21:22:35,088 - scripts.metrics_evaluator - INFO - Saved metrics to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\metrics\gru_metrics_20250913_212223.csv
+2025-09-13 21:22:35,570 - scripts.metrics_evaluator - INFO - Saved confusion matrix plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\gru_confusion_matrix_20250913_212223.png
+2025-09-13 21:22:35,983 - scripts.metrics_evaluator - INFO - Saved ROC curve plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\gru_roc_curve_20250913_212223.png
+2025-09-13 21:22:35,983 - scripts.evaluate_models - INFO - Completed evaluation of gru model
+2025-09-13 21:22:35,984 - scripts.evaluate_models - INFO - Evaluating lstm model
+2025-09-13 21:22:35,984 - scripts.model_loader - INFO - Loading lstm model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\LSTM\models\saved_Models\experiment2_final.keras
+2025-09-13 21:22:36,089 - scripts.model_loader - INFO - Successfully loaded Keras model: experiment2_final.keras
+2025-09-13 21:22:36,089 - scripts.data_loader - WARNING - Padding input data with 882 zeros
+2025-09-13 21:22:36,250 - scripts.metrics_evaluator - INFO - Evaluating lstm model
+2025-09-13 21:22:44,159 - scripts.metrics_evaluator - INFO - Saved metrics to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\metrics\lstm_metrics_20250913_212223.csv
+2025-09-13 21:22:44,448 - scripts.metrics_evaluator - INFO - Saved confusion matrix plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\lstm_confusion_matrix_20250913_212223.png
+2025-09-13 21:22:44,833 - scripts.metrics_evaluator - INFO - Saved ROC curve plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\lstm_roc_curve_20250913_212223.png
+2025-09-13 21:22:44,834 - scripts.evaluate_models - INFO - Completed evaluation of lstm model
+2025-09-13 21:22:44,834 - scripts.evaluate_models - INFO - Evaluating random_forest model
+2025-09-13 21:22:44,834 - scripts.model_loader - INFO - Loading random_forest model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\models\saved_Models\random_forest_model_final_20250913_182351.joblib
+2025-09-13 21:22:45,123 - scripts.model_loader - INFO - Successfully loaded joblib model: random_forest_model_final_20250913_182351.joblib
+2025-09-13 21:22:45,147 - scripts.metrics_evaluator - INFO - Evaluating random_forest model
+2025-09-13 21:22:45,534 - scripts.metrics_evaluator - INFO - Saved metrics to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\metrics\random_forest_metrics_20250913_212223.csv
+2025-09-13 21:22:45,845 - scripts.metrics_evaluator - INFO - Saved confusion matrix plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\random_forest_confusion_matrix_20250913_212223.png
+2025-09-13 21:22:46,402 - scripts.metrics_evaluator - INFO - Saved ROC curve plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\random_forest_roc_curve_20250913_212223.png
+2025-09-13 21:22:46,403 - scripts.evaluate_models - INFO - Completed evaluation of random_forest model
+2025-09-13 21:22:46,403 - scripts.evaluate_models - INFO - Evaluating voting_ensemble model
+2025-09-13 21:22:46,403 - scripts.model_loader - INFO - Loading voting_ensemble model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\models\saved_Models\voting_ensemble_experiment4.joblib
+2025-09-13 21:22:46,640 - scripts.model_loader - ERROR - Error loading joblib model: No module named 'voting_ensemble'
+2025-09-13 21:22:46,640 - scripts.model_loader - ERROR - Error loading model: No module named 'voting_ensemble'
+2025-09-13 21:22:46,640 - scripts.evaluate_models - ERROR - Error evaluating voting_ensemble model: No module named 'voting_ensemble'
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\scripts\evaluate_models.py", line 92, in main
+    model = model_loader.load_model(model_name)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\scripts\model_loader.py", line 62, in load_model
+    return self._load_joblib_model(model_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\scripts\model_loader.py", line 102, in _load_joblib_model
+    model = joblib.load(model_path)
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 749, in load
+    obj = _unpickle(
+        fobj,
+    ...<2 lines>...
+        mmap_mode=validated_mmap_mode,
+    )
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 626, in _unpickle
+    obj = unpickler.load()
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1256, in load
+    dispatch[key[0]](self)
+    ~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1581, in load_stack_global
+    self.append(self.find_class(module, name))
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1622, in find_class
+    __import__(module, level=0)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'voting_ensemble'
+2025-09-13 21:22:46,665 - scripts.evaluate_models - INFO - Evaluating xgboost model
+2025-09-13 21:22:46,666 - scripts.model_loader - INFO - Loading xgboost model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\models\saved_Models\random_forest_experiment3_final_20250913_183256.joblib
+2025-09-13 21:22:47,081 - scripts.model_loader - INFO - Successfully loaded joblib model: random_forest_experiment3_final_20250913_183256.joblib
+2025-09-13 21:22:47,088 - scripts.metrics_evaluator - INFO - Evaluating xgboost model
+2025-09-13 21:22:47,929 - scripts.metrics_evaluator - INFO - Saved metrics to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\metrics\xgboost_metrics_20250913_212223.csv
+2025-09-13 21:22:48,274 - scripts.metrics_evaluator - INFO - Saved confusion matrix plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\xgboost_confusion_matrix_20250913_212223.png
+2025-09-13 21:22:48,678 - scripts.metrics_evaluator - INFO - Saved ROC curve plot to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\results\plots\xgboost_roc_curve_20250913_212223.png
+2025-09-13 21:22:48,679 - scripts.evaluate_models - INFO - Completed evaluation of xgboost model
+2025-09-13 21:22:48,679 - scripts.evaluate_models - INFO - Evaluation completed successfully

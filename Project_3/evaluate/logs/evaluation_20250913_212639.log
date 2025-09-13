@@ -1,0 +1,39 @@
+2025-09-13 21:26:39,636 - scripts.evaluate_models - INFO - Loading configuration from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\config\evaluation_config.yaml
+2025-09-13 21:26:39,656 - scripts.evaluate_models - INFO - Models to evaluate: voting_ensemble
+2025-09-13 21:26:39,656 - scripts.evaluate_models - INFO - Loading test data
+2025-09-13 21:26:39,656 - scripts.data_loader - INFO - Loading data from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 21:26:40,180 - scripts.data_loader - INFO - Successfully loaded test data: 50000 samples
+2025-09-13 21:26:40,187 - scripts.evaluate_models - INFO - Evaluating voting_ensemble model
+2025-09-13 21:26:40,188 - scripts.model_loader - INFO - Loading voting_ensemble model from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\models\saved_Models\voting_ensemble_experiment2.joblib
+2025-09-13 21:26:40,188 - scripts.model_loader - INFO - Using custom loading for voting ensemble model: voting_ensemble_experiment2.joblib
+2025-09-13 21:26:40,415 - scripts.model_loader - ERROR - Error loading voting ensemble model: No module named 'voting_ensemble.config_loader'
+2025-09-13 21:26:40,415 - scripts.model_loader - ERROR - Error loading joblib model: No module named 'voting_ensemble.config_loader'
+2025-09-13 21:26:40,415 - scripts.model_loader - ERROR - Error loading model: No module named 'voting_ensemble.config_loader'
+2025-09-13 21:26:40,415 - scripts.evaluate_models - ERROR - Error evaluating voting_ensemble model: No module named 'voting_ensemble.config_loader'
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\scripts\evaluate_models.py", line 92, in main
+    model = model_loader.load_model(model_name)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\scripts\model_loader.py", line 66, in load_model
+    return self._load_joblib_model(model_path)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\evaluate\scripts\model_loader.py", line 114, in _load_joblib_model
+    model = joblib.load(model_path)
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 749, in load
+    obj = _unpickle(
+        fobj,
+    ...<2 lines>...
+        mmap_mode=validated_mmap_mode,
+    )
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 626, in _unpickle
+    obj = unpickler.load()
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1256, in load
+    dispatch[key[0]](self)
+    ~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1581, in load_stack_global
+    self.append(self.find_class(module, name))
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1622, in find_class
+    __import__(module, level=0)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'voting_ensemble.config_loader'
+2025-09-13 21:26:40,426 - scripts.evaluate_models - INFO - Evaluation completed successfully
