@@ -1,0 +1,56 @@
+2025-09-13 18:31:03,886 - __main__ - INFO - Logging to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\logs\random_forest_training_20250913_183103.log
+2025-09-13 18:31:03,886 - __main__ - INFO - Random Forest Training Pipeline initialized
+2025-09-13 18:31:03,886 - __main__ - INFO - ==================================================
+2025-09-13 18:31:03,887 - __main__ - INFO - STARTING RANDOM FOREST TRAINING PIPELINE
+2025-09-13 18:31:03,887 - __main__ - INFO - ==================================================
+2025-09-13 18:31:03,887 - __main__ - INFO - Loading data from Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 18:31:04,401 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 18:31:04,401 - __main__ - INFO - Dataset shape: (500000, 15)
+2025-09-13 18:31:04,401 - __main__ - INFO - Target column: label_stage_encoded
+2025-09-13 18:31:04,402 - __main__ - INFO - Number of features: 14
+2025-09-13 18:31:04,404 - __main__ - INFO - Class distribution:
+label_stage_encoded
+1    100000
+0    100000
+4    100000
+2    100000
+3    100000
+Name: count, dtype: int64
+2025-09-13 18:31:04,415 - __main__ - INFO - No missing values found
+2025-09-13 18:31:04,415 - __main__ - INFO - Preparing features and targets...
+2025-09-13 18:31:04,447 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-13 18:31:04,447 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-13 18:31:04,448 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']...
+2025-09-13 18:31:04,455 - __main__ - INFO - Creating data splits...
+2025-09-13 18:31:04,804 - __main__ - INFO - Training samples: 300000
+2025-09-13 18:31:04,804 - __main__ - INFO - Validation samples: 100000
+2025-09-13 18:31:04,805 - __main__ - INFO - Test samples: 100000
+2025-09-13 18:31:04,810 - __main__ - INFO - Train class distribution: [(np.int64(0), np.int64(60000)), (np.int64(1), np.int64(60000)), (np.int64(2), np.int64(60000)), (np.int64(3), np.int64(60000)), (np.int64(4), np.int64(60000))]
+2025-09-13 18:31:04,811 - __main__ - INFO - Val class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 18:31:04,811 - __main__ - INFO - Test class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 18:31:04,813 - __main__ - INFO - Starting Random Forest model training...
+2025-09-13 18:31:04,813 - __main__ - INFO - Training RandomForest with 300000 samples
+2025-09-13 18:31:04,814 - __main__ - INFO - Parameters: {'n_estimators': 1000, 'criterion': 'entropy', 'max_depth': 25, 'min_samples_split': 4, 'min_samples_leaf': 2, 'min_weight_fraction_leaf': 0.0, 'max_features': 0.7, 'min_impurity_decrease': 0.0, 'bootstrap': True, 'oob_score': True, 'n_jobs': -1, 'random_state': 42, 'verbose': 0, 'warm_start': True, 'class_weight': 'balanced_subsample', 'ccp_alpha': 5e-05, 'max_samples': 0.7}
+2025-09-13 18:32:51,133 - __main__ - INFO - Training accuracy: 0.9267
+2025-09-13 18:32:51,133 - __main__ - INFO - Validation accuracy: 0.9224
+2025-09-13 18:32:51,133 - __main__ - INFO - Model training completed successfully
+2025-09-13 18:32:51,133 - __main__ - INFO - Evaluating model performance...
+2025-09-13 18:32:55,315 - __main__ - INFO - accuracy: 0.9227
+2025-09-13 18:32:55,316 - __main__ - INFO - precision_macro: 0.9281
+2025-09-13 18:32:55,316 - __main__ - INFO - recall_macro: 0.9227
+2025-09-13 18:32:55,316 - __main__ - INFO - f1_macro: 0.9217
+2025-09-13 18:32:55,316 - __main__ - INFO - f1_weighted: 0.9217
+2025-09-13 18:32:55,460 - __main__ - INFO - Out-of-bag score: 0.9230
+2025-09-13 18:32:55,464 - __main__ - INFO - Generating visualization plots...
+2025-09-13 18:32:55,976 - __main__ - INFO - Feature importance plot saved
+2025-09-13 18:32:56,245 - __main__ - INFO - Confusion matrix plot saved
+2025-09-13 18:32:56,497 - __main__ - INFO - Tree depth distribution plot saved
+2025-09-13 18:32:56,498 - __main__ - INFO - Saving model and results...
+2025-09-13 18:32:56,498 - __main__ - INFO - Saving the sklearn model from our wrapper
+2025-09-13 18:32:57,093 - __main__ - INFO - Model saved to: C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\models\saved_Models\random_forest_experiment3.joblib
+2025-09-13 18:32:57,093 - __main__ - INFO - Final model saved to: C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\models\saved_Models\random_forest_experiment3_final_20250913_183256.joblib
+2025-09-13 18:32:57,093 - __main__ - INFO - Results saved to: C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\outputs\evaluation_results_20250913_183256.joblib
+2025-09-13 18:32:57,093 - __main__ - INFO - Metrics saved to: C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\logs\training_metrics_20250913_183256.csv
+2025-09-13 18:32:57,093 - __main__ - INFO - ==================================================
+2025-09-13 18:32:57,093 - __main__ - INFO - TRAINING PIPELINE COMPLETED SUCCESSFULLY
+2025-09-13 18:32:57,093 - __main__ - INFO - ==================================================

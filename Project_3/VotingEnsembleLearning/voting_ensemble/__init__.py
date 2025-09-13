@@ -69,7 +69,7 @@ model.fit(X_train, y_train)
 import warnings
 from .config_loader import VotingEnsembleConfig, load_config
 from .model_builder import build_voting_ensemble_model
-from .voting_ensemble_with_softmax import VotingEnsembleClassifier
+from .voting_ensemble import VotingEnsembleClassifier
 
 # Suppress specific warnings for cleaner output
 warnings.filterwarnings("ignore", category=UserWarning)

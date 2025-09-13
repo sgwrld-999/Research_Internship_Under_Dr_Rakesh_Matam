@@ -16,13 +16,13 @@ num_classes: 5 # Classification categories: Recon, Exploitation, C&C, Attack, Be
 # === Random Forest Specific Parameters ===
 n_estimators: 100 # Number of trees in the forest
 criterion: "gini" # Function to measure quality of split (gini or entropy)
-max_depth: null # Maximum depth of trees (null for unlimited)
+max_depth: 5 # Maximum depth of trees (null for unlimited)
 min_samples_split: 2 # Minimum samples required to split internal node
 min_samples_leaf: 1 # Minimum samples required in leaf node
-min_weight_fraction_leaf: 0.0 # Minimum weighted fraction in leaf
-max_features: "sqrt" # Number of features for best split (sqrt, log2, or int)
+min_weight_fraction_leaf: 0.3 # Minimum weighted fraction in leaf
+max_features: "log2" # Number of features for best split (sqrt, log2, or int)
 max_leaf_nodes: null # Maximum number of leaf nodes (null for unlimited)
-min_impurity_decrease: 0.0 # Minimum impurity decrease for split
+min_impurity_decrease: 0.3 # Minimum impurity decrease for split
 
 # === Bootstrap and Sampling ===
 bootstrap: true # Whether to use bootstrap sampling

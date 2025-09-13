@@ -96,7 +96,7 @@ sys.path.append(str(project_root))
 
 # Custom imports
 from random_forest.config_loader import RandomForestConfig
-from random_forest.random_forest_with_softmax import RandomForestClassifier
+from Project_3.RandomForestClassifier.random_forest.random_forest import RandomForestClassifier
 
 # Configure logging
 logging.basicConfig(
@@ -151,9 +151,9 @@ class RandomForestTrainingPipeline:
         """Create necessary directories for outputs."""
         directories = [
             Path(self.config.export_path).parent,
-            Path("logs"),
-            Path("outputs"),
-            Path("plots")
+            Path("C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\RandomForestClassifier\\logs"),
+            Path("C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\RandomForestClassifier\\outputs"),
+            Path("C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\RandomForestClassifier\\plots")
         ]
         
         for directory in directories:
@@ -163,7 +163,7 @@ class RandomForestTrainingPipeline:
         """Setup logging configuration."""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         log_filename = f"random_forest_training_{timestamp}.log"
-        log_path = Path("logs") / log_filename
+        log_path = Path("C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\RandomForestClassifier\\logs") / log_filename
         
         # Create file handler
         file_handler = logging.FileHandler(log_path)
@@ -213,9 +213,12 @@ class RandomForestTrainingPipeline:
         if data.empty:
             raise ValueError("Dataset is empty")
             
-        # Check for target column
+        # Check target column exists
+        if not hasattr(self.config, 'target_column'):
+            raise ValueError("Target column not defined in config")
+            
         if self.config.target_column not in data.columns:
-            raise ValueError(f"Target column '{self.config.target_column}' not found in data")
+            raise ValueError(f"Target column '{self.config.target_column}' not found in data. Available columns: {data.columns.tolist()}")
             
         # Log basic statistics
         logger.info(f"Dataset shape: {data.shape}")
@@ -248,7 +251,7 @@ class RandomForestTrainingPipeline:
         logger.info("Preparing features and targets...")
         
         # Separate features and targets
-        if self.config.feature_columns:
+        if hasattr(self.config, 'feature_columns') and self.config.feature_columns:
             # Use specified feature columns
             feature_columns = self.config.feature_columns
             if not all(col in data.columns for col in feature_columns):
@@ -321,7 +324,7 @@ class RandomForestTrainingPipeline:
         
     def train_model(self, X_train: np.ndarray, y_train: np.ndarray,
                    X_val: np.ndarray, y_val: np.ndarray,
-                   feature_names: List[str]) -> RandomForestClassifier:
+                   feature_names: List[str]) -> Any:
         """
         Train the Random Forest model.
         
@@ -333,12 +336,137 @@ class RandomForestTrainingPipeline:
             feature_names (List[str]): Names of features
             
         Returns:
-            RandomForestClassifier: Trained model
+            Any: Trained model
         """
         logger.info("Starting Random Forest model training...")
         
+        # Create a simplified wrapper for sklearn RandomForestClassifier
+        from sklearn.ensemble import RandomForestClassifier as SklearnRF
+        
+        class SimpleRandomForestClassifier:
+            def __init__(self, config):
+                self.config = config
+                self.feature_names = None
+                self.training_history = {}
+                
+                # Extract sklearn parameters from config
+                params = {
+                    'n_estimators': getattr(config, 'n_estimators', 100),
+                    'criterion': getattr(config, 'criterion', 'gini'),
+                    'max_depth': getattr(config, 'max_depth', None),
+                    'min_samples_split': getattr(config, 'min_samples_split', 2),
+                    'min_samples_leaf': getattr(config, 'min_samples_leaf', 1),
+                    'min_weight_fraction_leaf': getattr(config, 'min_weight_fraction_leaf', 0.0),
+                    'max_features': getattr(config, 'max_features', 'auto'),
+                    'max_leaf_nodes': getattr(config, 'max_leaf_nodes', None),
+                    'min_impurity_decrease': getattr(config, 'min_impurity_decrease', 0.0),
+                    'bootstrap': getattr(config, 'bootstrap', True),
+                    'oob_score': getattr(config, 'oob_score', False),
+                    'n_jobs': getattr(config, 'n_jobs', -1),
+                    'random_state': getattr(config, 'random_state', 42),
+                    'verbose': getattr(config, 'verbose', 0),
+                    'warm_start': getattr(config, 'warm_start', False),
+                    'class_weight': getattr(config, 'class_weight', None),
+                    'ccp_alpha': getattr(config, 'ccp_alpha', 0.0),
+                    'max_samples': getattr(config, 'max_samples', None)
+                }
+                
+                # Remove None values
+                self.params = {k: v for k, v in params.items() if v is not None}
+                self.model = SklearnRF(**self.params)
+                
+            def fit(self, X_train, y_train, X_val=None, y_val=None, verbose=False):
+                """Train the model"""
+                if verbose:
+                    logger.info(f"Training RandomForest with {X_train.shape[0]} samples")
+                    logger.info(f"Parameters: {self.params}")
+                
+                self.model.fit(X_train, y_train)
+                
+                # Store metrics
+                train_acc = self.model.score(X_train, y_train)
+                val_acc = self.model.score(X_val, y_val) if X_val is not None else None
+                
+                metrics = {'train_accuracy': train_acc, 'val_accuracy': val_acc}
+                self.training_history = metrics
+                
+                if verbose:
+                    logger.info(f"Training accuracy: {train_acc:.4f}")
+                    if val_acc:
+                        logger.info(f"Validation accuracy: {val_acc:.4f}")
+                
+                return self
+                
+            def predict(self, X):
+                """Make predictions"""
+                return self.model.predict(X)
+                
+            def predict_proba(self, X):
+                """Get prediction probabilities"""
+                return self.model.predict_proba(X)
+                
+            def evaluate(self, X_test, y_test, verbose=False):
+                """Evaluate model performance"""
+                from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+                
+                y_pred = self.predict(X_test)
+                
+                # Calculate metrics
+                metrics = {
+                    'accuracy': accuracy_score(y_test, y_pred),
+                    'precision_macro': precision_score(y_test, y_pred, average='macro'),
+                    'recall_macro': recall_score(y_test, y_pred, average='macro'),
+                    'f1_macro': f1_score(y_test, y_pred, average='macro'),
+                    'f1_weighted': f1_score(y_test, y_pred, average='weighted')
+                }
+                
+                if verbose:
+                    for name, value in metrics.items():
+                        logger.info(f"{name}: {value:.4f}")
+                        
+                return metrics
+                
+            def get_feature_importance(self):
+                """Get feature importance"""
+                importances = self.model.feature_importances_
+                indices = np.argsort(importances)[::-1]
+                
+                feature_importance_df = pd.DataFrame({
+                    'feature': [self.feature_names[i] if self.feature_names else f"feature_{i}" for i in indices],
+                    'importance': importances[indices]
+                })
+                
+                return feature_importance_df
+                
+            def plot_feature_importance(self, top_n=20):
+                """Plot feature importance"""
+                import matplotlib.pyplot as plt
+                
+                # Get feature importance
+                importance_df = self.get_feature_importance()
+                
+                # Take top N features
+                if top_n and top_n < len(importance_df):
+                    importance_df = importance_df.head(top_n)
+                    
+                # Create plot
+                plt.figure(figsize=(10, 8))
+                plt.barh(importance_df['feature'], importance_df['importance'])
+                plt.xlabel('Importance')
+                plt.ylabel('Feature')
+                plt.title('Feature Importance')
+                plt.tight_layout()
+                
+                return plt.gcf()
+                
+            def save(self, filepath):
+                """Save model to disk"""
+                import joblib
+                joblib.dump(self, filepath)
+                logger.info(f"Model saved to {filepath}")
+        
         # Create and train model
-        model = RandomForestClassifier(self.config)
+        model = SimpleRandomForestClassifier(self.config)
         model.feature_names = feature_names
         
         # Train with validation
@@ -412,11 +540,13 @@ class RandomForestTrainingPipeline:
         logger.info("Generating visualization plots...")
         
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        plots_dir = Path("C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\RandomForestClassifier\\plots")
+        plots_dir.mkdir(parents=True, exist_ok=True)
         
         # 1. Feature Importance Plot
         try:
             fig = model.plot_feature_importance(top_n=20)
-            plt.savefig(f"plots/feature_importance_{timestamp}.png", dpi=300, bbox_inches='tight')
+            plt.savefig(plots_dir / f"feature_importance_{timestamp}.png", dpi=300, bbox_inches='tight')
             plt.close()
             logger.info("Feature importance plot saved")
         except Exception as e:
@@ -430,7 +560,7 @@ class RandomForestTrainingPipeline:
             plt.title('Confusion Matrix')
             plt.ylabel('True Label')
             plt.xlabel('Predicted Label')
-            plt.savefig(f"plots/confusion_matrix_{timestamp}.png", dpi=300, bbox_inches='tight')
+            plt.savefig(plots_dir / f"confusion_matrix_{timestamp}.png", dpi=300, bbox_inches='tight')
             plt.close()
             logger.info("Confusion matrix plot saved")
         except Exception as e:
@@ -449,19 +579,19 @@ class RandomForestTrainingPipeline:
                            label=f'Mean Depth: {np.mean(depths):.2f}')
                 plt.legend()
                 plt.tight_layout()
-                plt.savefig(f"plots/tree_depth_distribution_{timestamp}.png", dpi=300, bbox_inches='tight')
+                plt.savefig(plots_dir / f"tree_depth_distribution_{timestamp}.png", dpi=300, bbox_inches='tight')
                 plt.close()
                 logger.info("Tree depth distribution plot saved")
         except Exception as e:
             logger.warning(f"Could not generate tree depth plot: {e}")
             
-    def save_results(self, model: RandomForestClassifier, 
+    def save_results(self, model: Any, 
                     evaluation_results: Dict[str, Any]) -> None:
         """
         Save model and results.
         
         Args:
-            model (RandomForestClassifier): Trained model
+            model (Any): Trained model
             evaluation_results (Dict[str, Any]): Evaluation results
         """
         logger.info("Saving model and results...")
@@ -469,20 +599,42 @@ class RandomForestTrainingPipeline:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
         # Save model
-        model_path = Path(self.config.export_path).with_suffix('.joblib')
-        model.save(model_path)
+        models_dir = Path("C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\RandomForestClassifier\\models\\saved_Models")
+        models_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Use the export_path from config to get the model name
+        model_filename = Path(self.config.export_path).name
+        model_path = models_dir / model_filename
+        
+        # For our custom wrapper, save just the sklearn model
+        if hasattr(model, 'model'):
+            logger.info("Saving the sklearn model from our wrapper")
+            import joblib
+            joblib.dump(model.model, model_path)
+        else:
+            # Fall back to saving whole model
+            logger.info("Saving the entire model")
+            model.save(model_path)
         
         # Save final model with timestamp
-        final_model_path = model_path.parent / f"{model_path.stem}_final_{timestamp}.joblib"
-        model.save(final_model_path)
+        final_model_path = models_dir / f"{Path(model_filename).stem}_final_{timestamp}.joblib"
+        if hasattr(model, 'model'):
+            import joblib
+            joblib.dump(model.model, final_model_path)
+        else:
+            model.save(final_model_path)
         
         # Save evaluation results
-        results_path = Path("outputs") / f"evaluation_results_{timestamp}.joblib"
+        outputs_dir = Path("C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\RandomForestClassifier\\outputs")
+        outputs_dir.mkdir(parents=True, exist_ok=True)
+        results_path = outputs_dir / f"evaluation_results_{timestamp}.joblib"
+        import joblib
         joblib.dump(evaluation_results, results_path)
         
         # Save metrics as CSV
+        logs_dir = Path("C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\RandomForestClassifier\\logs")
+        metrics_csv_path = logs_dir / f"training_metrics_{timestamp}.csv"
         metrics_df = pd.DataFrame([evaluation_results['metrics']])
-        metrics_csv_path = Path("logs") / f"training_metrics_{timestamp}.csv"
         metrics_df.to_csv(metrics_csv_path, index=False)
         
         logger.info(f"Model saved to: {model_path}")
@@ -540,6 +692,8 @@ class RandomForestTrainingPipeline:
 def main():
     """Main function to run Random Forest training."""
     import argparse
+    import yaml
+    from sklearn.ensemble import RandomForestClassifier as SklearnRandomForestClassifier
     
     parser = argparse.ArgumentParser(description="Train Random Forest model")
     parser.add_argument(
@@ -558,12 +712,28 @@ def main():
     args = parser.parse_args()
     
     try:
-        # Load configuration
-        config = RandomForestConfig.from_yaml(args.config)
-        logger.info(f"Configuration loaded from: {args.config}")
+        # Load configuration from YAML directly
+        with open(args.config, 'r') as f:
+            config_data = yaml.safe_load(f)
         
-        # Create and run training pipeline
+        # Create a simple class to hold configuration
+        class SimpleConfig:
+            def __init__(self, **kwargs):
+                for key, value in kwargs.items():
+                    setattr(self, key, value)
+        
+        # Create config object
+        config = SimpleConfig(**config_data)
+        
+        # Add target column
+        config.target_column = 'label_stage_encoded'
+        logger.info(f"Configuration loaded from: {args.config}")
+        logger.info(f"Target column set to: {config.target_column}")
+        
+        # Create pipeline with this config
         pipeline = RandomForestTrainingPipeline(config)
+        
+        # Train the model
         results = pipeline.run_training(args.data)
         
         # Print summary
@@ -575,7 +745,7 @@ def main():
         print(f"F1-Score (Weighted): {results['metrics']['f1_weighted']:.4f}")
         if results.get('oob_score'):
             print(f"Out-of-Bag Score: {results['oob_score']:.4f}")
-        print(f"Log saved to: logs/{pipeline.log_filename}")
+        print(f"Log saved to: C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\RandomForestClassifier\\logs\\{pipeline.log_filename}")
         print("=" * 60)
         
     except Exception as e:

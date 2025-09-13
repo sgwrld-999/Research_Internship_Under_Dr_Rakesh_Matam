@@ -1,0 +1,79 @@
+# Random Forest Model Configuration for Network Intrusion Detection - Experiment 3
+# ==================================================================
+# 
+# THEORY - Configuration Design:
+# =============================
+# This configuration aims to maximize accuracy through:
+# 1. Further increased model complexity with more trees
+# 2. Careful balancing of depth vs. regularization
+# 3. Optimal feature selection and class handling
+# 4. Advanced bootstrap sampling techniques
+
+# === Core Architecture Parameters ===
+input_dim: 14 # Number of features per sample
+num_classes: 5 # Classification categories: Recon, Exploitation, C&C, Attack, Benign
+
+# === Random Forest Specific Parameters ===
+n_estimators: 1000 # Very large number of trees for maximum ensemble strength
+criterion: "entropy" # Using entropy for better performance on multi-class problems
+max_depth: 25 # Deeper trees to capture complex patterns in the data
+min_samples_split: 4 # Balanced to prevent overfitting but allow complexity
+min_samples_leaf: 2 # Ensures robust leaf nodes
+min_weight_fraction_leaf: 0.0 # No weight fraction constraint for more flexible trees
+max_features: 0.7 # Using 70% of features for each split (custom value)
+max_leaf_nodes: null # No limit on leaf nodes
+min_impurity_decrease: 0.0 # No minimum impurity decrease requirement
+
+# === Bootstrap and Sampling ===
+bootstrap: true # Using bootstrap sampling
+oob_score: true # Using out-of-bag samples for scoring
+max_samples: 0.7 # Using 70% of samples for each tree
+
+# === Regularization ===
+ccp_alpha: 0.00005 # Very small complexity parameter to prevent overfitting
+
+# === Performance and Parallelization ===
+n_jobs: -1 # Use all available cores
+random_state: 42 # Fixed random seed for reproducibility
+verbose: 0 # Minimal output during training
+warm_start: true # Reuse previous solutions for faster training
+
+# === Class Balancing ===
+class_weight: "balanced_subsample" # Better handling of imbalanced data
+
+# === Training Configuration ===
+test_size: 0.2 # 20% of data for testing
+validation_split: 0.2 # 20% of training data for validation
+
+# === Feature Engineering ===
+feature_selection: true # Enable feature selection
+feature_selection_method: "importance" # Select features based on importance
+n_features_to_select: 14 # Use all features after calculating importance
+
+# === Evaluation Metrics ===
+metrics:
+  - accuracy
+  - precision
+  - recall
+  - f1_score
+  - roc_auc
+  - confusion_matrix
+  - feature_importance
+
+# === Model Persistence ===
+export_path: "models/saved_Models/random_forest_experiment3.joblib" # Updated path for experiment 3
+
+# === Advanced Configuration ===
+# These settings are enabled for this experiment to improve performance
+hyperparameter_tuning:
+  enabled: false # Disabled for direct training with optimized parameters
+  param_grid:
+    n_estimators: [500, 1000, 1500]
+    max_depth: [20, 25, 30]
+    min_samples_split: [2, 4, 6]
+    min_samples_leaf: [1, 2, 3]
+
+feature_engineering:
+  feature_selection: true
+  selection_method: "importance"
+  n_features: 14

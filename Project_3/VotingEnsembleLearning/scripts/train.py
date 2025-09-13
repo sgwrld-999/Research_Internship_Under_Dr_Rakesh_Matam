@@ -213,7 +213,7 @@ if __name__ == "__main__":
     config_path = PROJECT_ROOT / "config" / "voting_ensemble_experiment_1.yaml"
     
     # You can modify this path to point to your dataset
-    data_path = "/path/to/your/dataset.csv"  # Update this path
+    data_path = "C:\\Users\\dicla\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_3\\dataset\\combined_dataset_short_balanced_encoded_normalised.csv"  # Update this path
     
     if len(sys.argv) > 1:
         config_path = sys.argv[1]

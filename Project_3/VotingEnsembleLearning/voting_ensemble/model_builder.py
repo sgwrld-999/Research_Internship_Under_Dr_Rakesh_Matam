@@ -72,8 +72,24 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, VotingClassifier
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+# Try to import XGBoost and LightGBM, with fallbacks if not installed
+try:
+    import xgboost as xgb
+    XGBClassifier = xgb.XGBClassifier
+except ImportError:
+    XGBClassifier = None
+
+try:
+    import lightgbm as lgb
+    LGBMClassifier = lgb.LGBMClassifier
+except ImportError:
+    LGBMClassifier = None
 
 # Local imports
 from .config_loader import VotingEnsembleConfig
@@ -241,6 +257,129 @@ class VotingEnsembleBuilder:
             max_depth=self.config.gb_max_depth,
             random_state=self.config.random_state
         )
+        
+    def _create_knn(self) -> KNeighborsClassifier:
+        """Create and configure K-Nearest Neighbors classifier.
+        
+        THEORY - K-Nearest Neighbors:
+        =============================
+        KNN is a non-parametric, instance-based learning algorithm:
+        - Classification based on k closest training examples
+        - Distance-weighted voting possible for better results
+        - No explicit training phase (lazy learning)
+        - Simple but effective for many problems
+        - Sensitive to the scale of the data
+        
+        Returns:
+            KNeighborsClassifier: Configured KNN model
+        """
+        return KNeighborsClassifier(
+            n_neighbors=self.config.knn_n_neighbors,
+            weights=self.config.knn_weights,
+            algorithm=self.config.knn_algorithm,
+            n_jobs=self.config.knn_n_jobs
+        )
+        
+    def _create_naive_bayes(self) -> GaussianNB:
+        """Create and configure Naive Bayes classifier.
+        
+        THEORY - Naive Bayes:
+        ====================
+        Naive Bayes applies Bayes' theorem with naive independence assumptions:
+        - Assumes features are conditionally independent given the class
+        - Fast training and prediction
+        - Works well with high-dimensional data
+        - Requires less training data than many models
+        - Often used as a baseline classifier
+        
+        Returns:
+            GaussianNB: Configured Naive Bayes model
+        """
+        return GaussianNB(
+            var_smoothing=self.config.nb_var_smoothing,
+            priors=self.config.nb_priors
+        )
+        
+    def _create_decision_tree(self) -> DecisionTreeClassifier:
+        """Create and configure Decision Tree classifier.
+        
+        THEORY - Decision Trees:
+        =======================
+        Decision Trees recursively partition the feature space:
+        - Interpretable model with clear decision rules
+        - Can capture non-linear relationships
+        - No feature scaling required
+        - Prone to overfitting without pruning
+        - Foundation for ensemble methods like Random Forest
+        
+        Returns:
+            DecisionTreeClassifier: Configured Decision Tree model
+        """
+        return DecisionTreeClassifier(
+            criterion=self.config.dt_criterion,
+            max_depth=self.config.dt_max_depth,
+            min_samples_split=self.config.dt_min_samples_split,
+            random_state=self.config.dt_random_state
+        )
+        
+    def _create_xgboost(self):
+        """Create and configure XGBoost classifier.
+        
+        THEORY - XGBoost:
+        ================
+        XGBoost is an optimized gradient boosting implementation:
+        - Regularization to prevent overfitting
+        - Parallel processing for faster training
+        - Handling of missing values
+        - Tree pruning for better performance
+        - Built-in cross-validation
+        
+        Returns:
+            XGBClassifier: Configured XGBoost model, or None if not available
+        """
+        if XGBClassifier is None:
+            return None
+            
+        return XGBClassifier(
+            n_estimators=self.config.xgb_n_estimators,
+            learning_rate=self.config.xgb_learning_rate,
+            max_depth=self.config.xgb_max_depth,
+            subsample=self.config.xgb_subsample,
+            colsample_bytree=self.config.xgb_colsample_bytree,
+            random_state=self.config.xgb_random_state,
+            use_label_encoder=self.config.xgb_use_label_encoder,
+            eval_metric=self.config.xgb_eval_metric,
+            n_jobs=self.config.n_jobs
+        )
+        
+    def _create_lightgbm(self):
+        """Create and configure LightGBM classifier.
+        
+        THEORY - LightGBM:
+        =================
+        LightGBM is a gradient boosting framework using tree-based algorithms:
+        - Faster training speed and higher efficiency
+        - Lower memory usage
+        - Better accuracy
+        - Support for parallel, distributed, and GPU learning
+        - Capable of handling large-scale data
+        
+        Returns:
+            LGBMClassifier: Configured LightGBM model, or None if not available
+        """
+        if LGBMClassifier is None:
+            return None
+            
+        return LGBMClassifier(
+            n_estimators=self.config.lgbm_n_estimators,
+            learning_rate=self.config.lgbm_learning_rate,
+            max_depth=self.config.lgbm_max_depth,
+            num_leaves=self.config.lgbm_num_leaves,
+            subsample=self.config.lgbm_subsample,
+            colsample_bytree=self.config.lgbm_colsample_bytree,
+            random_state=self.config.lgbm_random_state,
+            n_jobs=self.config.n_jobs
+        )
     
     def _build_base_estimators(self) -> None:
         """Build the list of base estimators based on configuration."""
@@ -261,6 +400,28 @@ class VotingEnsembleBuilder:
         if self.config.use_gradient_boosting:
             gb_model = self._create_gradient_boosting()
             self.base_estimators.append(('gradient_boosting', gb_model))
+            
+        if hasattr(self.config, 'use_knn') and self.config.use_knn:
+            knn_model = self._create_knn()
+            self.base_estimators.append(('knn', knn_model))
+            
+        if hasattr(self.config, 'use_naive_bayes') and self.config.use_naive_bayes:
+            nb_model = self._create_naive_bayes()
+            self.base_estimators.append(('naive_bayes', nb_model))
+            
+        if hasattr(self.config, 'use_decision_tree') and self.config.use_decision_tree:
+            dt_model = self._create_decision_tree()
+            self.base_estimators.append(('decision_tree', dt_model))
+            
+        if hasattr(self.config, 'use_xgboost') and self.config.use_xgboost and XGBClassifier is not None:
+            xgb_model = self._create_xgboost()
+            if xgb_model is not None:
+                self.base_estimators.append(('xgboost', xgb_model))
+                
+        if hasattr(self.config, 'use_lightgbm') and self.config.use_lightgbm and LGBMClassifier is not None:
+            lgbm_model = self._create_lightgbm()
+            if lgbm_model is not None:
+                self.base_estimators.append(('lightgbm', lgbm_model))
     
     def build_model(self) -> VotingClassifier:
         """Build the complete voting ensemble model.

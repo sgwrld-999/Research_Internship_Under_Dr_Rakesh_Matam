@@ -1,0 +1,103 @@
+# Voting Ensemble Model Configuration for Network Intrusion Detection - Experiment 4
+# ====================================================================
+# 
+# THEORY - Configuration Design:
+# =============================
+# This configuration follows the principle of "Configuration as Code":
+# - All model parameters are externalized
+# - Easy to version control and track changes
+# - Enables experiment reproducibility
+# - Supports automated hyperparameter tuning
+
+# === Core Architecture Parameters ===
+input_dim: 14 # Number of features per sample (update to match dataset)
+num_classes: 5 # Classification categories: Recon, Exploitation, C&C, Attack, Benign
+
+# === Ensemble Configuration ===
+voting_type: "soft" # Use soft voting for better probability estimates
+estimator_weights: null # Equal weights for all estimators (null = automatic)
+n_jobs: -1 # Use all available CPU cores for parallel processing
+
+# === Base Estimators Selection ===
+use_random_forest: true # Include Random Forest classifier
+use_svm: false # Exclude Support Vector Machine (per request)
+use_logistic_regression: true # Include Logistic Regression
+use_gradient_boosting: true # Include Gradient Boosting
+use_knn: true # Include K-Nearest Neighbors
+use_naive_bayes: true # Include Naive Bayes
+use_decision_tree: true # Include Decision Tree
+use_xgboost: true # Include XGBoost
+use_lightgbm: true # Include LightGBM
+
+# === Random Forest Parameters ===
+rf_n_estimators: 150 # Increased number of trees for better performance
+rf_max_depth: 15 # Set a maximum depth to balance complexity and overfitting
+rf_random_state: 42 # Random seed for Random Forest
+
+# === SVM Parameters === (kept for reference but not used)
+svm_kernel: "rbf" # Kernel type for SVM
+svm_c: 1.0 # Regularization parameter
+svm_gamma: "scale" # Kernel coefficient
+svm_probability: true # Enable probability estimates (required for soft voting)
+
+# === Logistic Regression Parameters ===
+lr_c: 1.0 # Inverse of regularization strength
+lr_max_iter: 1500 # Increased iterations for better convergence
+lr_solver: "saga" # Optimized solver for large datasets
+
+# === Gradient Boosting Parameters ===
+gb_n_estimators: 120 # Increased number of boosting stages
+gb_learning_rate: 0.08 # Reduced learning rate for better generalization
+gb_max_depth: 4 # Moderate depth to prevent overfitting
+
+# === K-Nearest Neighbors Parameters ===
+knn_n_neighbors: 7 # Number of neighbors to consider
+knn_weights: "distance" # Weight points by the inverse of their distance
+knn_algorithm: "kd_tree" # Algorithm to compute nearest neighbors
+knn_n_jobs: -1 # Use all CPU cores for KNN
+
+# === Naive Bayes Parameters ===
+nb_var_smoothing: 1e-8 # Increased smoothing for better stability
+nb_priors: null # Class prior probabilities (null = learned from data)
+
+# === Decision Tree Parameters ===
+dt_criterion: "entropy" # Function to measure the quality of a split
+dt_max_depth: 12 # Maximum depth to prevent overfitting
+dt_min_samples_split: 4 # Minimum samples required to split an internal node
+dt_random_state: 42 # Random seed for Decision Tree
+
+# === XGBoost Parameters ===
+xgb_n_estimators: 150 # Number of boosting rounds
+xgb_learning_rate: 0.08 # Learning rate
+xgb_max_depth: 4 # Maximum tree depth for base learners
+xgb_subsample: 0.8 # Subsample ratio of the training instances
+xgb_colsample_bytree: 0.8 # Subsample ratio of columns when constructing each tree
+xgb_random_state: 42 # Random seed for XGBoost
+xgb_use_label_encoder: false # Disable label encoder for multi-class classification
+xgb_eval_metric: "mlogloss" # Evaluation metric for multi-class classification
+
+# === LightGBM Parameters ===
+lgbm_n_estimators: 150 # Number of boosting rounds
+lgbm_learning_rate: 0.08 # Learning rate
+lgbm_max_depth: 5 # Maximum tree depth for base learners
+lgbm_num_leaves: 40 # Maximum number of leaves in one tree
+lgbm_subsample: 0.8 # Subsample ratio of the training instances
+lgbm_colsample_bytree: 0.8 # Subsample ratio of columns when constructing each tree
+lgbm_random_state: 42 # Random seed for LightGBM
+lgbm_use_label_encoder: false # Disable label encoder for multi-class classification
+lgbm_eval_metric: "multi_logloss" # Evaluation metric for multi-class classification
+
+# === Training Configuration ===
+test_size: 0.2 # Fraction of data for testing (20%)
+validation_split: 0.2 # Fraction of training data for validation (20%)
+random_state: 42 # Global random seed for reproducibility
+
+# === Evaluation Metrics ===
+metrics: # Performance metrics to track
+  - accuracy # Overall correctness
+  - precision # Positive predictive value
+  - recall # Sensitivity to positive class
+  - f1_score # Balance between precision and recall
+
+# === Model Persistence ===
+export_path: "models/saved_Models/voting_ensemble_experiment4.joblib" # Where to save trained model

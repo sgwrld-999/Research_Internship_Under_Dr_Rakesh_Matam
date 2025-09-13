@@ -1,0 +1,56 @@
+2025-09-13 18:09:54,962 - __main__ - INFO - Logging to logs\random_forest_training_20250913_180954.log
+2025-09-13 18:09:54,963 - __main__ - INFO - Random Forest Training Pipeline initialized
+2025-09-13 18:09:54,963 - __main__ - INFO - ==================================================
+2025-09-13 18:09:54,963 - __main__ - INFO - STARTING RANDOM FOREST TRAINING PIPELINE
+2025-09-13 18:09:54,963 - __main__ - INFO - ==================================================
+2025-09-13 18:09:54,963 - __main__ - INFO - Loading data from Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 18:09:55,450 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 18:09:55,451 - __main__ - INFO - Using target column: label_stage_encoded
+2025-09-13 18:09:55,451 - __main__ - INFO - Dataset shape: (500000, 15)
+2025-09-13 18:09:55,451 - __main__ - INFO - Target column: label_stage_encoded
+2025-09-13 18:09:55,451 - __main__ - INFO - Number of features: 14
+2025-09-13 18:09:55,451 - __main__ - INFO - Dataset shape: (500000, 15)
+2025-09-13 18:09:55,451 - __main__ - INFO - Target column: label_stage_encoded
+2025-09-13 18:09:55,452 - __main__ - INFO - Number of features: 14
+2025-09-13 18:09:55,460 - __main__ - INFO - Class distribution:
+label_stage_encoded
+1    100000
+0    100000
+4    100000
+2    100000
+3    100000
+Name: count, dtype: int64
+2025-09-13 18:09:55,461 - __main__ - INFO - Class distribution:
+label_stage_encoded
+1    100000
+0    100000
+4    100000
+2    100000
+3    100000
+Name: count, dtype: int64
+2025-09-13 18:09:55,469 - __main__ - INFO - No missing values found
+2025-09-13 18:09:55,470 - __main__ - INFO - Preparing features and targets...
+2025-09-13 18:09:55,470 - __main__ - ERROR - Training pipeline failed: 'RandomForestConfig' object has no attribute 'feature_columns'
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 522, in run_training
+    X, y, feature_names = self.prepare_features_and_targets(data)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 261, in prepare_features_and_targets
+    if self.config.feature_columns:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\pydantic\main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'RandomForestConfig' object has no attribute 'feature_columns'
+2025-09-13 18:09:55,472 - __main__ - ERROR - Training failed: 'RandomForestConfig' object has no attribute 'feature_columns'
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 577, in main
+    results = pipeline.run_training(args.data)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 522, in run_training
+    X, y, feature_names = self.prepare_features_and_targets(data)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 261, in prepare_features_and_targets
+    if self.config.feature_columns:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\pydantic\main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'RandomForestConfig' object has no attribute 'feature_columns'

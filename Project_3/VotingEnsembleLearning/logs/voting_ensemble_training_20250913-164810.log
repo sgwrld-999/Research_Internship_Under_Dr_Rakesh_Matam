@@ -1,0 +1,34 @@
+2025-09-13 16:48:10,715 - __main__ - INFO - Loading configuration...
+2025-09-13 16:48:10,732 - __main__ - INFO - Configuration loaded: ['RandomForest', 'LogisticRegression', 'GradientBoosting']
+2025-09-13 16:48:10,732 - __main__ - INFO - Loading data from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 16:48:11,172 - __main__ - INFO - Data loaded: 500000 samples, 14 features, 5 classes
+2025-09-13 16:48:11,438 - __main__ - INFO - Data split - Train: 400000, Test: 100000
+2025-09-13 16:48:11,443 - __main__ - INFO - Initializing Voting Ensemble classifier...
+2025-09-13 16:48:11,444 - __main__ - INFO - Starting training...
+2025-09-13 16:59:33,962 - __main__ - INFO - Training completed in 0:11:22.518532
+2025-09-13 16:59:33,963 - __main__ - INFO - Evaluating model...
+2025-09-13 16:59:36,572 - __main__ - INFO - === TRAINING RESULTS ===
+2025-09-13 16:59:36,572 - __main__ - INFO - Accuracy: 0.9126
+2025-09-13 16:59:36,573 - __main__ - INFO - Precision: 0.9247
+2025-09-13 16:59:36,573 - __main__ - INFO - Recall: 0.9126
+2025-09-13 16:59:36,573 - __main__ - INFO - F1-Score: 0.9096
+2025-09-13 16:59:36,573 - __main__ - INFO - ROC AUC: 0.9881
+2025-09-13 16:59:36,573 - __main__ - INFO - === BASE ESTIMATOR PERFORMANCE ===
+2025-09-13 16:59:36,573 - __main__ - INFO - random_forest:
+2025-09-13 16:59:36,573 - __main__ - INFO -   accuracy: 0.9264
+2025-09-13 16:59:36,573 - __main__ - INFO -   precision: 0.9336
+2025-09-13 16:59:36,574 - __main__ - INFO -   recall: 0.9264
+2025-09-13 16:59:36,574 - __main__ - INFO -   f1_score: 0.9251
+2025-09-13 16:59:36,574 - __main__ - INFO - logistic_regression:
+2025-09-13 16:59:36,574 - __main__ - INFO -   accuracy: 0.6769
+2025-09-13 16:59:36,574 - __main__ - INFO -   precision: 0.7817
+2025-09-13 16:59:36,574 - __main__ - INFO -   recall: 0.6769
+2025-09-13 16:59:36,574 - __main__ - INFO -   f1_score: 0.6138
+2025-09-13 16:59:36,574 - __main__ - INFO - gradient_boosting:
+2025-09-13 16:59:36,574 - __main__ - INFO -   accuracy: 0.9081
+2025-09-13 16:59:36,574 - __main__ - INFO -   precision: 0.9181
+2025-09-13 16:59:36,574 - __main__ - INFO -   recall: 0.9081
+2025-09-13 16:59:36,575 - __main__ - INFO -   f1_score: 0.9046
+2025-09-13 16:59:36,575 - __main__ - INFO - Saving model to models/saved_Models/voting_ensemble_experiment3.joblib
+2025-09-13 16:59:36,675 - __main__ - INFO - Metrics saved to C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\VotingEnsembleLearning\logs\training_metrics_20250913-164810.csv
+2025-09-13 16:59:36,675 - __main__ - INFO - Training pipeline completed successfully!

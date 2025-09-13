@@ -1,4 +1,4 @@
-# Voting Ensemble Model Configuration for Network Intrusion Detection
+# Voting Ensemble Model Configuration for Network Intrusion Detection - Experiment 2
 # ====================================================================
 # 
 # THEORY - Configuration Design:
@@ -20,44 +20,44 @@ n_jobs: -1 # Use all available CPU cores for parallel processing
 
 # === Base Estimators Selection ===
 use_random_forest: true # Include Random Forest classifier
-use_svm: false # Include Support Vector Machine(optional)
+use_svm: false # Exclude Support Vector Machine
 use_logistic_regression: true # Include Logistic Regression
 use_gradient_boosting: true # Include Gradient Boosting
-use_knn: true # Include K-Nearest Neighbors (optional)
-use_naive_bayes: true # Include Naive Bayes (optional)
-use_decision_tree: false # Include Decision Tree (optional)
-use_xgboost: true # Include XGBoost (optional)
-use_lightgbm: true # Include LightGBM (optional)
+use_knn: true # Include K-Nearest Neighbors
+use_naive_bayes: true # Include Naive Bayes
+use_decision_tree: true # Include Decision Tree
+use_xgboost: true # Include XGBoost
+use_lightgbm: true # Include LightGBM
 
 # === Random Forest Parameters ===
-rf_n_estimators: 100 # Number of trees in Random Forest
-rf_max_depth: null # Maximum depth (null for unlimited)
+rf_n_estimators: 150 # Increased number of trees for better performance
+rf_max_depth: 15 # Set a maximum depth to prevent overfitting
 rf_random_state: 42 # Random seed for Random Forest
 
-# === SVM Parameters ===
+# === SVM Parameters === (kept for reference but not used)
 svm_kernel: "rbf" # Kernel type for SVM
 svm_c: 1.0 # Regularization parameter
 svm_gamma: "scale" # Kernel coefficient
 svm_probability: true # Enable probability estimates (required for soft voting)
 
 # === Logistic Regression Parameters ===
-lr_c: 1.0 # Inverse of regularization strength
-lr_max_iter: 1000 # Maximum iterations for convergence
-lr_solver: "lbfgs" # Optimization algorithm
+lr_c: 0.8 # Slightly stronger regularization
+lr_max_iter: 1500 # Increased iterations for better convergence
+lr_solver: "saga" # Changed solver for large datasets and L1 penalty
 
 # === Gradient Boosting Parameters ===
-gb_n_estimators: 100 # Number of boosting stages
-gb_learning_rate: 0.1 # Learning rate for gradient boosting
-gb_max_depth: 3 # Maximum depth of individual trees
+gb_n_estimators: 150 # Increased number of boosting stages
+gb_learning_rate: 0.08 # Slightly reduced learning rate for better generalization
+gb_max_depth: 5 # Increased depth for more complex patterns
 
 # === K-Nearest Neighbors Parameters ===
-knn_n_neighbors: 5 # Number of neighbors to consider
-knn_weights: "uniform" # Weight function used in prediction
-knn_algorithm: "auto" # Algorithm to compute nearest neighbors
+knn_n_neighbors: 7 # Increased number of neighbors for smoother decision boundaries
+knn_weights: "distance" # Weight points by the inverse of their distance
+knn_algorithm: "kd_tree" # Optimized algorithm for faster neighbor search
 knn_n_jobs: -1 # Use all CPU cores for KNN
 
 # === Naive Bayes Parameters ===
-nb_var_smoothing: 1e-9 # Portion of the largest variance to add to variances for stability
+nb_var_smoothing: 1e-8 # Increased smoothing for better stability
 nb_priors: null # Class prior probabilities (null = learned from data)
 # nb_fit_prior: true # Whether to learn class prior probabilities
 # nb_alpha: 1.0 # Additive (Laplace) smoothing parameter
@@ -65,45 +65,42 @@ nb_priors: null # Class prior probabilities (null = learned from data)
 # nb_class_prior: null # Prior probabilities of the classes (null = uniform)
 
 # === XGBoost Parameters ===
-xgb_n_estimators: 100 # Number of boosting rounds
-xgb_learning_rate: 0.1 # Learning rate
-xgb_max_depth: 3 # Maximum tree depth for base learners
-xgb_subsample: 1.0 # Subsample ratio of the training instances
-xgb_colsample_bytree: 1.0 # Subsample ratio of columns when constructing each tree
+xgb_n_estimators: 150 # Increased number of boosting rounds
+xgb_learning_rate: 0.08 # Slightly reduced learning rate for better generalization
+xgb_max_depth: 5 # Increased depth for more complex patterns
+xgb_subsample: 0.8 # Subsample ratio to prevent overfitting
+xgb_colsample_bytree: 0.8 # Column subsampling for diversity
 xgb_random_state: 42 # Random seed for XGBoost
 xgb_use_label_encoder: false # Disable label encoder for multi-class classification
 xgb_eval_metric: "mlogloss" # Evaluation metric for multi-class classification
-# xgb_gamma: 0 # Minimum loss reduction required to make a further partition on a leaf node
-# xgb_min_child_weight: 1 # Minimum sum of instance weight needed in a child
-# xgb_reg_alpha: 0 # L1 regularization term on weights
-# xgb_reg_lambda: 1 # L2 regularization term on weights
+# xgb_gamma: 0.1 # Minimum loss reduction required to make a further partition on a leaf node
+# xgb_min_child_weight: 3 # Minimum sum of instance weight needed in a child
+# xgb_reg_alpha: 0.01 # L1 regularization term on weights
+# xgb_reg_lambda: 1.2 # L2 regularization term on weights
 
 # === Decision Tree Parameters ===
-dt_criterion: "gini" # Function to measure the quality of a split
-dt_max_depth: null # Maximum depth of the tree (null = unlimited)
-dt_min_samples_split: 2 # Minimum samples required to split an internal node
+dt_criterion: "entropy" # Changed to entropy for better information gain
+dt_max_depth: 10 # Set a maximum depth to prevent overfitting
+dt_min_samples_split: 4 # Increased minimum samples for more robust splits
 dt_random_state: 42 # Random seed for Decision Tree
-# dt_min_samples_leaf: 1 # Minimum samples required to be at a leaf node
-# dt_max_features: null # Number of features to consider when looking for the best split
+# dt_min_samples_leaf: 2 # Minimum samples required to be at a leaf node
+# dt_max_features: "sqrt" # Number of features to consider when looking for the best split
 # dt_class_weight: null # Weights associated with classes (null = uniform)
 # dt_splitter: "best" # Strategy used to choose the split at each node
 
 # === LightGBM Parameters ===
-lgbm_n_estimators: 100 # Number of boosting rounds
-lgbm_learning_rate: 0.1 # Learning rate
-lgbm_max_depth: -1 # Maximum tree depth for base learners (-1 = unlimited)
-lgbm_num_leaves: 31 # Maximum number of leaves in one tree
-lgbm_subsample: 1.0 # Subsample ratio of the training instances
-lgbm_colsample_bytree: 0.5 # Subsample ratio of columns when constructing each tree
+lgbm_n_estimators: 150 # Increased number of boosting rounds
+lgbm_learning_rate: 0.08 # Slightly reduced learning rate for better generalization
+lgbm_max_depth: 6 # Set a maximum depth to control complexity
+lgbm_num_leaves: 50 # Increased leaves for more flexibility
+lgbm_subsample: 0.8 # Subsample ratio to prevent overfitting
+lgbm_colsample_bytree: 0.7 # Column subsampling for diversity
 lgbm_random_state: 42 # Random seed for LightGBM
 lgbm_use_label_encoder: false # Disable label encoder for multi-class classification
 lgbm_eval_metric: "multi_logloss" # Evaluation metric for multi-class classification
-# lgbm_min_child_samples: 20 # Minimum number of data needed in a child (leaf)
-# lgbm_reg_alpha: 0 # L1 regularization term on weights
-# lgbm_reg_lambda: 0 # L2 regularization term on weights
-
-
-
+# lgbm_min_child_samples: 25 # Minimum number of data needed in a child (leaf)
+# lgbm_reg_alpha: 0.01 # L1 regularization term on weights
+# lgbm_reg_lambda: 0.1 # L2 regularization term on weights
 
 # === Training Configuration ===
 test_size: 0.2 # Fraction of data for testing (20%)
@@ -118,12 +115,12 @@ metrics: # Performance metrics to track
   - f1_score # Balance between precision and recall
 
 # === Model Persistence ===
-export_path: "models/saved_Models/voting_ensemble_experiment1.joblib" # Where to save trained model
+export_path: "models/saved_Models/voting_ensemble_experiment2.joblib" # Where to save trained model
 
 # === Advanced Configuration (Optional) ===
 # Uncomment and modify these for advanced usage:
 # 
-# estimator_weights: [0.3, 0.3, 0.2, 0.2] # Custom weights for [RF, SVM, LR, GB]
+# estimator_weights: [0.25, 0.15, 0.2, 0.15, 0.05, 0.15, 0.05] # Custom weights for [RF, LR, GB, KNN, NB, XGB, LGB]
 # 
 # feature_engineering:
 #   feature_selection: true

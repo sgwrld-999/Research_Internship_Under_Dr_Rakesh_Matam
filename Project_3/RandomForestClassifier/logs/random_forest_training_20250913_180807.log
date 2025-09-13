@@ -1,0 +1,35 @@
+2025-09-13 18:08:07,163 - __main__ - INFO - Logging to logs\random_forest_training_20250913_180807.log
+2025-09-13 18:08:07,164 - __main__ - INFO - Random Forest Training Pipeline initialized
+2025-09-13 18:08:07,164 - __main__ - INFO - ==================================================
+2025-09-13 18:08:07,164 - __main__ - INFO - STARTING RANDOM FOREST TRAINING PIPELINE
+2025-09-13 18:08:07,164 - __main__ - INFO - ==================================================
+2025-09-13 18:08:07,164 - __main__ - INFO - Loading data from Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 18:08:07,603 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 18:08:07,608 - __main__ - ERROR - Training pipeline failed: "RandomForestConfig" object has no field "target_column"
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 513, in run_training
+    data = self.load_and_validate_data(data_path)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 219, in load_and_validate_data
+    self.config.target_column = 'label_stage_encoded'
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\pydantic\main.py", line 997, in __setattr__
+    elif (setattr_handler := self._setattr_handler(name, value)) is not None:
+                             ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\pydantic\main.py", line 1044, in _setattr_handler
+    raise ValueError(f'"{cls.__name__}" object has no field "{name}"')
+ValueError: "RandomForestConfig" object has no field "target_column"
+2025-09-13 18:08:07,610 - __main__ - ERROR - Training failed: "RandomForestConfig" object has no field "target_column"
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 571, in main
+    results = pipeline.run_training(args.data)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 513, in run_training
+    data = self.load_and_validate_data(data_path)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 219, in load_and_validate_data
+    self.config.target_column = 'label_stage_encoded'
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\pydantic\main.py", line 997, in __setattr__
+    elif (setattr_handler := self._setattr_handler(name, value)) is not None:
+                             ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\pydantic\main.py", line 1044, in _setattr_handler
+    raise ValueError(f'"{cls.__name__}" object has no field "{name}"')
+ValueError: "RandomForestConfig" object has no field "target_column"

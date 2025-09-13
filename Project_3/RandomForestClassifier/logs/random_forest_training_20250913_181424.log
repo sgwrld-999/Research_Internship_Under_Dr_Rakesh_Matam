@@ -1,0 +1,130 @@
+2025-09-13 18:14:24,263 - __main__ - INFO - Logging to logs\random_forest_training_20250913_181424.log
+2025-09-13 18:14:24,263 - __main__ - INFO - Random Forest Training Pipeline initialized
+2025-09-13 18:14:24,264 - __main__ - INFO - ==================================================
+2025-09-13 18:14:24,264 - __main__ - INFO - STARTING RANDOM FOREST TRAINING PIPELINE
+2025-09-13 18:14:24,264 - __main__ - INFO - ==================================================
+2025-09-13 18:14:24,264 - __main__ - INFO - Loading data from Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 18:14:24,737 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 18:14:24,738 - __main__ - INFO - Dataset shape: (500000, 15)
+2025-09-13 18:14:24,738 - __main__ - INFO - Target column: label_stage_encoded
+2025-09-13 18:14:24,738 - __main__ - INFO - Number of features: 14
+2025-09-13 18:14:24,740 - __main__ - INFO - Class distribution:
+label_stage_encoded
+1    100000
+0    100000
+4    100000
+2    100000
+3    100000
+Name: count, dtype: int64
+2025-09-13 18:14:24,750 - __main__ - INFO - No missing values found
+2025-09-13 18:14:24,750 - __main__ - INFO - Preparing features and targets...
+2025-09-13 18:14:24,789 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-13 18:14:24,790 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-13 18:14:24,790 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']...
+2025-09-13 18:14:24,799 - __main__ - INFO - Creating data splits...
+2025-09-13 18:14:25,111 - __main__ - INFO - Training samples: 300000
+2025-09-13 18:14:25,111 - __main__ - INFO - Validation samples: 100000
+2025-09-13 18:14:25,111 - __main__ - INFO - Test samples: 100000
+2025-09-13 18:14:25,115 - __main__ - INFO - Train class distribution: [(np.int64(0), np.int64(60000)), (np.int64(1), np.int64(60000)), (np.int64(2), np.int64(60000)), (np.int64(3), np.int64(60000)), (np.int64(4), np.int64(60000))]
+2025-09-13 18:14:25,116 - __main__ - INFO - Val class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 18:14:25,117 - __main__ - INFO - Test class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 18:14:25,119 - __main__ - INFO - Starting Random Forest model training...
+2025-09-13 18:14:25,119 - __main__ - INFO - Training RandomForest with 300000 samples
+2025-09-13 18:14:25,119 - __main__ - INFO - Parameters: {'n_estimators': 100, 'criterion': 'gini', 'max_depth': 5, 'min_samples_split': 2, 'min_samples_leaf': 1, 'min_weight_fraction_leaf': 0.3, 'max_features': 'log2', 'min_impurity_decrease': 0.3, 'bootstrap': True, 'oob_score': True, 'n_jobs': -1, 'random_state': 42, 'verbose': 0, 'warm_start': False, 'class_weight': 'balanced', 'ccp_alpha': 0.0}
+2025-09-13 18:14:28,848 - __main__ - INFO - Training accuracy: 0.2000
+2025-09-13 18:14:28,848 - __main__ - INFO - Validation accuracy: 0.2000
+2025-09-13 18:14:28,848 - __main__ - INFO - Model training completed successfully
+2025-09-13 18:14:28,848 - __main__ - INFO - Evaluating model performance...
+2025-09-13 18:14:29,204 - __main__ - INFO - accuracy: 0.2000
+2025-09-13 18:14:29,204 - __main__ - INFO - precision_macro: 0.0400
+2025-09-13 18:14:29,204 - __main__ - INFO - recall_macro: 0.2000
+2025-09-13 18:14:29,204 - __main__ - INFO - f1_macro: 0.0667
+2025-09-13 18:14:29,204 - __main__ - INFO - f1_weighted: 0.0667
+2025-09-13 18:14:29,227 - __main__ - INFO - Out-of-bag score: 0.1946
+2025-09-13 18:14:29,230 - __main__ - INFO - Generating visualization plots...
+2025-09-13 18:14:29,678 - __main__ - INFO - Feature importance plot saved
+2025-09-13 18:14:29,953 - __main__ - INFO - Confusion matrix plot saved
+2025-09-13 18:14:30,204 - __main__ - INFO - Tree depth distribution plot saved
+2025-09-13 18:14:30,204 - __main__ - INFO - Saving model and results...
+2025-09-13 18:14:30,205 - __main__ - ERROR - Training pipeline failed: Can't pickle <class '__main__.RandomForestTrainingPipeline.train_model.<locals>.SimpleRandomForestClassifier'>: it's not found as __main__.RandomForestTrainingPipeline.train_model.<locals>.SimpleRandomForestClassifier
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 655, in run_training
+    self.save_results(self.model, evaluation_results)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 601, in save_results
+    model.save(model_path)
+    ~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 465, in save
+    joblib.dump(self, filepath)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 600, in dump
+    NumpyPickler(f, protocol=protocol).dump(value)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 484, in dump
+    self.save(obj)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 395, in save
+    return Pickler.save(self, obj)
+           ~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 601, in save
+    self.save_reduce(obj=obj, *rv)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 685, in save_reduce
+    save(cls)
+    ~~~~^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 395, in save
+    return Pickler.save(self, obj)
+           ~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 558, in save
+    f(self, obj)  # Call unbound method with explicit self
+    ~^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1172, in save_type
+    return self.save_global(obj)
+           ~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1087, in save_global
+    raise PicklingError(
+        "Can't pickle %r: it's not found as %s.%s" %
+        (obj, module_name, name)) from None
+_pickle.PicklingError: Can't pickle <class '__main__.RandomForestTrainingPipeline.train_model.<locals>.SimpleRandomForestClassifier'>: it's not found as __main__.RandomForestTrainingPipeline.train_model.<locals>.SimpleRandomForestClassifier
+2025-09-13 18:14:30,217 - __main__ - ERROR - Training failed: Can't pickle <class '__main__.RandomForestTrainingPipeline.train_model.<locals>.SimpleRandomForestClassifier'>: it's not found as __main__.RandomForestTrainingPipeline.train_model.<locals>.SimpleRandomForestClassifier
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 713, in main
+    results = pipeline.run_training(args.data)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 655, in run_training
+    self.save_results(self.model, evaluation_results)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 601, in save_results
+    model.save(model_path)
+    ~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 465, in save
+    joblib.dump(self, filepath)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 600, in dump
+    NumpyPickler(f, protocol=protocol).dump(value)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 484, in dump
+    self.save(obj)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 395, in save
+    return Pickler.save(self, obj)
+           ~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 601, in save
+    self.save_reduce(obj=obj, *rv)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 685, in save_reduce
+    save(cls)
+    ~~~~^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\site-packages\joblib\numpy_pickle.py", line 395, in save
+    return Pickler.save(self, obj)
+           ~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 558, in save
+    f(self, obj)  # Call unbound method with explicit self
+    ~^^^^^^^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1172, in save_type
+    return self.save_global(obj)
+           ~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\dicla\Miniconda3\Lib\pickle.py", line 1087, in save_global
+    raise PicklingError(
+        "Can't pickle %r: it's not found as %s.%s" %
+        (obj, module_name, name)) from None
+_pickle.PicklingError: Can't pickle <class '__main__.RandomForestTrainingPipeline.train_model.<locals>.SimpleRandomForestClassifier'>: it's not found as __main__.RandomForestTrainingPipeline.train_model.<locals>.SimpleRandomForestClassifier

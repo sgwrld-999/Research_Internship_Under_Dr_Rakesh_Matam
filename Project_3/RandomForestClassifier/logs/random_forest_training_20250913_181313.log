@@ -1,0 +1,53 @@
+2025-09-13 18:13:13,619 - __main__ - INFO - Logging to logs\random_forest_training_20250913_181313.log
+2025-09-13 18:13:13,619 - __main__ - INFO - Random Forest Training Pipeline initialized
+2025-09-13 18:13:13,620 - __main__ - INFO - ==================================================
+2025-09-13 18:13:13,620 - __main__ - INFO - STARTING RANDOM FOREST TRAINING PIPELINE
+2025-09-13 18:13:13,620 - __main__ - INFO - ==================================================
+2025-09-13 18:13:13,620 - __main__ - INFO - Loading data from Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 18:13:14,068 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 18:13:14,069 - __main__ - INFO - Dataset shape: (500000, 15)
+2025-09-13 18:13:14,069 - __main__ - INFO - Target column: label_stage_encoded
+2025-09-13 18:13:14,069 - __main__ - INFO - Number of features: 14
+2025-09-13 18:13:14,072 - __main__ - INFO - Class distribution:
+label_stage_encoded
+1    100000
+0    100000
+4    100000
+2    100000
+3    100000
+Name: count, dtype: int64
+2025-09-13 18:13:14,081 - __main__ - INFO - No missing values found
+2025-09-13 18:13:14,081 - __main__ - INFO - Preparing features and targets...
+2025-09-13 18:13:14,110 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-13 18:13:14,110 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-13 18:13:14,110 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']...
+2025-09-13 18:13:14,118 - __main__ - INFO - Creating data splits...
+2025-09-13 18:13:14,401 - __main__ - INFO - Training samples: 300000
+2025-09-13 18:13:14,401 - __main__ - INFO - Validation samples: 100000
+2025-09-13 18:13:14,401 - __main__ - INFO - Test samples: 100000
+2025-09-13 18:13:14,405 - __main__ - INFO - Train class distribution: [(np.int64(0), np.int64(60000)), (np.int64(1), np.int64(60000)), (np.int64(2), np.int64(60000)), (np.int64(3), np.int64(60000)), (np.int64(4), np.int64(60000))]
+2025-09-13 18:13:14,406 - __main__ - INFO - Val class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 18:13:14,407 - __main__ - INFO - Test class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 18:13:14,408 - __main__ - INFO - Starting Random Forest model training...
+2025-09-13 18:13:14,409 - __main__ - ERROR - Training pipeline failed: config must be a RandomForestConfig instance
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 521, in run_training
+    self.model = self.train_model(X_train, y_train, X_val, y_val, feature_names)
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 344, in train_model
+    model = RandomForestClassifier(self.config)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\random_forest\random_forest.py", line 124, in __init__
+    raise TypeError("config must be a RandomForestConfig instance")
+TypeError: config must be a RandomForestConfig instance
+2025-09-13 18:13:14,410 - __main__ - ERROR - Training failed: config must be a RandomForestConfig instance
+Traceback (most recent call last):
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 592, in main
+    results = pipeline.run_training(args.data)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 521, in run_training
+    self.model = self.train_model(X_train, y_train, X_val, y_val, feature_names)
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\scripts\train.py", line 344, in train_model
+    model = RandomForestClassifier(self.config)
+  File "C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\RandomForestClassifier\random_forest\random_forest.py", line 124, in __init__
+    raise TypeError("config must be a RandomForestConfig instance")
+TypeError: config must be a RandomForestConfig instance

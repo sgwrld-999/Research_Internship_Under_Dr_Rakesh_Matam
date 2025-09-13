@@ -1,0 +1,5 @@
+2025-09-13 16:47:09,251 - __main__ - INFO - Loading configuration...
+2025-09-13 16:47:09,276 - __main__ - ERROR - Training failed: 1 validation error for VotingEnsembleConfig
+estimator_weights
+  Value error, Length of estimator_weights (3) must match number of enabled estimators (4) [type=value_error, input_value=[0.5, 0.2, 0.3], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error

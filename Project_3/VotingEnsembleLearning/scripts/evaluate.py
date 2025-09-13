@@ -88,7 +88,7 @@ sys.path.append(str(project_root))
 
 # Custom imports
 from voting_ensemble.config_loader import VotingEnsembleConfig
-from voting_ensemble.voting_ensemble_with_softmax import VotingEnsembleWithSoftmax
+from Project_3.VotingEnsembleLearning.voting_ensemble.voting_ensemble import VotingEnsembleWithSoftmax
 
 # Configure logging
 logging.basicConfig(

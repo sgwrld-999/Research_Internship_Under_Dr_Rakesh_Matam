@@ -141,6 +141,31 @@ class VotingEnsembleConfig(BaseModel):
         description="Include Gradient Boosting in ensemble"
     )
     
+    use_knn: bool = Field(
+        default=False,
+        description="Include K-Nearest Neighbors in ensemble"
+    )
+    
+    use_naive_bayes: bool = Field(
+        default=False,
+        description="Include Naive Bayes in ensemble"
+    )
+    
+    use_decision_tree: bool = Field(
+        default=False,
+        description="Include Decision Tree in ensemble"
+    )
+    
+    use_xgboost: bool = Field(
+        default=False,
+        description="Include XGBoost in ensemble"
+    )
+    
+    use_lightgbm: bool = Field(
+        default=False,
+        description="Include LightGBM in ensemble"
+    )
+    
     # === Random Forest Parameters ===
     rf_n_estimators: int = Field(
         default=100,
@@ -223,6 +248,177 @@ class VotingEnsembleConfig(BaseModel):
         description="Maximum depth of Gradient Boosting trees"
     )
     
+    # === KNN Parameters (Optional) ===
+    knn_n_neighbors: int = Field(
+        default=5,
+        ge=1,
+        le=100,
+        description="Number of neighbors to use for KNN"
+    )
+    knn_weights: str = Field(
+        default="uniform",
+        description="Weight function used in prediction"
+    )
+    knn_algorithm: str = Field(
+        default="auto",
+        description="Algorithm to compute nearest neighbors"
+    )
+    knn_n_jobs: int = Field(
+        default=-1,
+        ge=-1,
+        description="Number of jobs to run in parallel for KNN"
+    )
+    
+    # === Naive Bayes Parameters (Optional) ===
+    nb_var_smoothing: float = Field(
+        default=1e-9,
+        gt=0,
+        description="Portion of the largest variance of all features that is added to variances for stability"
+    )
+    
+    nb_priors: Optional[List[float]] = Field(
+        default=None,
+        description="Class prior probabilities (null = learned from data)"
+    )
+
+    # === Decision Tree Parameters (Optional) ===
+    dt_criterion: str = Field(
+        default="gini",
+        description="Function to measure the quality of a split"
+    )
+    
+    dt_max_depth: Optional[int] = Field(
+        default=None,
+        ge=1,
+        le=50,
+        description="Maximum depth of the Decision Tree"
+    )
+    
+    dt_min_samples_split: int = Field(
+        default=2,
+        ge=2,
+        description="Minimum number of samples required to split an internal node"
+    )
+    
+    dt_random_state: int = Field(
+        default=42,
+        description="Random state for Decision Tree"
+    )
+    
+    # === XGBoost Parameters (Optional) ===
+    xgb_n_estimators: int = Field(
+        default=100,
+        ge=1,
+        le=1000,
+        description="Number of trees in XGBoost"
+    )
+    
+    xgb_learning_rate: float = Field(
+        default=0.1,
+        gt=0,
+        le=1,
+        description="Learning rate for XGBoost"
+    )
+    
+    xgb_max_depth: int = Field(
+        default=3,
+        ge=1,
+        le=20,
+        description="Maximum depth of XGBoost trees"
+    )
+    
+    xgb_subsample: float = Field(
+        default=1.0,
+        gt=0,
+        le=1.0,
+        description="Subsample ratio of the training instances"
+    )
+    
+    xgb_colsample_bytree: float = Field(
+        default=1.0,
+        gt=0,
+        le=1.0,
+        description="Subsample ratio of columns when constructing each tree"
+    )
+    
+    xgb_use_label_encoder: bool = Field(
+        default=False,
+        description="Disable label encoder for multi-class classification"
+    )
+    
+    xgb_eval_metric: str = Field(
+        default="mlogloss",
+        description="Evaluation metric for multi-class classification"
+    )
+    
+    xgb_random_state: int = Field(
+        default=42,
+        description="Random state for XGBoost"
+    )
+    
+    # === LightGBM Parameters (Optional) ===
+    lgbm_n_estimators: int = Field(
+        default=100,
+        ge=1,
+        le=1000,
+        description="Number of trees in LightGBM"
+    )
+    
+    lgbm_learning_rate: float = Field(
+        default=0.1,
+        gt=0,
+        le=1,
+        description="Learning rate for LightGBM"
+    )
+    
+    lgbm_max_depth: int = Field(
+        default=-1,
+        description="Maximum depth of LightGBM trees (-1 for no limit)"
+    )   
+    
+    lgbm_num_leaves: int = Field(
+        default=31,
+        ge=2,
+        description="Maximum number of leaves in one tree"
+    )
+    
+    lgbm_subsample: float = Field(
+        default=1.0,
+        gt=0,
+        le=1.0,
+        description="Subsample ratio of the training instances"
+    )
+    
+    lgbm_colsample_bytree: float = Field(
+        default=1.0,
+        gt=0,
+        le=1.0,
+        description="Subsample ratio of columns when constructing each tree"
+    )
+    
+    lgbm_random_state: int = Field(
+        default=42,
+        description="Random state for LightGBM"
+    )
+    
+    lgbm_colsample_bytree: float = Field(
+        default=1.0,
+        gt=0,
+        le=1.0,
+        description="Subsample ratio of columns when constructing each tree"
+    )
+    
+    lgbm_use_label_encoder: bool = Field(
+        default=False,
+        description="Disable label encoder for multi-class classification"
+    )
+    
+    lgbm_eval_metric: str = Field(
+        default="multi_logloss",
+        description="Evaluation metric for multi-class classification"
+    )   
+    
+    
     # === Training Configuration ===
     test_size: float = Field(
         default=0.2,
@@ -288,7 +484,12 @@ class VotingEnsembleConfig(BaseModel):
                 values.get('use_random_forest', True),
                 values.get('use_svm', True),
                 values.get('use_logistic_regression', True),
-                values.get('use_gradient_boosting', True)
+                values.get('use_gradient_boosting', True),
+                values.get('use_knn', False),
+                values.get('use_naive_bayes', False),
+                values.get('use_decision_tree', False),
+                values.get('use_xgboost', False),
+                values.get('use_lightgbm', False)
             ])
             if len(v) != estimator_count:
                 raise ValueError(
@@ -355,6 +556,16 @@ class VotingEnsembleConfig(BaseModel):
             enabled.append('LogisticRegression')
         if self.use_gradient_boosting:
             enabled.append('GradientBoosting')
+        if self.use_knn:
+            enabled.append('KNN')
+        if self.use_naive_bayes:
+            enabled.append('NaiveBayes')
+        if self.use_decision_tree:
+            enabled.append('DecisionTree')
+        if self.use_xgboost:
+            enabled.append('XGBoost')
+        if self.use_lightgbm:
+            enabled.append('LightGBM')
         return enabled
 
 

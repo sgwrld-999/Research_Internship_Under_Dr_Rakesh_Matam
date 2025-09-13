@@ -93,7 +93,7 @@ sys.path.append(str(project_root))
 
 # Custom imports
 from random_forest.config_loader import RandomForestConfig
-from random_forest.random_forest_with_softmax import RandomForestWithSoftmax
+from Project_3.RandomForestClassifier.random_forest.random_forest import RandomForestWithSoftmax
 
 # Configure logging
 logging.basicConfig(

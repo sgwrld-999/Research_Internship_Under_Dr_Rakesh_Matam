@@ -74,15 +74,15 @@ model.fit(X_train, y_train)
 import warnings
 from .config_loader import RandomForestConfig, load_config
 from .model_builder import build_random_forest_model
-from .random_forest_with_softmax import RandomForestClassifier
+from .random_forest import RandomForestClassifier
 
 # Suppress specific warnings for cleaner output
 warnings.filterwarnings("ignore", category=UserWarning)
 
 # Package metadata
 __version__ = "1.0.0"
-__author__ = "Machine Learning Team"
-__email__ = "ml-team@example.com"
+__author__ = "Log IT Team"
+__email__ = "logit.dic@gmail.com"
 
 # Public API exports
 __all__ = [

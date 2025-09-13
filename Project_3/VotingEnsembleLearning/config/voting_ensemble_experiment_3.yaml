@@ -1,0 +1,66 @@
+# Voting Ensemble Model Configuration for Network Intrusion Detection - Experiment 3
+# ====================================================================
+# 
+# THEORY - Configuration Design:
+# =============================
+# This configuration follows the principle of "Configuration as Code":
+# - All model parameters are externalized
+# - Easy to version control and track changes
+# - Enables experiment reproducibility
+# - Supports automated hyperparameter tuning
+
+# === Core Architecture Parameters ===
+input_dim: 14 # Number of features per sample (update to match dataset)
+num_classes: 5 # Classification categories: Recon, Exploitation, C&C, Attack, Benign
+
+# === Ensemble Configuration ===
+voting_type: "soft" # Use soft voting for better probability estimates
+estimator_weights: null # Equal weights for all estimators (null = automatic)
+n_jobs: -1 # Use all available CPU cores for parallel processing
+
+# === Base Estimators Selection ===
+use_random_forest: true # Include Random Forest classifier
+use_svm: false # Exclude Support Vector Machine (per request)
+use_logistic_regression: true # Include Logistic Regression
+use_gradient_boosting: true # Include Gradient Boosting
+use_knn: false # Not implemented in current version
+use_naive_bayes: false # Not implemented in current version
+use_decision_tree: false # Not implemented in current version
+use_xgboost: false # Not implemented in current version
+use_lightgbm: false # Not implemented in current version
+
+# === Random Forest Parameters ===
+rf_n_estimators: 200 # Significantly increased number of trees for better performance
+rf_max_depth: 20 # Increased depth for more complex patterns
+rf_random_state: 42 # Random seed for Random Forest
+
+# === SVM Parameters === (kept for reference but not used)
+svm_kernel: "rbf" # Kernel type for SVM
+svm_c: 1.0 # Regularization parameter
+svm_gamma: "scale" # Kernel coefficient
+svm_probability: true # Enable probability estimates (required for soft voting)
+
+# === Logistic Regression Parameters ===
+lr_c: 0.5 # Stronger regularization to prevent overfitting
+lr_max_iter: 2000 # Significantly increased iterations for better convergence
+lr_solver: "saga" # Optimized solver for large datasets with L1/L2 regularization
+
+# === Gradient Boosting Parameters ===
+gb_n_estimators: 150 # Increased number of boosting stages
+gb_learning_rate: 0.05 # Reduced learning rate for better generalization
+gb_max_depth: 4 # Moderate depth to balance complexity and overfitting
+
+# === Training Configuration ===
+test_size: 0.2 # Fraction of data for testing (20%)
+validation_split: 0.2 # Fraction of training data for validation (20%)
+random_state: 42 # Global random seed for reproducibility
+
+# === Evaluation Metrics ===
+metrics: # Performance metrics to track
+  - accuracy # Overall correctness
+  - precision # Positive predictive value
+  - recall # Sensitivity to positive class
+  - f1_score # Balance between precision and recall
+
+# === Model Persistence ===
+export_path: "models/saved_Models/voting_ensemble_experiment3.joblib" # Where to save trained model
