@@ -247,9 +247,6 @@ class XGBoostWithSoftmax:
         if sample_weight is not None:
             fit_params['sample_weight'] = sample_weight
             
-        if self.config.early_stopping_rounds > 0:
-            fit_params['early_stopping_rounds'] = self.config.early_stopping_rounds
-            
         if verbose:
             logger.info("Starting XGBoost training...")
             logger.info(f"Training samples: {X_train_processed.shape[0]}")
@@ -610,8 +607,7 @@ if __name__ == "__main__":
         n_estimators=100,
         learning_rate=0.1,
         max_depth=6,
-        num_classes=5,
-        early_stopping_rounds=10
+        num_classes=5
     )
     
     # Train model

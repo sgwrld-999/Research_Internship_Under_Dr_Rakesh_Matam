@@ -77,8 +77,8 @@ model.fit(X_train, y_train)
 
 import warnings
 from .config_loader import XGBoostConfig, load_config
-from .model_builder import build_xgboost_model
-from .xgboost_with_softmax import XGBoostClassifier
+from .model_builder import create_xgboost_model
+from .xgboost_with_softmax import XGBoostWithSoftmax
 
 # Suppress specific warnings for cleaner output
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -92,6 +92,6 @@ __email__ = "ml-team@example.com"
 __all__ = [
     "XGBoostConfig",
     "load_config", 
-    "build_xgboost_model",
-    "XGBoostClassifier"
+    "create_xgboost_model",
+    "XGBoostWithSoftmax"
 ]

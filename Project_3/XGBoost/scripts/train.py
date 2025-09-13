@@ -93,8 +93,8 @@ project_root = current_dir.parent
 sys.path.append(str(project_root))
 
 # Custom imports
-from xgboost.config_loader import XGBoostConfig
-from xgboost.xgboost_with_softmax import XGBoostWithSoftmax
+from xgboost_custom.config_loader import XGBoostConfig
+from xgboost_custom.xgboost_with_softmax import XGBoostWithSoftmax
 
 # Configure logging
 logging.basicConfig(
@@ -148,7 +148,7 @@ class XGBoostTrainingPipeline:
     def setup_directories(self) -> None:
         """Create necessary directories for outputs."""
         directories = [
-            self.config.model_save_path.parent,
+            Path(self.config.export_path).parent,
             Path("logs"),
             Path("outputs"),
             Path("plots")
@@ -214,7 +214,7 @@ class XGBoostTrainingPipeline:
         # Check for target column
         if self.config.target_column not in data.columns:
             raise ValueError(f"Target column '{self.config.target_column}' not found in data")
-            
+
         # Log basic statistics
         logger.info(f"Dataset shape: {data.shape}")
         logger.info(f"Target column: {self.config.target_column}")
@@ -441,7 +441,7 @@ class XGBoostTrainingPipeline:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
         # Save model
-        model_path = Path(self.config.model_save_path).with_suffix('.joblib')
+        model_path = Path(self.config.export_path).with_suffix('.joblib')
         model.save(model_path)
         
         # Save final model with timestamp
@@ -530,8 +530,15 @@ def main():
     args = parser.parse_args()
     
     try:
-        # Load configuration
-        config = XGBoostConfig.from_yaml(args.config)
+        # Load configuration - handle relative paths from project root
+        config_path = Path(args.config)
+        if not config_path.is_absolute():
+            # Get project root (parent directory of scripts)
+            current_dir = Path(__file__).parent
+            project_root = current_dir.parent
+            config_path = project_root / config_path
+        
+        config = XGBoostConfig.from_yaml(config_path)
         logger.info(f"Configuration loaded from: {args.config}")
         
         # Create and run training pipeline

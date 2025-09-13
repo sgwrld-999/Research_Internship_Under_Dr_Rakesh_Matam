@@ -1,0 +1,44 @@
+2025-09-13 00:06:59,741 - __main__ - INFO - Logging to logs/xgboost_training_20250913_000659.log
+2025-09-13 00:06:59,742 - __main__ - INFO - XGBoost Training Pipeline initialized
+2025-09-13 00:06:59,742 - __main__ - INFO - ==================================================
+2025-09-13 00:06:59,742 - __main__ - INFO - STARTING XGBOOST TRAINING PIPELINE
+2025-09-13 00:06:59,742 - __main__ - INFO - ==================================================
+2025-09-13 00:06:59,742 - __main__ - INFO - Loading data from ../dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 00:07:00,770 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 00:07:00,771 - __main__ - INFO - Dataset shape: (500000, 15)
+2025-09-13 00:07:00,771 - __main__ - INFO - Target column: label_stage_encoded
+2025-09-13 00:07:00,771 - __main__ - INFO - Number of features: 14
+2025-09-13 00:07:00,778 - __main__ - INFO - Class distribution:
+label_stage_encoded
+1    100000
+0    100000
+4    100000
+2    100000
+3    100000
+Name: count, dtype: int64
+2025-09-13 00:07:00,793 - __main__ - INFO - No missing values found
+2025-09-13 00:07:00,794 - __main__ - INFO - Preparing features and targets...
+2025-09-13 00:07:00,794 - __main__ - ERROR - Training pipeline failed: 'XGBoostConfig' object has no attribute 'feature_columns'
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 484, in run_training
+    X, y, feature_names = self.prepare_features_and_targets(data)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 249, in prepare_features_and_targets
+    if self.config.feature_columns:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'XGBoostConfig' object has no attribute 'feature_columns'
+2025-09-13 00:07:00,796 - __main__ - ERROR - Training failed: 'XGBoostConfig' object has no attribute 'feature_columns'
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 540, in main
+    results = pipeline.run_training(args.data)
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 484, in run_training
+    X, y, feature_names = self.prepare_features_and_targets(data)
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 249, in prepare_features_and_targets
+    if self.config.feature_columns:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'XGBoostConfig' object has no attribute 'feature_columns'

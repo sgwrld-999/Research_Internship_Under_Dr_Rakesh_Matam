@@ -1,0 +1,44 @@
+2025-09-13 15:28:24,896 - __main__ - INFO - Logging to logs/xgboost_training_20250913_152824.log
+2025-09-13 15:28:24,896 - __main__ - INFO - XGBoost Training Pipeline initialized
+2025-09-13 15:28:24,896 - __main__ - INFO - ==================================================
+2025-09-13 15:28:24,896 - __main__ - INFO - STARTING XGBOOST TRAINING PIPELINE
+2025-09-13 15:28:24,897 - __main__ - INFO - ==================================================
+2025-09-13 15:28:24,897 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 15:28:25,684 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 15:28:25,685 - __main__ - INFO - Dataset shape: (500000, 15)
+2025-09-13 15:28:25,685 - __main__ - INFO - Target column: label_stage_encoded
+2025-09-13 15:28:25,685 - __main__ - INFO - Number of features: 14
+2025-09-13 15:28:25,688 - __main__ - INFO - Class distribution:
+label_stage_encoded
+1    100000
+0    100000
+4    100000
+2    100000
+3    100000
+Name: count, dtype: int64
+2025-09-13 15:28:25,703 - __main__ - INFO - No missing values found
+2025-09-13 15:28:25,703 - __main__ - INFO - Preparing features and targets...
+2025-09-13 15:28:25,740 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-13 15:28:25,740 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-13 15:28:25,740 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']...
+2025-09-13 15:28:25,751 - __main__ - INFO - Creating data splits...
+2025-09-13 15:28:26,143 - __main__ - INFO - Training samples: 300000
+2025-09-13 15:28:26,143 - __main__ - INFO - Validation samples: 100000
+2025-09-13 15:28:26,143 - __main__ - INFO - Test samples: 100000
+2025-09-13 15:28:26,148 - __main__ - INFO - Train class distribution: [(np.int64(0), np.int64(60000)), (np.int64(1), np.int64(60000)), (np.int64(2), np.int64(60000)), (np.int64(3), np.int64(60000)), (np.int64(4), np.int64(60000))]
+2025-09-13 15:28:26,149 - __main__ - INFO - Val class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 15:28:26,150 - __main__ - INFO - Test class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 15:28:26,150 - __main__ - INFO - Starting XGBoost model training...
+2025-09-13 15:34:06,868 - __main__ - INFO - Model training completed successfully
+2025-09-13 15:34:06,868 - __main__ - INFO - Evaluating model performance...
+2025-09-13 15:34:07,380 - __main__ - INFO - Generating visualization plots...
+2025-09-13 15:34:07,883 - __main__ - INFO - Feature importance plot saved
+2025-09-13 15:34:08,304 - __main__ - INFO - Confusion matrix plot saved
+2025-09-13 15:34:08,304 - __main__ - INFO - Saving model and results...
+2025-09-13 15:34:08,342 - __main__ - INFO - Model saved to: models/saved_Models/xgboost_experiment1.joblib
+2025-09-13 15:34:08,342 - __main__ - INFO - Final model saved to: models/saved_Models/xgboost_experiment1_final_20250913_153408.joblib
+2025-09-13 15:34:08,343 - __main__ - INFO - Results saved to: outputs/evaluation_results_20250913_153408.joblib
+2025-09-13 15:34:08,343 - __main__ - INFO - Metrics saved to: logs/training_metrics_20250913_153408.csv
+2025-09-13 15:34:08,343 - __main__ - INFO - ==================================================
+2025-09-13 15:34:08,343 - __main__ - INFO - TRAINING PIPELINE COMPLETED SUCCESSFULLY
+2025-09-13 15:34:08,343 - __main__ - INFO - ==================================================

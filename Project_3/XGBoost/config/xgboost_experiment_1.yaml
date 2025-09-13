@@ -38,7 +38,6 @@ objective: "multi:softprob" # Learning objective (multi:softprob for probabiliti
 eval_metric: "mlogloss" # Evaluation metric for validation data
 
 # === Training Control ===
-early_stopping_rounds: 10 # Early stopping rounds (null to disable)
 verbose: false # Print messages during training
 
 # === Advanced Parameters ===
@@ -52,7 +51,7 @@ max_leaves: 0 # Maximum number of leaves (0 for no limit)
 max_bin: 256 # Maximum number of discrete bins for features
 
 # === GPU Parameters ===
-gpu_id: -1 # GPU device ID (-1 for CPU)
+gpu_id: 6 # GPU device ID (-1 for CPU)
 
 # === Training Configuration ===
 test_size: 0.2 # Fraction of data for testing (20%)

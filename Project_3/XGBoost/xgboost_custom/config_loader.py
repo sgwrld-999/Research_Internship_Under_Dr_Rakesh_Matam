@@ -223,12 +223,6 @@ class XGBoostConfig(BaseModel):
     )
     
     # === Training Control ===
-    early_stopping_rounds: Optional[int] = Field(
-        default=10,
-        ge=1,
-        description="Early stopping rounds (None to disable)"
-    )
-    
     verbose: bool = Field(
         default=False,
         description="Print messages during training"
@@ -327,6 +321,22 @@ class XGBoostConfig(BaseModel):
     metrics: List[str] = Field(
         default=["accuracy", "precision", "recall", "f1_score"],
         description="Metrics to evaluate model performance"
+    )
+    
+    # === Data Configuration ===
+    target_column: str = Field(
+        default="label_stage_encoded",
+        description="Name of the target column in the dataset"
+    )
+    
+    feature_columns: Optional[List[str]] = Field(
+        default=None,
+        description="List of feature column names. If None, all columns except target will be used"
+    )
+    
+    scale_features: bool = Field(
+        default=False,
+        description="Whether to apply StandardScaler to features. Set to False if data is already normalized"
     )
     
     # === Model Persistence ===
@@ -482,7 +492,6 @@ class XGBoostConfig(BaseModel):
             'max_bin': self.max_bin,
             
             # Training control
-            'early_stopping_rounds': self.early_stopping_rounds,
             'verbose': self.verbose
         }
         

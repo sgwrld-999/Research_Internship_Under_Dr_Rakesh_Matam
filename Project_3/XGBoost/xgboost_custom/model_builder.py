@@ -295,7 +295,6 @@ Regularization:
 
 Training Setup:
   - Evaluation metric: {self.config.eval_metric}
-  - Early stopping rounds: {self.config.early_stopping_rounds}
   - Random state: {self.config.random_state}
   - Number of jobs: {self.config.n_jobs}
 

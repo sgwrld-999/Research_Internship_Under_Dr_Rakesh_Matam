@@ -228,10 +228,6 @@ class XGBoostModelBuilder:
                 'eval_metric': 'logloss'
             })
         
-        # Add early stopping if enabled
-        if self.config.early_stopping_rounds > 0:
-            params['early_stopping_rounds'] = self.config.early_stopping_rounds
-        
         return params
     
     def compile_model(self) -> None:

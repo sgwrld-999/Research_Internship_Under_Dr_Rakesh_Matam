@@ -1,0 +1,6 @@
+2025-09-13 00:20:02,716 - __main__ - INFO - Logging to logs/xgboost_training_20250913_002002.log
+2025-09-13 00:20:02,716 - __main__ - INFO - XGBoost Training Pipeline initialized
+2025-09-13 00:20:02,716 - __main__ - INFO - ==================================================
+2025-09-13 00:20:02,716 - __main__ - INFO - STARTING XGBOOST TRAINING PIPELINE
+2025-09-13 00:20:02,716 - __main__ - INFO - ==================================================
+2025-09-13 00:20:02,716 - __main__ - INFO - Loading data from ../dataset/combined_dataset_short_balanced_encoded_normalised.csv

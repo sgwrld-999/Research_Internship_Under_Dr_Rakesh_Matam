@@ -1,0 +1,29 @@
+2025-09-13 00:04:57,902 - __main__ - INFO - Logging to logs/xgboost_training_20250913_000457.log
+2025-09-13 00:04:57,902 - __main__ - INFO - XGBoost Training Pipeline initialized
+2025-09-13 00:04:57,902 - __main__ - INFO - ==================================================
+2025-09-13 00:04:57,902 - __main__ - INFO - STARTING XGBOOST TRAINING PIPELINE
+2025-09-13 00:04:57,902 - __main__ - INFO - ==================================================
+2025-09-13 00:04:57,902 - __main__ - INFO - Loading data from ../dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 00:05:01,020 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 00:05:01,020 - __main__ - ERROR - Training pipeline failed: 'XGBoostConfig' object has no attribute 'label_encoded'
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 481, in run_training
+    data = self.load_and_validate_data(data_path)
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 215, in load_and_validate_data
+    if self.config.label_encoded not in data.columns:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'XGBoostConfig' object has no attribute 'label_encoded'
+2025-09-13 00:05:01,023 - __main__ - ERROR - Training failed: 'XGBoostConfig' object has no attribute 'label_encoded'
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 540, in main
+    results = pipeline.run_training(args.data)
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 481, in run_training
+    data = self.load_and_validate_data(data_path)
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 215, in load_and_validate_data
+    if self.config.label_encoded not in data.columns:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'XGBoostConfig' object has no attribute 'label_encoded'

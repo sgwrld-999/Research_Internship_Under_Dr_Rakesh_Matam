@@ -1,0 +1,31 @@
+2025-09-13 00:15:56,451 - __main__ - INFO - Logging to logs/xgboost_training_20250913_001556.log
+2025-09-13 00:15:56,451 - __main__ - INFO - XGBoost Training Pipeline initialized
+2025-09-13 00:15:56,451 - __main__ - INFO - ==================================================
+2025-09-13 00:15:56,451 - __main__ - INFO - STARTING XGBOOST TRAINING PIPELINE
+2025-09-13 00:15:56,451 - __main__ - INFO - ==================================================
+2025-09-13 00:15:56,452 - __main__ - INFO - Loading data from ../dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 00:15:57,935 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 00:15:57,935 - __main__ - INFO - Dataset shape: (500000, 15)
+2025-09-13 00:15:57,936 - __main__ - INFO - Target column: label_stage_encoded
+2025-09-13 00:15:57,936 - __main__ - INFO - Number of features: 14
+2025-09-13 00:15:57,942 - __main__ - INFO - Class distribution:
+label_stage_encoded
+1    100000
+0    100000
+4    100000
+2    100000
+3    100000
+Name: count, dtype: int64
+2025-09-13 00:15:57,960 - __main__ - INFO - No missing values found
+2025-09-13 00:15:57,960 - __main__ - INFO - Preparing features and targets...
+2025-09-13 00:16:15,754 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-13 00:16:15,754 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-13 00:16:15,755 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']...
+2025-09-13 00:16:15,769 - __main__ - INFO - Creating data splits...
+2025-09-13 00:16:17,160 - __main__ - INFO - Training samples: 300000
+2025-09-13 00:16:17,160 - __main__ - INFO - Validation samples: 100000
+2025-09-13 00:16:17,160 - __main__ - INFO - Test samples: 100000
+2025-09-13 00:16:17,165 - __main__ - INFO - Train class distribution: [(np.int64(0), np.int64(60000)), (np.int64(1), np.int64(60000)), (np.int64(2), np.int64(60000)), (np.int64(3), np.int64(60000)), (np.int64(4), np.int64(60000))]
+2025-09-13 00:16:17,165 - __main__ - INFO - Val class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 00:16:17,166 - __main__ - INFO - Test class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 00:16:17,166 - __main__ - INFO - Starting XGBoost model training...

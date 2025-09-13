@@ -1,0 +1,59 @@
+2025-09-13 00:07:58,297 - __main__ - INFO - Logging to logs/xgboost_training_20250913_000758.log
+2025-09-13 00:07:58,297 - __main__ - INFO - XGBoost Training Pipeline initialized
+2025-09-13 00:07:58,297 - __main__ - INFO - ==================================================
+2025-09-13 00:07:58,297 - __main__ - INFO - STARTING XGBOOST TRAINING PIPELINE
+2025-09-13 00:07:58,297 - __main__ - INFO - ==================================================
+2025-09-13 00:07:58,297 - __main__ - INFO - Loading data from ../dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-13 00:07:59,827 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-13 00:07:59,827 - __main__ - INFO - Dataset shape: (500000, 15)
+2025-09-13 00:07:59,827 - __main__ - INFO - Target column: label_stage_encoded
+2025-09-13 00:07:59,827 - __main__ - INFO - Number of features: 14
+2025-09-13 00:07:59,835 - __main__ - INFO - Class distribution:
+label_stage_encoded
+1    100000
+0    100000
+4    100000
+2    100000
+3    100000
+Name: count, dtype: int64
+2025-09-13 00:07:59,860 - __main__ - INFO - No missing values found
+2025-09-13 00:07:59,860 - __main__ - INFO - Preparing features and targets...
+2025-09-13 00:08:00,649 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-13 00:08:00,650 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-13 00:08:00,650 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']...
+2025-09-13 00:08:00,664 - __main__ - INFO - Creating data splits...
+2025-09-13 00:08:01,223 - __main__ - INFO - Training samples: 300000
+2025-09-13 00:08:01,223 - __main__ - INFO - Validation samples: 100000
+2025-09-13 00:08:01,223 - __main__ - INFO - Test samples: 100000
+2025-09-13 00:08:01,229 - __main__ - INFO - Train class distribution: [(np.int64(0), np.int64(60000)), (np.int64(1), np.int64(60000)), (np.int64(2), np.int64(60000)), (np.int64(3), np.int64(60000)), (np.int64(4), np.int64(60000))]
+2025-09-13 00:08:01,230 - __main__ - INFO - Val class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 00:08:01,231 - __main__ - INFO - Test class distribution: [(np.int64(0), np.int64(20000)), (np.int64(1), np.int64(20000)), (np.int64(2), np.int64(20000)), (np.int64(3), np.int64(20000)), (np.int64(4), np.int64(20000))]
+2025-09-13 00:08:01,232 - __main__ - INFO - Starting XGBoost model training...
+2025-09-13 00:08:01,232 - __main__ - ERROR - Training pipeline failed: 'XGBoostConfig' object has no attribute 'scale_features'
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 490, in run_training
+    self.model = self.train_model(X_train, y_train, X_val, y_val, feature_names)
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 339, in train_model
+    model = XGBoostWithSoftmax(self.config)
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/xgboost_custom/xgboost_with_softmax.py", line 147, in __init__
+    self.scaler = StandardScaler() if config.scale_features else None
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'XGBoostConfig' object has no attribute 'scale_features'
+2025-09-13 00:08:01,235 - __main__ - ERROR - Training failed: 'XGBoostConfig' object has no attribute 'scale_features'
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 540, in main
+    results = pipeline.run_training(args.data)
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 490, in run_training
+    self.model = self.train_model(X_train, y_train, X_val, y_val, feature_names)
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/scripts/train.py", line 339, in train_model
+    model = XGBoostWithSoftmax(self.config)
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/XGBoost/xgboost_custom/xgboost_with_softmax.py", line 147, in __init__
+    self.scaler = StandardScaler() if config.scale_features else None
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'XGBoostConfig' object has no attribute 'scale_features'

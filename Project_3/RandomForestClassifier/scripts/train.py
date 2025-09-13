@@ -96,7 +96,7 @@ sys.path.append(str(project_root))
 
 # Custom imports
 from random_forest.config_loader import RandomForestConfig
-from random_forest.random_forest_with_softmax import RandomForestWithSoftmax
+from random_forest.random_forest_with_softmax import RandomForestClassifier
 
 # Configure logging
 logging.basicConfig(
@@ -118,7 +118,7 @@ class RandomForestTrainingPipeline:
     
     Attributes:
         config (RandomForestConfig): Configuration object
-        model (RandomForestWithSoftmax): The trained model
+        model (RandomForestClassifier): The trained model
         training_metrics (Dict): Training performance metrics
         
     Example:
@@ -150,7 +150,7 @@ class RandomForestTrainingPipeline:
     def setup_directories(self) -> None:
         """Create necessary directories for outputs."""
         directories = [
-            self.config.model_save_path.parent,
+            Path(self.config.export_path).parent,
             Path("logs"),
             Path("outputs"),
             Path("plots")
@@ -321,7 +321,7 @@ class RandomForestTrainingPipeline:
         
     def train_model(self, X_train: np.ndarray, y_train: np.ndarray,
                    X_val: np.ndarray, y_val: np.ndarray,
-                   feature_names: List[str]) -> RandomForestWithSoftmax:
+                   feature_names: List[str]) -> RandomForestClassifier:
         """
         Train the Random Forest model.
         
@@ -333,12 +333,12 @@ class RandomForestTrainingPipeline:
             feature_names (List[str]): Names of features
             
         Returns:
-            RandomForestWithSoftmax: Trained model
+            RandomForestClassifier: Trained model
         """
         logger.info("Starting Random Forest model training...")
         
         # Create and train model
-        model = RandomForestWithSoftmax(self.config)
+        model = RandomForestClassifier(self.config)
         model.feature_names = feature_names
         
         # Train with validation
@@ -352,13 +352,13 @@ class RandomForestTrainingPipeline:
         
         return model
         
-    def evaluate_model(self, model: RandomForestWithSoftmax, 
+    def evaluate_model(self, model: RandomForestClassifier, 
                       X_test: np.ndarray, y_test: np.ndarray) -> Dict[str, Any]:
         """
         Evaluate the trained model.
         
         Args:
-            model (RandomForestWithSoftmax): Trained model
+            model (RandomForestClassifier): Trained model
             X_test (np.ndarray): Test features
             y_test (np.ndarray): Test targets
             
@@ -400,13 +400,13 @@ class RandomForestTrainingPipeline:
         
         return evaluation_results
         
-    def generate_plots(self, model: RandomForestWithSoftmax, 
+    def generate_plots(self, model: RandomForestClassifier, 
                       evaluation_results: Dict[str, Any]) -> None:
         """
         Generate and save visualization plots.
         
         Args:
-            model (RandomForestWithSoftmax): Trained model
+            model (RandomForestClassifier): Trained model
             evaluation_results (Dict[str, Any]): Evaluation results
         """
         logger.info("Generating visualization plots...")
@@ -455,13 +455,13 @@ class RandomForestTrainingPipeline:
         except Exception as e:
             logger.warning(f"Could not generate tree depth plot: {e}")
             
-    def save_results(self, model: RandomForestWithSoftmax, 
+    def save_results(self, model: RandomForestClassifier, 
                     evaluation_results: Dict[str, Any]) -> None:
         """
         Save model and results.
         
         Args:
-            model (RandomForestWithSoftmax): Trained model
+            model (RandomForestClassifier): Trained model
             evaluation_results (Dict[str, Any]): Evaluation results
         """
         logger.info("Saving model and results...")
@@ -469,7 +469,7 @@ class RandomForestTrainingPipeline:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         
         # Save model
-        model_path = Path(self.config.model_save_path).with_suffix('.joblib')
+        model_path = Path(self.config.export_path).with_suffix('.joblib')
         model.save(model_path)
         
         # Save final model with timestamp
