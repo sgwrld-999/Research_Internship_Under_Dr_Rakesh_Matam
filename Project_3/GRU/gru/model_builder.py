@@ -181,8 +181,9 @@ class GRUModelBuilder:
             if metric == 'accuracy':
                 keras_metrics.append('accuracy')
             elif metric in ['precision', 'recall', 'f1_score']:
-                # Skip complex metrics for now to avoid shape issues
-                # We'll calculate these manually after training
+                # Skip these metrics during training to avoid shape issues
+                # We'll calculate them manually during evaluation
+                tf.get_logger().info(f"{metric} metric will be calculated manually during evaluation")
                 continue
             elif metric == 'val_loss':
                 # val_loss is automatically tracked during training, no need to add here

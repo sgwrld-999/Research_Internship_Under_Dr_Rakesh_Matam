@@ -1,0 +1,74 @@
+2025-09-14 10:29:21,380 - __main__ - INFO - Training session started at 2025-09-14 10:29:21
+2025-09-14 10:29:21,380 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-102921.log
+2025-09-14 10:29:21,382 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 10:29:21,382 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 10:29:21,383 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 10:29:22,336 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 10:29:22,336 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 10:29:22,336 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 10:29:22,336 - __main__ - INFO - Preparing preprocessed data for GRU training...
+2025-09-14 10:29:22,381 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 10:29:22,382 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 10:29:24,582 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 10:29:24,582 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 10:29:24,582 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 10:29:24,583 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 10:29:24,583 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 10:29:24,583 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 10:29:24,586 - __main__ - INFO - Class distribution: [100000  99873 100000 100000 100000]
+2025-09-14 10:29:24,590 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-14 10:29:24,691 - __main__ - INFO - No GPUs detected - using CPU only
+2025-09-14 10:29:24,708 - __main__ - INFO - TensorFlow configured for CPU usage. Test tensor device: /job:localhost/replica:0/task:0/device:CPU:0
+2025-09-14 10:29:24,708 - __main__ - INFO - Starting GRU model training...
+2025-09-14 10:29:26,372 - __main__ - INFO - Training samples: 399898
+2025-09-14 10:29:26,372 - __main__ - INFO - Validation samples: 99975
+2025-09-14 10:29:26,608 - tensorflow - INFO - precision metric will be calculated manually during evaluation
+2025-09-14 10:29:26,608 - tensorflow - INFO - recall metric will be calculated manually during evaluation
+2025-09-14 10:29:26,608 - tensorflow - INFO - f1_score metric will be calculated manually during evaluation
+2025-09-14 10:29:26,611 - __main__ - INFO - Model built successfully
+2025-09-14 10:29:26,619 - __main__ - INFO - Model: "GRU_Model"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ bidirectional_gru_1 (Bidirectional)  │ (None, 128, 64)             │           9,216 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_2 (Bidirectional)  │ (None, 128, 64)             │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_2 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_3 (Bidirectional)  │ (None, 128, 64)             │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_3 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_4 (Bidirectional)  │ (None, 64)                  │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_4 (Dropout)                  │ (None, 64)                  │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ output_layer (Dense)                 │ (None, 5)                   │             325 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 65,989 (257.77 KB)
+ Trainable params: 65,989 (257.77 KB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-14 10:29:26,620 - __main__ - INFO - Beginning training process...

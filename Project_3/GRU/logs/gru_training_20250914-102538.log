@@ -1,0 +1,25 @@
+2025-09-14 10:25:38,257 - __main__ - INFO - Training session started at 2025-09-14 10:25:38
+2025-09-14 10:25:38,258 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-102538.log
+2025-09-14 10:25:38,261 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 10:25:38,261 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 10:25:38,261 - __main__ - ERROR - Data file not found: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 10:25:38,261 - __main__ - INFO - Please place your CSV data file in the correct location
