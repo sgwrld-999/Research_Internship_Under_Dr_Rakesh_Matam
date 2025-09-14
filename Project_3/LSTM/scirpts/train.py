@@ -69,6 +69,13 @@ from datetime import datetime
 
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import (
+    classification_report, confusion_matrix, precision_score, 
+    recall_score, f1_score, roc_curve, auc, roc_auc_score
+)
+from sklearn.preprocessing import label_binarize
 
 # Force CPU usage - must be set before importing TensorFlow
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
@@ -77,8 +84,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Reduce TensorFlow logging
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 
-#ignoring warning
+# Ignoring warnings
 warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=FutureWarning)
 
 # Add project root to Python path for absolute imports
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -599,12 +607,265 @@ class LSTMTrainer:
         for metric, value in final_metrics.items():
             logger.info(f"{metric}: {value:.4f}")
             
+        # Create comprehensive plots and evaluation metrics
+        logger.info("Generating training plots and evaluation metrics...")
+        self._create_training_plots(X_val, y_val)
+            
         # Log training session summary
         logger.info(f"Training session completed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         logger.info(f"Timestamped log saved as: {log_filename}")
         logger.info(f"CSV metrics saved as: training_metrics_{self.current_time}.csv")
         
         return self.model, self.history.history
+    
+    def _create_training_plots(self, X_val: np.ndarray, y_val: np.ndarray) -> None:
+        """
+        Create comprehensive training plots and evaluation metrics.
+        
+        THEORY - Model Evaluation and Visualization:
+        ===========================================
+        
+        1. TRAINING CURVES:
+           - Monitor loss and accuracy over epochs
+           - Detect overfitting (validation worse than training)
+           - Visualize learning progress
+        
+        2. CONFUSION MATRIX:
+           - Shows classification performance per class
+           - Identifies which classes are confused
+           - Diagonal elements show correct predictions
+        
+        3. ROC CURVES:
+           - Receiver Operating Characteristic
+           - Shows trade-off between TPR and FPR
+           - AUC (Area Under Curve) summarizes performance
+        
+        4. PRECISION, RECALL, F1-SCORE:
+           - Precision: TP / (TP + FP) - exactness
+           - Recall: TP / (TP + FN) - completeness  
+           - F1: harmonic mean of precision and recall
+        
+        Args:
+            X_val: Validation features
+            y_val: Validation targets
+        """
+        # Create plots directory with timestamp
+        plots_dir = PROJECT_ROOT / 'plots' / f'training_{self.current_time}'
+        plots_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Set matplotlib style
+        plt.style.use('seaborn-v0_8' if 'seaborn-v0_8' in plt.style.available else 'default')
+        
+        # 1. Training History Plots
+        self._plot_training_history(plots_dir)
+        
+        # 2. Make predictions for evaluation
+        y_pred_proba = self.model.predict(X_val, verbose=0)
+        y_pred = np.argmax(y_pred_proba, axis=1)
+        
+        # 3. Classification Report
+        self._save_classification_report(y_val, y_pred, plots_dir)
+        
+        # 4. Confusion Matrix
+        self._plot_confusion_matrix(y_val, y_pred, plots_dir)
+        
+        # 5. ROC Curves
+        self._plot_roc_curves(y_val, y_pred_proba, plots_dir)
+        
+        # 6. Per-class Metrics
+        self._plot_per_class_metrics(y_val, y_pred, plots_dir)
+        
+        logger.info(f"Training plots saved to: {plots_dir}")
+    
+    def _plot_training_history(self, plots_dir: Path) -> None:
+        """Plot training and validation metrics over epochs."""
+        # Set up the figure with subplots
+        n_metrics = len([k for k in self.history.history.keys() if not k.startswith('val_')])
+        n_cols = min(3, n_metrics)
+        n_rows = (n_metrics + n_cols - 1) // n_cols
+        
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=(5 * n_cols, 4 * n_rows))
+        if n_metrics == 1:
+            axes = [axes]
+        elif n_rows == 1:
+            axes = axes
+        else:
+            axes = axes.flatten()
+        
+        plot_idx = 0
+        
+        # Plot each metric
+        for metric in self.history.history.keys():
+            if metric.startswith('val_'):
+                continue
+                
+            val_metric = f'val_{metric}'
+            if val_metric in self.history.history:
+                axes[plot_idx].plot(self.history.history[metric], label=f'Training {metric}', linewidth=2)
+                axes[plot_idx].plot(self.history.history[val_metric], label=f'Validation {metric}', linewidth=2)
+                axes[plot_idx].set_title(f'{metric.capitalize()} over Epochs', fontsize=12, fontweight='bold')
+                axes[plot_idx].set_xlabel('Epoch')
+                axes[plot_idx].set_ylabel(metric.capitalize())
+                axes[plot_idx].legend()
+                axes[plot_idx].grid(True, alpha=0.3)
+                plot_idx += 1
+        
+        # Hide unused subplots
+        for i in range(plot_idx, len(axes)):
+            axes[i].set_visible(False)
+        
+        plt.tight_layout()
+        plt.savefig(plots_dir / 'training_history.png', dpi=300, bbox_inches='tight')
+        plt.close()
+    
+    def _save_classification_report(self, y_true: np.ndarray, y_pred: np.ndarray, plots_dir: Path) -> None:
+        """Save detailed classification report."""
+        class_names = [f'Class_{i}' for i in range(self.config.num_classes)]
+        report = classification_report(y_true, y_pred, target_names=class_names, output_dict=True)
+        
+        # Save as text file
+        text_report = classification_report(y_true, y_pred, target_names=class_names)
+        with open(plots_dir / 'classification_report.txt', 'w') as f:
+            f.write("LSTM Model Classification Report\n")
+            f.write("=" * 50 + "\n\n")
+            f.write(text_report)
+        
+        # Create visualization of the report
+        df_report = pd.DataFrame(report).iloc[:-1, :].T
+        df_report = df_report.iloc[:, :-1]  # Remove support column for visualization
+        
+        plt.figure(figsize=(10, 6))
+        sns.heatmap(df_report, annot=True, cmap='Blues', fmt='.3f', cbar_kws={'label': 'Score'})
+        plt.title('Classification Report Heatmap', fontsize=14, fontweight='bold')
+        plt.ylabel('Classes')
+        plt.xlabel('Metrics')
+        plt.tight_layout()
+        plt.savefig(plots_dir / 'classification_report_heatmap.png', dpi=300, bbox_inches='tight')
+        plt.close()
+    
+    def _plot_confusion_matrix(self, y_true: np.ndarray, y_pred: np.ndarray, plots_dir: Path) -> None:
+        """Plot and save confusion matrix."""
+        cm = confusion_matrix(y_true, y_pred)
+        
+        # Calculate percentages
+        cm_percent = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis] * 100
+        
+        # Create subplot for both count and percentage
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+        
+        # Count confusion matrix
+        class_names = [f'Class_{i}' for i in range(self.config.num_classes)]
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax1, 
+                   xticklabels=class_names, yticklabels=class_names)
+        ax1.set_title('Confusion Matrix (Counts)', fontsize=12, fontweight='bold')
+        ax1.set_ylabel('True Label')
+        ax1.set_xlabel('Predicted Label')
+        
+        # Percentage confusion matrix
+        sns.heatmap(cm_percent, annot=True, fmt='.1f', cmap='Blues', ax=ax2,
+                   xticklabels=class_names, yticklabels=class_names)
+        ax2.set_title('Confusion Matrix (Percentages)', fontsize=12, fontweight='bold')
+        ax2.set_ylabel('True Label')
+        ax2.set_xlabel('Predicted Label')
+        
+        plt.tight_layout()
+        plt.savefig(plots_dir / 'confusion_matrix.png', dpi=300, bbox_inches='tight')
+        plt.close()
+    
+    def _plot_roc_curves(self, y_true: np.ndarray, y_pred_proba: np.ndarray, plots_dir: Path) -> None:
+        """Plot ROC curves for each class."""
+        n_classes = self.config.num_classes
+        
+        # Binarize the output for multiclass ROC
+        y_true_bin = label_binarize(y_true, classes=list(range(n_classes)))
+        
+        # Compute ROC curve and ROC area for each class
+        fpr = dict()
+        tpr = dict()
+        roc_auc = dict()
+        
+        for i in range(n_classes):
+            fpr[i], tpr[i], _ = roc_curve(y_true_bin[:, i], y_pred_proba[:, i])
+            roc_auc[i] = auc(fpr[i], tpr[i])
+        
+        # Compute micro-average ROC curve and ROC area
+        fpr["micro"], tpr["micro"], _ = roc_curve(y_true_bin.ravel(), y_pred_proba.ravel())
+        roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
+        
+        # Plot all ROC curves
+        plt.figure(figsize=(10, 8))
+        
+        # Plot micro-average ROC curve
+        plt.plot(fpr["micro"], tpr["micro"],
+                label=f'Micro-average ROC curve (AUC = {roc_auc["micro"]:.3f})',
+                color='deeppink', linestyle='--', linewidth=3)
+        
+        # Plot ROC curve for each class
+        colors = plt.cm.Set1(np.linspace(0, 1, n_classes))
+        for i, color in zip(range(n_classes), colors):
+            plt.plot(fpr[i], tpr[i], color=color, linewidth=2,
+                    label=f'Class {i} (AUC = {roc_auc[i]:.3f})')
+        
+        # Plot random classifier line
+        plt.plot([0, 1], [0, 1], 'k--', linewidth=1, label='Random Classifier')
+        
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('False Positive Rate', fontsize=12)
+        plt.ylabel('True Positive Rate', fontsize=12)
+        plt.title('ROC Curves for Multi-class Classification', fontsize=14, fontweight='bold')
+        plt.legend(loc="lower right")
+        plt.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.savefig(plots_dir / 'roc_curves.png', dpi=300, bbox_inches='tight')
+        plt.close()
+    
+    def _plot_per_class_metrics(self, y_true: np.ndarray, y_pred: np.ndarray, plots_dir: Path) -> None:
+        """Plot per-class precision, recall, and F1-score."""
+        # Calculate metrics for each class
+        precision = precision_score(y_true, y_pred, average=None)
+        recall = recall_score(y_true, y_pred, average=None)
+        f1 = f1_score(y_true, y_pred, average=None)
+        
+        # Create DataFrame for easier plotting
+        metrics_df = pd.DataFrame({
+            'Precision': precision,
+            'Recall': recall,
+            'F1-Score': f1
+        }, index=[f'Class_{i}' for i in range(self.config.num_classes)])
+        
+        # Plot grouped bar chart
+        ax = metrics_df.plot(kind='bar', figsize=(12, 6), width=0.8)
+        plt.title('Per-Class Performance Metrics', fontsize=14, fontweight='bold')
+        plt.xlabel('Classes', fontsize=12)
+        plt.ylabel('Score', fontsize=12)
+        plt.xticks(rotation=45)
+        plt.legend(title='Metrics')
+        plt.grid(True, alpha=0.3, axis='y')
+        plt.tight_layout()
+        plt.savefig(plots_dir / 'per_class_metrics.png', dpi=300, bbox_inches='tight')
+        plt.close()
+        
+        # Save metrics as CSV
+        metrics_df.to_csv(plots_dir / 'per_class_metrics.csv')
+        
+        # Calculate and save overall metrics
+        overall_metrics = {
+            'accuracy': (y_true == y_pred).mean(),
+            'precision_macro': precision_score(y_true, y_pred, average='macro'),
+            'recall_macro': recall_score(y_true, y_pred, average='macro'),
+            'f1_score_macro': f1_score(y_true, y_pred, average='macro'),
+            'precision_weighted': precision_score(y_true, y_pred, average='weighted'),
+            'recall_weighted': recall_score(y_true, y_pred, average='weighted'),
+            'f1_score_weighted': f1_score(y_true, y_pred, average='weighted')
+        }
+        
+        overall_df = pd.DataFrame([overall_metrics])
+        overall_df.to_csv(plots_dir / 'overall_metrics.csv', index=False)
+        
+        logger.info("Per-class and overall metrics saved")
+        for metric, value in overall_metrics.items():
+            logger.info(f"{metric}: {value:.4f}")
 
 
 def main():
@@ -631,7 +892,7 @@ def main():
         logger.info(f"Session logs will be saved to: {log_filename}")
         
         # Load configuration
-        config_path = PROJECT_ROOT / "config" / "lstm_config_experiment_3.yaml"
+        config_path = PROJECT_ROOT / "config" / "lstm_config_experiment_4.yaml"
         config = LSTMConfig.from_yaml(str(config_path))
         logger.info("Configuration loaded successfully")
         logger.info(f"Model configuration:\n{config.get_model_summary()}")
@@ -640,8 +901,7 @@ def main():
         processor = DataProcessor(config)
         
         # Load and prepare data (assumes data is already preprocessed)
-        # TODO: Update this path to your actual preprocessed data file
-        data_path = Path("/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv")
+        data_path = Path("C:/Users/dicla/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv")
         
         if not data_path.exists():
             logger.error(f"Data file not found: {data_path}")

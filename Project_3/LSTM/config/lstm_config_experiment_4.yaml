@@ -1,0 +1,61 @@
+# LSTM Model Configuration for Network Intrusion Detection
+# =========================================================
+# 
+# THEORY - Configuration Design:
+# =============================
+# This configuration follows the principle of "Configuration as Code":
+# - All model parameters are externalized
+# - Easy to version control and track changes
+# - Enables experiment reproducibility
+# - Supports automated hyperparameter tuning
+
+# === Core Architecture Parameters ===
+input_dim: 14 # Number of features per time step (updated to match dataset)
+seq_len: 128 # Number of time steps in sequence
+num_classes: 5 # Classification categories: Recon, Exploitation, C&C, Attack, Benign
+lstm_units: 32 # Hidden state dimension (memory capacity)
+num_layers: 3 # Stack depth (complexity vs. training stability)
+
+# === Regularization Configuration ===
+dropout: 0.2 # Dropout rate for preventing overfitting (30% of neurons)
+bidirectional: true # Process sequences in both directions
+
+# === Training Hyperparameters ===
+learning_rate: 0.001 # Adam optimizer step size
+batch_size: 16 # Reduced batch size for memory efficiency
+epochs: 15 # Maximum training iterations
+validation_split: 0.2 # Fraction for validation (20%)
+early_stopping_patience: 3 # Stop if no improvement in 3 epochs
+
+# === Monitoring and Evaluation ===
+metrics: # Performance metrics to track
+  - accuracy     # Overall correctness
+  - val_loss  # Validation loss for overfitting detection
+  - precision    # Positive predictive value
+  - recall       # Sensitivity to positive class
+  - f1_score     # Balance between precision and recall
+
+# === Model Persistence ===
+export_path: "models/saved_Models/experiment4.keras" # Where to save trained model
+
+# === Advanced Configuration (Optional) ===
+# Uncomment and modify these for advanced usage:
+# 
+# optimizer_config:
+#   type: "adam"
+#   beta_1: 0.9
+#   beta_2: 0.999
+#   epsilon: 1e-7
+# 
+# regularization:
+#   l1: 1e-5
+#   l2: 1e-4
+#   recurrent_dropout: 0.1
+# 
+# callbacks:
+#   early_stopping:
+#     patience: 10
+#     monitor: "val_loss"
+#   reduce_lr:
+#     factor: 0.5
+#     patience: 5

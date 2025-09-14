@@ -1,0 +1,45 @@
+2025-09-14 10:00:54,820 - __main__ - INFO - Training session started at 2025-09-14 10:00:54
+2025-09-14 10:00:54,821 - __main__ - INFO - Session logs will be saved to: training_20250914_100054.log
+2025-09-14 10:00:54,833 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 10:00:54,833 - __main__ - INFO - Model configuration:
+LSTM Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 3x Bidirectional LSTM layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~62,021
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.2
+  - Validation split: 0.2
+  - Early stopping patience: 3
+
+Monitoring:
+  - Metrics: accuracy, val_loss, precision, recall, f1_score
+  - Model save path: models\saved_Models\experiment4.keras
+2025-09-14 10:00:54,834 - __main__ - INFO - Loading data from C:\Users\dicla\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\dataset\combined_dataset_short_balanced_encoded_normalised_shuffled.csv
+2025-09-14 10:00:55,386 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 10:00:55,386 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 10:00:55,387 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 10:00:55,387 - __main__ - INFO - Preparing preprocessed data for LSTM training...
+2025-09-14 10:00:55,422 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 10:00:55,422 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 10:00:57,179 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 10:00:57,179 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 10:00:57,179 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 10:00:57,180 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 10:00:57,180 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 10:00:57,180 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 10:00:57,183 - __main__ - INFO - Class distribution: [99968 99975 99973 99974 99983]
+2025-09-14 10:00:57,188 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-14 10:00:57,192 - __main__ - INFO - No GPUs detected - using CPU only
+2025-09-14 10:00:57,209 - __main__ - INFO - TensorFlow configured for CPU usage. Test tensor device: /job:localhost/replica:0/task:0/device:CPU:0
+2025-09-14 10:00:57,210 - __main__ - INFO - Starting LSTM model training...
+2025-09-14 10:00:59,358 - __main__ - INFO - Training samples: 399898
+2025-09-14 10:00:59,359 - __main__ - INFO - Validation samples: 99975
+2025-09-14 10:01:00,020 - __main__ - INFO - Model built successfully
+2025-09-14 10:01:00,108 - __main__ - INFO - Beginning training process...

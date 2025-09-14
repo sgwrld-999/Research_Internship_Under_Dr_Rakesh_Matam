@@ -1,0 +1,126 @@
+# GRIFFIN Configuration File
+# Group-Regularized Intrusion Flow Feature Integration Network
+
+# Model Architecture Configuration
+model:
+  name: "GRIFFIN"
+  groups: 5
+  feature_groups:
+    packet_size_stats: 8      # Packet size statistics
+    inter_arrival_times: 8    # Inter-arrival times
+    flow_duration_rates: 10   # Flow duration/rates
+    tcp_flags_states: 10      # TCP flags/states
+    protocol_port_info: 10    # Protocol/port info
+  hidden_dims: [128, 64]
+  dropout_rates: [0.3, 0.2]
+  output_dim: 8              # Benign + 7 attack types
+  activation: "relu"
+
+# Training Configuration
+training:
+  batch_size: 256
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  optimizer: "adamw"
+  scheduler: "cosine"
+  early_stopping_patience: 15
+  
+  # Loss function parameters
+  focal_loss:
+    gamma: 2
+    alpha_auto: true         # Auto-compute based on class frequency
+  
+  # Regularization parameters
+  lambda1: 0.01             # Group lasso weight
+  lambda2: 0.0001           # L2 weight decay
+  
+  # Learning rate scheduler
+  cosine_annealing:
+    T_max: 50
+    eta_min: 0.00001
+
+# Data Configuration
+data:
+  dataset_name: "CICIoT"
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+  stratify: true
+  random_state: 42
+  
+  # Preprocessing
+  preprocessing:
+    remove_constant_features: true
+    variance_threshold: 0.000001
+    handle_infinities: true
+    infinity_clip_value: 10000000000.0
+    handle_nans: true
+    nan_strategy: "forward_fill_then_zero"
+    feature_scaling: "standard"
+    
+  # Feature engineering
+  feature_engineering:
+    create_interaction_features: false
+    polynomial_features: false
+    pca_components: null
+
+# Evaluation Configuration
+evaluation:
+  metrics:
+    primary: ["precision", "recall", "f1_score", "accuracy"]
+    secondary: ["fpr", "fnr", "roc_auc"]
+    specialized: ["fpr_at_95_tpr", "fpr_at_99_tpr"]
+  
+  cross_validation:
+    enabled: true
+    folds: 5
+    stratified: true
+    
+  calibration:
+    enabled: true
+    method: "temperature_scaling"
+    
+  plots:
+    confusion_matrix: true
+    roc_curve: true
+    precision_recall_curve: true
+    training_history: true
+    feature_importance: true
+    gate_activation_heatmap: true
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/griffin.log"
+  console: true
+
+# Paths Configuration
+paths:
+  data_dir: "data/raw"
+  main_dataset: "90%_Complete_dataset.csv"  # Main dataset for training
+  models_dir: "models"
+  logs_dir: "logs"
+  plots_dir: "plots"
+  results_dir: "results"
+  checkpoints_dir: "checkpoints"
+
+# Reproducibility Configuration
+reproducibility:
+  random_seed: 42
+  deterministic: true
+  benchmark: false
+
+# Hardware Configuration
+hardware:
+  device: "auto"            # auto, cpu, cuda
+  num_workers: 4
+  pin_memory: true
+  
+# Experiment Tracking
+experiment:
+  name: "griffin_baseline"
+  version: "1.0.0"
+  description: "GRIFFIN baseline implementation for CICIoT dataset"
+  tags: ["intrusion_detection", "iot", "deep_learning", "group_gating"]
