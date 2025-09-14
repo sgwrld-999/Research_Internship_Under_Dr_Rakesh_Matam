@@ -1,6 +1,14 @@
 # Ignore only model files over GitHub's size limits
 *.joblib
 */*/models/saved_Models/*.joblib
+*/data/raw/90%_Complete_dataset.csv
+*/data/raw/combined_dataset_short_balanced_encoded_normalised_shuffled.csv
+*/*/models/saved_Models/*.h5
+*/*/models/saved_Models/*.pb
+*/*/models/saved_Models/*.tflite
+*/*/models/saved_Models/*.ckpt
+*/*/models/saved_Models/*.index
+*/*/models/saved_Models/*.data-00000-of-00001
 
 # Keep other files including outputs, logs, and plots
 !*/*/outputs/
