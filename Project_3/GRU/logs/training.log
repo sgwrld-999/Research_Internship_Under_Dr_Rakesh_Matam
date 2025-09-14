@@ -306,3 +306,789 @@ Monitoring:
 2025-09-12 22:22:19,744 - __main__ - INFO - CSV metrics saved as: training_metrics_20250912-170902.csv
 2025-09-12 22:22:19,789 - __main__ - INFO - Final model saved to: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment1_final.keras
 2025-09-12 22:22:19,789 - __main__ - INFO - Training pipeline completed successfully!
+2025-09-14 10:25:38,257 - __main__ - INFO - Training session started at 2025-09-14 10:25:38
+2025-09-14 10:25:38,258 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-102538.log
+2025-09-14 10:25:38,261 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 10:25:38,261 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 10:25:38,261 - __main__ - ERROR - Data file not found: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 10:25:38,261 - __main__ - INFO - Please place your CSV data file in the correct location
+2025-09-14 10:26:36,440 - __main__ - INFO - Training session started at 2025-09-14 10:26:36
+2025-09-14 10:26:36,441 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-102636.log
+2025-09-14 10:26:36,443 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 10:26:36,443 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 10:26:36,443 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 10:26:37,359 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 10:26:37,360 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 10:26:37,360 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 10:26:37,360 - __main__ - INFO - Preparing preprocessed data for GRU training...
+2025-09-14 10:26:37,395 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 10:26:37,395 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 10:26:39,685 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 10:26:39,685 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 10:26:39,685 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 10:26:39,685 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 10:26:39,686 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 10:26:39,686 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 10:26:39,688 - __main__ - INFO - Class distribution: [100000  99873 100000 100000 100000]
+2025-09-14 10:26:39,692 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-14 10:26:39,789 - __main__ - INFO - No GPUs detected - using CPU only
+2025-09-14 10:26:39,805 - __main__ - INFO - TensorFlow configured for CPU usage. Test tensor device: /job:localhost/replica:0/task:0/device:CPU:0
+2025-09-14 10:26:39,805 - __main__ - INFO - Starting GRU model training...
+2025-09-14 10:26:41,473 - __main__ - INFO - Training samples: 399898
+2025-09-14 10:26:41,473 - __main__ - INFO - Validation samples: 99975
+2025-09-14 10:26:41,715 - __main__ - INFO - Model built successfully
+2025-09-14 10:26:41,723 - __main__ - INFO - Model: "GRU_Model"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ bidirectional_gru_1 (Bidirectional)  │ (None, 128, 64)             │           9,216 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_2 (Bidirectional)  │ (None, 128, 64)             │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_2 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_3 (Bidirectional)  │ (None, 128, 64)             │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_3 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_4 (Bidirectional)  │ (None, 64)                  │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_4 (Dropout)                  │ (None, 64)                  │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ output_layer (Dense)                 │ (None, 5)                   │             325 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 65,989 (257.77 KB)
+ Trainable params: 65,989 (257.77 KB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-14 10:26:41,723 - __main__ - INFO - Beginning training process...
+2025-09-14 10:26:48,195 - __main__ - ERROR - Training pipeline failed: FBetaScore expects 2D inputs with shape (batch_size, output_dim). Received input shapes: y_pred.shape=(None, 5) and y_true.shape=(None,).
+2025-09-14 10:26:48,195 - __main__ - ERROR - Full traceback:
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 882, in main
+    model, history = trainer.train(X, y)
+                     ~~~~~~~~~~~~~^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 728, in train
+    self.history = self.model.fit(
+                   ~~~~~~~~~~~~~~^
+        X_train, y_train,
+        ^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        shuffle=True
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/utils/traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/metrics/f_score_metrics.py", line 124, in _build
+    raise ValueError(
+    ...<4 lines>...
+    )
+ValueError: FBetaScore expects 2D inputs with shape (batch_size, output_dim). Received input shapes: y_pred.shape=(None, 5) and y_true.shape=(None,).
+2025-09-14 10:27:28,019 - __main__ - INFO - Training session started at 2025-09-14 10:27:28
+2025-09-14 10:27:28,019 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-102728.log
+2025-09-14 10:27:28,022 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 10:27:28,022 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 10:27:28,022 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 10:27:29,160 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 10:27:29,160 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 10:27:29,160 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 10:27:29,160 - __main__ - INFO - Preparing preprocessed data for GRU training...
+2025-09-14 10:27:29,200 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 10:27:29,200 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 10:27:31,692 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 10:27:31,692 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 10:27:31,692 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 10:27:31,692 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 10:27:31,692 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 10:27:31,692 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 10:27:31,695 - __main__ - INFO - Class distribution: [100000  99873 100000 100000 100000]
+2025-09-14 10:27:31,698 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-14 10:27:31,783 - __main__ - INFO - No GPUs detected - using CPU only
+2025-09-14 10:27:31,801 - __main__ - INFO - TensorFlow configured for CPU usage. Test tensor device: /job:localhost/replica:0/task:0/device:CPU:0
+2025-09-14 10:27:31,801 - __main__ - INFO - Starting GRU model training...
+2025-09-14 10:27:33,245 - __main__ - INFO - Training samples: 399898
+2025-09-14 10:27:33,245 - __main__ - INFO - Validation samples: 99975
+2025-09-14 10:27:33,548 - tensorflow - INFO - F1Score metric will be calculated manually during evaluation
+2025-09-14 10:27:33,551 - __main__ - INFO - Model built successfully
+2025-09-14 10:27:33,558 - __main__ - INFO - Model: "GRU_Model"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ bidirectional_gru_1 (Bidirectional)  │ (None, 128, 64)             │           9,216 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_2 (Bidirectional)  │ (None, 128, 64)             │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_2 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_3 (Bidirectional)  │ (None, 128, 64)             │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_3 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_4 (Bidirectional)  │ (None, 64)                  │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_4 (Dropout)                  │ (None, 64)                  │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ output_layer (Dense)                 │ (None, 5)                   │             325 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 65,989 (257.77 KB)
+ Trainable params: 65,989 (257.77 KB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-14 10:27:33,558 - __main__ - INFO - Beginning training process...
+2025-09-14 10:27:48,825 - __main__ - ERROR - Training pipeline failed: Graph execution error:
+
+Detected at node LogicalAnd_1 defined at (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 902, in <module>
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 882, in main
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 728, in train
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/utils/traceback_utils.py", line 117, in error_handler
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 377, in fit
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 220, in function
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 133, in multi_step_on_iterator
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 114, in one_step_on_data
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 85, in train_step
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/trainers/trainer.py", line 490, in compute_metrics
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/trainers/compile_utils.py", line 334, in update_state
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/trainers/compile_utils.py", line 21, in update_state
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/metrics/confusion_metrics.py", line 378, in update_state
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/metrics/metrics_utils.py", line 595, in update_confusion_matrix_variables
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/metrics/metrics_utils.py", line 568, in weighted_assign_add
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/ops/numpy.py", line 4011, in logical_and
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/numpy.py", line 1737, in logical_and
+
+Incompatible shapes: [1,80] vs. [1,16]
+	 [[{{node LogicalAnd_1}}]] [Op:__inference_multi_step_on_iterator_16316]
+2025-09-14 10:27:48,825 - __main__ - ERROR - Full traceback:
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 882, in main
+    model, history = trainer.train(X, y)
+                     ~~~~~~~~~~~~~^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 728, in train
+    self.history = self.model.fit(
+                   ~~~~~~~~~~~~~~^
+        X_train, y_train,
+        ^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        shuffle=True
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/utils/traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/tensorflow/python/eager/execute.py", line 59, in quick_execute
+    except TypeError as e:
+    ...<5 lines>...
+      raise e
+tensorflow.python.framework.errors_impl.InvalidArgumentError: Graph execution error:
+
+Detected at node LogicalAnd_1 defined at (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 902, in <module>
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 882, in main
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 728, in train
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/utils/traceback_utils.py", line 117, in error_handler
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 377, in fit
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 220, in function
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 133, in multi_step_on_iterator
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 114, in one_step_on_data
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/trainer.py", line 85, in train_step
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/trainers/trainer.py", line 490, in compute_metrics
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/trainers/compile_utils.py", line 334, in update_state
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/trainers/compile_utils.py", line 21, in update_state
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/metrics/confusion_metrics.py", line 378, in update_state
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/metrics/metrics_utils.py", line 595, in update_confusion_matrix_variables
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/metrics/metrics_utils.py", line 568, in weighted_assign_add
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/ops/numpy.py", line 4011, in logical_and
+
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/backend/tensorflow/numpy.py", line 1737, in logical_and
+
+Incompatible shapes: [1,80] vs. [1,16]
+	 [[{{node LogicalAnd_1}}]] [Op:__inference_multi_step_on_iterator_16316]
+2025-09-14 10:29:21,380 - __main__ - INFO - Training session started at 2025-09-14 10:29:21
+2025-09-14 10:29:21,380 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-102921.log
+2025-09-14 10:29:21,382 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 10:29:21,382 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 10:29:21,383 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 10:29:22,336 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 10:29:22,336 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 10:29:22,336 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 10:29:22,336 - __main__ - INFO - Preparing preprocessed data for GRU training...
+2025-09-14 10:29:22,381 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 10:29:22,382 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 10:29:24,582 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 10:29:24,582 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 10:29:24,582 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 10:29:24,583 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 10:29:24,583 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 10:29:24,583 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 10:29:24,586 - __main__ - INFO - Class distribution: [100000  99873 100000 100000 100000]
+2025-09-14 10:29:24,590 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-14 10:29:24,691 - __main__ - INFO - No GPUs detected - using CPU only
+2025-09-14 10:29:24,708 - __main__ - INFO - TensorFlow configured for CPU usage. Test tensor device: /job:localhost/replica:0/task:0/device:CPU:0
+2025-09-14 10:29:24,708 - __main__ - INFO - Starting GRU model training...
+2025-09-14 10:29:26,372 - __main__ - INFO - Training samples: 399898
+2025-09-14 10:29:26,372 - __main__ - INFO - Validation samples: 99975
+2025-09-14 10:29:26,608 - tensorflow - INFO - precision metric will be calculated manually during evaluation
+2025-09-14 10:29:26,608 - tensorflow - INFO - recall metric will be calculated manually during evaluation
+2025-09-14 10:29:26,608 - tensorflow - INFO - f1_score metric will be calculated manually during evaluation
+2025-09-14 10:29:26,611 - __main__ - INFO - Model built successfully
+2025-09-14 10:29:26,619 - __main__ - INFO - Model: "GRU_Model"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ bidirectional_gru_1 (Bidirectional)  │ (None, 128, 64)             │           9,216 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_2 (Bidirectional)  │ (None, 128, 64)             │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_2 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_3 (Bidirectional)  │ (None, 128, 64)             │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_3 (Dropout)                  │ (None, 128, 64)             │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ bidirectional_gru_4 (Bidirectional)  │ (None, 64)                  │          18,816 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_4 (Dropout)                  │ (None, 64)                  │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ output_layer (Dense)                 │ (None, 5)                   │             325 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 65,989 (257.77 KB)
+ Trainable params: 65,989 (257.77 KB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-14 10:29:26,620 - __main__ - INFO - Beginning training process...
+2025-09-14 10:35:48,208 - __main__ - INFO - Training session started at 2025-09-14 10:35:48
+2025-09-14 10:35:48,208 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-103548.log
+2025-09-14 10:35:48,211 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 10:35:48,211 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 10:35:48,211 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 10:35:49,495 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 10:35:49,496 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 10:35:49,496 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 10:35:49,496 - __main__ - INFO - Preparing preprocessed data for GRU training...
+2025-09-14 10:35:49,535 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 10:35:49,535 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 10:35:51,858 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 10:35:51,858 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 10:35:51,858 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 10:35:51,858 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 10:35:51,858 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 10:35:51,859 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 10:35:51,862 - __main__ - INFO - Class distribution: [100000  99873 100000 100000 100000]
+2025-09-14 10:35:51,867 - __main__ - INFO - System Info: 64 CPU cores, 374.4GB available RAM
+2025-09-14 10:35:52,154 - __main__ - INFO - Found 7 GPU(s)
+2025-09-14 10:35:52,157 - __main__ - INFO - GPU Device: NVIDIA A100-PCIE-40GB
+2025-09-14 10:35:55,391 - __main__ - WARNING - GPU initialization failed: Bad StatusOr access: RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+2025-09-14 10:35:55,391 - __main__ - INFO - Falling back to CPU
+2025-09-14 10:35:55,391 - __main__ - INFO - CPU optimized: 64 cores for parallel processing
+2025-09-14 10:40:07,218 - __main__ - INFO - Training session started at 2025-09-14 10:40:07
+2025-09-14 10:40:07,218 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-104007.log
+2025-09-14 10:40:07,220 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 10:40:07,220 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 16
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 10:40:07,221 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 10:40:08,093 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 10:40:08,093 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 10:40:08,093 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 10:40:08,093 - __main__ - INFO - Preparing preprocessed data for GRU training...
+2025-09-14 10:40:08,130 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 10:40:08,131 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 10:40:10,458 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 10:40:10,459 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 10:40:10,459 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 10:40:10,459 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 10:40:10,459 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 10:40:10,459 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 10:40:10,462 - __main__ - INFO - Class distribution: [100000  99873 100000 100000 100000]
+2025-09-14 10:40:10,466 - __main__ - INFO - System Info: 64 CPU cores, 370.5GB available RAM
+2025-09-14 10:40:10,756 - __main__ - INFO - Found 7 GPU(s)
+2025-09-14 10:40:10,759 - __main__ - INFO - GPU Device: NVIDIA A100-PCIE-40GB
+2025-09-14 10:40:13,461 - __main__ - WARNING - GPU initialization failed: Bad StatusOr access: RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+2025-09-14 10:40:13,461 - __main__ - INFO - Falling back to CPU
+2025-09-14 10:40:13,462 - __main__ - INFO - CPU optimized: 64 cores for parallel processing
+2025-09-14 12:17:44,158 - __main__ - INFO - Training session started at 2025-09-14 12:17:44
+2025-09-14 12:17:44,158 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-121744.log
+2025-09-14 12:17:44,161 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 12:17:44,161 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 64
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 12:17:44,161 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 12:17:45,026 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 12:17:45,027 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 12:17:45,027 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 12:17:45,027 - __main__ - INFO - Preparing preprocessed data for GRU training...
+2025-09-14 12:17:45,065 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 12:17:45,065 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 12:17:45,066 - __main__ - INFO - Creating sequences with optimized vectorization...
+2025-09-14 12:17:45,266 - __main__ - INFO - Processed 50000/499873 sequences (10.0%)
+2025-09-14 12:17:45,465 - __main__ - INFO - Processed 100000/499873 sequences (20.0%)
+2025-09-14 12:17:45,715 - __main__ - INFO - Processed 150000/499873 sequences (30.0%)
+2025-09-14 12:17:45,917 - __main__ - INFO - Processed 200000/499873 sequences (40.0%)
+2025-09-14 12:17:46,154 - __main__ - INFO - Processed 250000/499873 sequences (50.0%)
+2025-09-14 12:17:46,369 - __main__ - INFO - Processed 300000/499873 sequences (60.0%)
+2025-09-14 12:17:46,567 - __main__ - INFO - Processed 350000/499873 sequences (70.0%)
+2025-09-14 12:17:46,768 - __main__ - INFO - Processed 400000/499873 sequences (80.0%)
+2025-09-14 12:17:47,064 - __main__ - INFO - Processed 450000/499873 sequences (90.0%)
+2025-09-14 12:17:47,336 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 12:17:47,336 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 12:17:47,336 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 12:17:47,336 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 12:17:47,336 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 12:17:47,336 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 12:17:47,339 - __main__ - INFO - Class distribution: [100000  99873 100000 100000 100000]
+2025-09-14 12:17:47,342 - __main__ - INFO - System Info: 64 CPU cores, 372.6GB available RAM
+2025-09-14 12:17:47,613 - __main__ - INFO - Found 7 GPU(s)
+2025-09-14 12:17:47,615 - __main__ - INFO - GPU Device: NVIDIA A100-PCIE-40GB
+2025-09-14 12:17:51,698 - __main__ - WARNING - GPU initialization failed: Bad StatusOr access: RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+2025-09-14 12:17:51,698 - __main__ - INFO - Falling back to CPU
+2025-09-14 12:17:51,698 - __main__ - INFO - CPU optimized: 64 cores for parallel processing
+2025-09-14 12:17:51,698 - __main__ - INFO - TensorFlow configured for CPU - ready for training!
+2025-09-14 12:17:51,699 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-14 12:17:51,699 - __main__ - INFO - System Info: 64 CPU cores, 371.9GB available RAM
+2025-09-14 12:17:51,699 - __main__ - INFO - Found 7 GPU(s)
+2025-09-14 12:26:07,371 - __main__ - INFO - Training session started at 2025-09-14 12:26:07
+2025-09-14 12:26:07,371 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-122607.log
+2025-09-14 12:26:07,373 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 12:26:07,373 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 64
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 12:26:07,374 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 12:26:08,223 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 12:26:08,223 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 12:26:08,224 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 12:26:08,224 - __main__ - INFO - Preparing preprocessed data for GRU training...
+2025-09-14 12:26:08,262 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 12:26:08,262 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 12:26:08,263 - __main__ - INFO - Creating sequences with optimized vectorization...
+2025-09-14 12:26:08,454 - __main__ - INFO - Processed 50000/499873 sequences (10.0%)
+2025-09-14 12:26:08,654 - __main__ - INFO - Processed 100000/499873 sequences (20.0%)
+2025-09-14 12:26:08,842 - __main__ - INFO - Processed 150000/499873 sequences (30.0%)
+2025-09-14 12:26:09,027 - __main__ - INFO - Processed 200000/499873 sequences (40.0%)
+2025-09-14 12:26:09,214 - __main__ - INFO - Processed 250000/499873 sequences (50.0%)
+2025-09-14 12:26:09,403 - __main__ - INFO - Processed 300000/499873 sequences (60.0%)
+2025-09-14 12:26:09,594 - __main__ - INFO - Processed 350000/499873 sequences (70.0%)
+2025-09-14 12:26:09,778 - __main__ - INFO - Processed 400000/499873 sequences (80.0%)
+2025-09-14 12:26:09,963 - __main__ - INFO - Processed 450000/499873 sequences (90.0%)
+2025-09-14 12:26:10,154 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 12:26:10,154 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 12:26:10,154 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 12:26:10,154 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 12:26:10,154 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 12:26:10,154 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 12:26:10,157 - __main__ - INFO - Class distribution: [100000  99873 100000 100000 100000]
+2025-09-14 12:26:10,160 - __main__ - INFO - === CPU-ONLY MODE ENABLED ===
+2025-09-14 12:26:10,160 - __main__ - INFO - System Info: 64 CPU cores, 373.3GB available RAM
+2025-09-14 12:26:10,160 - __main__ - INFO - TensorFlow configured for CPU with 64 cores - READY FOR TRAINING!
+2025-09-14 12:26:10,160 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-14 12:26:10,161 - __main__ - INFO - === CPU-ONLY MODE ENABLED ===
+2025-09-14 12:26:10,161 - __main__ - INFO - System Info: 64 CPU cores, 373.3GB available RAM
+2025-09-14 12:26:10,161 - __main__ - INFO - TensorFlow configured for CPU with 64 cores - READY FOR TRAINING!
+2025-09-14 12:26:10,161 - __main__ - INFO - Starting GRU model training...
+2025-09-14 12:26:10,161 - __main__ - INFO - Optimizing data types for performance...
+2025-09-14 12:26:10,161 - __main__ - INFO - Splitting data into training and validation sets...
+2025-09-14 12:26:11,983 - __main__ - INFO - Training samples: 399,898
+2025-09-14 12:26:11,983 - __main__ - INFO - Validation samples: 99,975
+2025-09-14 12:26:11,983 - __main__ - INFO - Building model architecture...
+2025-09-14 12:26:12,333 - tensorflow - INFO - precision metric will be calculated manually during evaluation
+2025-09-14 12:26:12,333 - tensorflow - INFO - recall metric will be calculated manually during evaluation
+2025-09-14 12:26:12,333 - tensorflow - INFO - f1_score metric will be calculated manually during evaluation
+2025-09-14 12:26:12,343 - __main__ - INFO - Model built successfully in 0.36 seconds
+2025-09-14 12:26:12,362 - __main__ - INFO - Model: "GRU_Model"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
+┃ Layer (type)                  ┃ Output Shape          ┃      Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
+│ bidirectional_gru_1           │ (None, 128, 64)       │        9,216 │
+│ (Bidirectional)               │                       │              │
+├───────────────────────────────┼───────────────────────┼──────────────┤
+│ dropout_1 (Dropout)           │ (None, 128, 64)       │            0 │
+├───────────────────────────────┼───────────────────────┼──────────────┤
+│ bidirectional_gru_2           │ (None, 128, 64)       │       18,816 │
+│ (Bidirectional)               │                       │              │
+├───────────────────────────────┼───────────────────────┼──────────────┤
+│ dropout_2 (Dropout)           │ (None, 128, 64)       │            0 │
+├───────────────────────────────┼───────────────────────┼──────────────┤
+│ bidirectional_gru_3           │ (None, 128, 64)       │       18,816 │
+│ (Bidirectional)               │                       │              │
+├───────────────────────────────┼───────────────────────┼──────────────┤
+│ dropout_3 (Dropout)           │ (None, 128, 64)       │            0 │
+├───────────────────────────────┼───────────────────────┼──────────────┤
+│ bidirectional_gru_4           │ (None, 64)            │       18,816 │
+│ (Bidirectional)               │                       │              │
+├───────────────────────────────┼───────────────────────┼──────────────┤
+│ dropout_4 (Dropout)           │ (None, 64)            │            0 │
+├───────────────────────────────┼───────────────────────┼──────────────┤
+│ output_layer (Dense)          │ (None, 5)             │          325 │
+└───────────────────────────────┴───────────────────────┴──────────────┘
+ Total params: 65,989 (257.77 KB)
+ Trainable params: 65,989 (257.77 KB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-14 12:26:12,362 - __main__ - INFO - Setting up training callbacks...
+2025-09-14 12:26:12,363 - __main__ - INFO - === STARTING TRAINING PROCESS ===
+2025-09-14 12:26:12,363 - __main__ - INFO - Device: CPU
+2025-09-14 12:26:12,364 - __main__ - INFO - Batch size: 64
+2025-09-14 12:26:12,364 - __main__ - INFO - Total batches per epoch: 6248
+2025-09-14 12:26:12,364 - __main__ - ERROR - Training pipeline failed: TensorFlowTrainer.fit() got an unexpected keyword argument 'use_multiprocessing'
+2025-09-14 12:26:12,364 - __main__ - ERROR - Full traceback:
+Traceback (most recent call last):
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 910, in main
+    model, history = trainer.train(X, y)
+                     ~~~~~~~~~~~~~^^^^^^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/scripts/train.py", line 754, in train
+    self.history = self.model.fit(
+                   ~~~~~~~~~~~~~~^
+        X_train, y_train,
+        ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        workers=4 if not self.using_gpu else 1  # More workers for CPU
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/utils/traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/miniconda3/lib/python3.13/site-packages/keras/src/utils/traceback_utils.py", line 119, in error_handler
+    filtered_tb = _process_traceback_frames(e.__traceback__)
+TypeError: TensorFlowTrainer.fit() got an unexpected keyword argument 'use_multiprocessing'
+2025-09-14 12:27:30,642 - __main__ - INFO - Training session started at 2025-09-14 12:27:30
+2025-09-14 12:27:30,642 - __main__ - INFO - Session logs will be saved to: gru_training_20250914-122730.log
+2025-09-14 12:27:30,647 - __main__ - INFO - Configuration loaded successfully
+2025-09-14 12:27:30,648 - __main__ - INFO - Model configuration:
+GRU Model Configuration Summary:
+================================
+Architecture:
+  - Input: 128 time steps × 14 features
+  - 4x Bidirectional GRU layers (32 units each)
+  - Output: 5 classes
+  - Estimated parameters: ~86,853
+
+Training Setup:
+  - Learning rate: 0.001
+  - Batch size: 64
+  - Max epochs: 15
+  - Dropout: 0.3
+  - Validation split: 0.2
+  - Early stopping patience: 2
+
+Monitoring:
+  - Metrics: accuracy, precision, recall, f1_score
+  - Model save path: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras
+2025-09-14 12:27:30,648 - __main__ - INFO - Loading data from /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/dataset/combined_dataset_short_balanced_encoded_normalised.csv
+2025-09-14 12:27:31,621 - __main__ - INFO - Data loaded successfully: (500000, 15)
+2025-09-14 12:27:31,621 - __main__ - INFO - Features: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13']
+2025-09-14 12:27:31,622 - __main__ - INFO - Target: label_stage_encoded
+2025-09-14 12:27:31,622 - __main__ - INFO - Preparing preprocessed data for GRU training...
+2025-09-14 12:27:31,660 - __main__ - INFO - Feature matrix shape: (500000, 14)
+2025-09-14 12:27:31,660 - __main__ - INFO - Target vector shape: (500000,)
+2025-09-14 12:27:31,662 - __main__ - INFO - Creating sequences with optimized vectorization...
+2025-09-14 12:27:31,860 - __main__ - INFO - Processed 50000/499873 sequences (10.0%)
+2025-09-14 12:27:32,058 - __main__ - INFO - Processed 100000/499873 sequences (20.0%)
+2025-09-14 12:27:32,253 - __main__ - INFO - Processed 150000/499873 sequences (30.0%)
+2025-09-14 12:27:32,450 - __main__ - INFO - Processed 200000/499873 sequences (40.0%)
+2025-09-14 12:27:32,647 - __main__ - INFO - Processed 250000/499873 sequences (50.0%)
+2025-09-14 12:27:32,848 - __main__ - INFO - Processed 300000/499873 sequences (60.0%)
+2025-09-14 12:27:33,045 - __main__ - INFO - Processed 350000/499873 sequences (70.0%)
+2025-09-14 12:27:33,240 - __main__ - INFO - Processed 400000/499873 sequences (80.0%)
+2025-09-14 12:27:33,439 - __main__ - INFO - Processed 450000/499873 sequences (90.0%)
+2025-09-14 12:27:33,637 - __main__ - INFO - Created 499873 sequences of length 128
+2025-09-14 12:27:33,637 - __main__ - INFO - Sequence shape: (499873, 128, 14)
+2025-09-14 12:27:33,637 - __main__ - INFO - Target shape: (499873,)
+2025-09-14 12:27:33,637 - __main__ - INFO - Preprocessed data preparation completed successfully
+2025-09-14 12:27:33,637 - __main__ - INFO - Final sequence shape: (499873, 128, 14)
+2025-09-14 12:27:33,637 - __main__ - INFO - Final target shape: (499873,)
+2025-09-14 12:27:33,641 - __main__ - INFO - Class distribution: [100000  99873 100000 100000 100000]
+2025-09-14 12:27:33,644 - __main__ - INFO - === CPU-ONLY MODE ENABLED ===
+2025-09-14 12:27:33,644 - __main__ - INFO - System Info: 64 CPU cores, 374.1GB available RAM
+2025-09-14 12:27:33,644 - __main__ - INFO - TensorFlow configured for CPU with 64 cores - READY FOR TRAINING!
+2025-09-14 12:27:33,645 - __main__ - INFO - Random seeds set to 42 for reproducibility
+2025-09-14 12:27:33,645 - __main__ - INFO - === CPU-ONLY MODE ENABLED ===
+2025-09-14 12:27:33,645 - __main__ - INFO - System Info: 64 CPU cores, 374.1GB available RAM
+2025-09-14 12:27:33,645 - __main__ - INFO - TensorFlow configured for CPU with 64 cores - READY FOR TRAINING!
+2025-09-14 12:27:33,645 - __main__ - INFO - Starting GRU model training...
+2025-09-14 12:27:33,645 - __main__ - INFO - Optimizing data types for performance...
+2025-09-14 12:27:33,645 - __main__ - INFO - Splitting data into training and validation sets...
+2025-09-14 12:27:35,057 - __main__ - INFO - Training samples: 399,898
+2025-09-14 12:27:35,057 - __main__ - INFO - Validation samples: 99,975
+2025-09-14 12:27:35,057 - __main__ - INFO - Building model architecture...
+2025-09-14 12:27:35,455 - tensorflow - INFO - precision metric will be calculated manually during evaluation
+2025-09-14 12:27:35,455 - tensorflow - INFO - recall metric will be calculated manually during evaluation
+2025-09-14 12:27:35,455 - tensorflow - INFO - f1_score metric will be calculated manually during evaluation
+2025-09-14 12:27:35,458 - __main__ - INFO - Model built successfully in 0.40 seconds
+2025-09-14 12:27:35,466 - __main__ - INFO - Model: "GRU_Model"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ Layer (type)                ┃ Output Shape        ┃     Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│ bidirectional_gru_1         │ (None, 128, 64)     │       9,216 │
+│ (Bidirectional)             │                     │             │
+├─────────────────────────────┼─────────────────────┼─────────────┤
+│ dropout_1 (Dropout)         │ (None, 128, 64)     │           0 │
+├─────────────────────────────┼─────────────────────┼─────────────┤
+│ bidirectional_gru_2         │ (None, 128, 64)     │      18,816 │
+│ (Bidirectional)             │                     │             │
+├─────────────────────────────┼─────────────────────┼─────────────┤
+│ dropout_2 (Dropout)         │ (None, 128, 64)     │           0 │
+├─────────────────────────────┼─────────────────────┼─────────────┤
+│ bidirectional_gru_3         │ (None, 128, 64)     │      18,816 │
+│ (Bidirectional)             │                     │             │
+├─────────────────────────────┼─────────────────────┼─────────────┤
+│ dropout_3 (Dropout)         │ (None, 128, 64)     │           0 │
+├─────────────────────────────┼─────────────────────┼─────────────┤
+│ bidirectional_gru_4         │ (None, 64)          │      18,816 │
+│ (Bidirectional)             │                     │             │
+├─────────────────────────────┼─────────────────────┼─────────────┤
+│ dropout_4 (Dropout)         │ (None, 64)          │           0 │
+├─────────────────────────────┼─────────────────────┼─────────────┤
+│ output_layer (Dense)        │ (None, 5)           │         325 │
+└─────────────────────────────┴─────────────────────┴─────────────┘
+ Total params: 65,989 (257.77 KB)
+ Trainable params: 65,989 (257.77 KB)
+ Non-trainable params: 0 (0.00 B)
+
+2025-09-14 12:27:35,466 - __main__ - INFO - Setting up training callbacks...
+2025-09-14 12:27:35,467 - __main__ - INFO - === STARTING TRAINING PROCESS ===
+2025-09-14 12:27:35,467 - __main__ - INFO - Device: CPU
+2025-09-14 12:27:35,467 - __main__ - INFO - Batch size: 64
+2025-09-14 12:27:35,467 - __main__ - INFO - Total batches per epoch: 6248
+2025-09-14 18:24:25,443 - __main__ - INFO - Training completed successfully
+2025-09-14 18:24:25,444 - __main__ - INFO - final_train_loss: 0.0060
+2025-09-14 18:24:25,444 - __main__ - INFO - final_val_loss: 0.0046
+2025-09-14 18:24:25,444 - __main__ - INFO - best_val_loss: 0.0046
+2025-09-14 18:24:25,444 - __main__ - INFO - total_epochs: 15.0000
+2025-09-14 18:24:25,444 - __main__ - INFO - final_train_accuracy: 0.9985
+2025-09-14 18:24:25,444 - __main__ - INFO - final_val_accuracy: 0.9989
+2025-09-14 18:24:25,444 - __main__ - INFO - best_val_accuracy: 0.9989
+2025-09-14 18:24:25,444 - __main__ - INFO - Training session completed at 2025-09-14 18:24:25
+2025-09-14 18:24:25,444 - __main__ - INFO - Timestamped log saved as: gru_training_20250914-122730.log
+2025-09-14 18:24:25,444 - __main__ - INFO - CSV metrics saved as: training_metrics_20250914-122730.csv
+2025-09-14 18:24:25,444 - __main__ - INFO - Generating training visualization plots...
+2025-09-14 18:24:26,168 - __main__ - INFO - Training history plot saved to: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/plots/training_history_20250914-122730.png
+2025-09-14 18:24:26,168 - __main__ - INFO - Evaluating model and generating evaluation plots...
+2025-09-14 18:24:26,168 - __main__ - INFO - Starting comprehensive model evaluation...
+2025-09-14 18:27:08,608 - __main__ - INFO - Confusion matrix plot saved to: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/plots/confusion_matrix_20250914-122730.png
+2025-09-14 18:27:09,288 - __main__ - INFO - ROC curves plot saved to: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_3/GRU/plots/roc_curves_20250914-122730.png
+2025-09-14 18:27:09,427 - __main__ - INFO - === VALIDATION METRICS ===
+2025-09-14 18:27:09,427 - __main__ - INFO - Recon_precision: 1.0000
+2025-09-14 18:27:09,427 - __main__ - INFO - Recon_recall: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - Recon_f1_score: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - Exploitation_precision: 0.9996
+2025-09-14 18:27:09,428 - __main__ - INFO - Exploitation_recall: 0.9950
+2025-09-14 18:27:09,428 - __main__ - INFO - Exploitation_f1_score: 0.9973
+2025-09-14 18:27:09,428 - __main__ - INFO - C&C_precision: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - C&C_recall: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - C&C_f1_score: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - Attack_precision: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - Attack_recall: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - Attack_f1_score: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - Benign_precision: 0.9951
+2025-09-14 18:27:09,428 - __main__ - INFO - Benign_recall: 0.9996
+2025-09-14 18:27:09,428 - __main__ - INFO - Benign_f1_score: 0.9974
+2025-09-14 18:27:09,428 - __main__ - INFO - overall_precision: 0.9989
+2025-09-14 18:27:09,428 - __main__ - INFO - overall_recall: 0.9989
+2025-09-14 18:27:09,428 - __main__ - INFO - overall_f1_score: 0.9989
+2025-09-14 18:27:09,428 - __main__ - INFO - Recon_auc: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - Exploitation_auc: 0.9998
+2025-09-14 18:27:09,428 - __main__ - INFO - C&C_auc: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - Attack_auc: 1.0000
+2025-09-14 18:27:09,428 - __main__ - INFO - Benign_auc: 0.9998
+2025-09-14 18:27:09,428 - __main__ - INFO - macro_avg_auc: 0.9999
+2025-09-14 18:27:09,428 - __main__ - INFO - weighted_avg_auc: 0.9999
+2025-09-14 18:27:09,449 - __main__ - INFO - === DETAILED CLASSIFICATION REPORT ===
+2025-09-14 18:27:09,471 - __main__ - INFO - 
+              precision    recall  f1-score   support
+
+       Recon       1.00      1.00      1.00     20000
+Exploitation       1.00      1.00      1.00     19975
+         C&C       1.00      1.00      1.00     20000
+      Attack       1.00      1.00      1.00     20000
+      Benign       1.00      1.00      1.00     20000
+
+    accuracy                           1.00     99975
+   macro avg       1.00      1.00      1.00     99975
+weighted avg       1.00      1.00      1.00     99975
+
+2025-09-14 18:27:09,471 - __main__ - INFO - Model evaluation and plotting completed successfully
+2025-09-14 18:27:09,552 - __main__ - INFO - Final model saved to: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2_final.keras
+2025-09-14 18:27:09,552 - __main__ - INFO - Training pipeline completed successfully!

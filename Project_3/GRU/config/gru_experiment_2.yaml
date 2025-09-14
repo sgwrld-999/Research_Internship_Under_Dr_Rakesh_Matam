@@ -1,0 +1,60 @@
+# GRU Model Configuration for Network Intrusion Detection
+# =========================================================
+# 
+# THEORY - Configuration Design:
+# =============================
+# This configuration follows the principle of "Configuration as Code":
+# - All model parameters are externalized
+# - Easy to version control and track changes
+# - Enables experiment reproducibility
+# - Supports automated hyperparameter tuning
+
+# === Core Architecture Parameters ===
+input_dim: 14 # Number of features per time step (updated to match dataset)
+seq_len: 128 # Number of time steps in sequence
+num_classes: 5 # Classification categories: Recon, Exploitation, C&C, Attack, Benign
+gru_units: 32 # Hidden state dimension (memory capacity)
+num_layers: 4 # Stack depth (complexity vs. training stability)
+
+# === Regularization Configuration ===
+dropout: 0.3 # Dropout rate for preventing overfitting (30% of neurons)
+bidirectional: true # Process sequences in both directions
+
+# === Training Hyperparameters ===
+learning_rate: 0.001 # Adam optimizer step size
+batch_size: 64 # Optimized batch size for better CPU/GPU utilization
+epochs: 15 # Maximum training iterations
+validation_split: 0.2 # Fraction for validation (20%)
+early_stopping_patience: 2 # Stop if no improvement in 2 epochs
+
+# === Monitoring and Evaluation ===
+metrics: # Performance metrics to track for multi-class classification
+  - accuracy     # Overall correctness
+  - precision    # Positive predictive value (macro averaged)
+  - recall       # Sensitivity to positive class (macro averaged)
+  - f1_score     # Balance between precision and recall (macro averaged)
+
+# === Model Persistence ===
+export_path: "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_3/GRU/models/saved_Models/gru_experiment2.keras" # Where to save trained model
+
+# === Advanced Configuration (Optional) ===
+# Uncomment and modify these for advanced usage:
+# 
+# optimizer_config:
+#   type: "adam"
+#   beta_1: 0.9
+#   beta_2: 0.999
+#   epsilon: 1e-7
+# 
+# regularization:
+#   l1: 1e-5
+#   l2: 1e-4
+#   recurrent_dropout: 0.1
+# 
+# callbacks:
+#   early_stopping:
+#     patience: 10
+#     monitor: "val_loss"
+#   reduce_lr:
+#     factor: 0.5
+#     patience: 5

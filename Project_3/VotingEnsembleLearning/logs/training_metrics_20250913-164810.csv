@@ -1,2 +1,3 @@
-timestamp,accuracy,precision,recall,f1_score,roc_auc
-2025-09-13 16:59:36,0.9126,0.9246605305496083,0.9126,0.9096166094532685,0.988141248875
+version https://git-lfs.github.com/spec/v1
+oid sha256:83a296af9d69ec60edc08ae7acb892596a301c0a1f4af7fd005c21289e5cd4ef
+size 142

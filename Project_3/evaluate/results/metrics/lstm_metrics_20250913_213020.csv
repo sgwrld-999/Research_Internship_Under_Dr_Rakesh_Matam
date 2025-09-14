@@ -1,6 +1,3 @@
-Class,Precision,Recall,F1 Score,ROC AUC
-Recon,0.2,1.0,0.3333333333333333,0.5
-Exploitation,0.0,0.0,0.0,0.46875824875
-C&C,0.0,0.0,0.0,0.64716522875
-Attack,0.0,0.0,0.0,0.6249007775
-Benign,0.0,0.0,0.0,0.48196252500000003
+version https://git-lfs.github.com/spec/v1
+oid sha256:e6117921637fa0994a95bd003e57388d146f03300ac4e08352ea52cd86d59042
+size 223

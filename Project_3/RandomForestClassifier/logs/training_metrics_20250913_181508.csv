@@ -1,2 +1,3 @@
-accuracy,precision_macro,recall_macro,f1_macro,f1_weighted
-0.2,0.04,0.2,0.06666666666666667,0.06666666666666667
+version https://git-lfs.github.com/spec/v1
+oid sha256:6c33d3c1a01993b9b67baad043b1c881995a60bfb6ef4941591768bc8fb5a1e6
+size 114
