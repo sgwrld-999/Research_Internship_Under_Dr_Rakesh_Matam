@@ -39,11 +39,15 @@ class MetricsCalculator:
         Returns:
             Dictionary with basic metrics
         """
+        # Determine if binary or multi-class
+        n_classes = len(np.unique(y_true))
+        average = 'binary' if n_classes == 2 else self.metrics_config['average']
+        
         return {
             'accuracy': accuracy_score(y_true, y_pred),
-            'precision': precision_score(y_true, y_pred, average=self.metrics_config['average'], zero_division=0),
-            'recall': recall_score(y_true, y_pred, average=self.metrics_config['average'], zero_division=0),
-            'f1_score': f1_score(y_true, y_pred, average=self.metrics_config['average'], zero_division=0)
+            'precision': precision_score(y_true, y_pred, average=average, zero_division=0),
+            'recall': recall_score(y_true, y_pred, average=average, zero_division=0),
+            'f1_score': f1_score(y_true, y_pred, average=average, zero_division=0)
         }
     
     def calculate_per_class_metrics(self, y_true: np.ndarray, y_pred: np.ndarray, 

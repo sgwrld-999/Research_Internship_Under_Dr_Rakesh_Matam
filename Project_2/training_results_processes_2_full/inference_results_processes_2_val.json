@@ -1,0 +1,68 @@
+{
+  "model_path": "training_results_processes_2_full/models/griffin_model_20250918_155911.pth",
+  "data_path": "data/processes_2/val_data.csv",
+  "device": "cpu",
+  "timing_analysis": {
+    "batch_1": {
+      "mean_time": 0.00018771514296531678,
+      "std_time": 0.00016779161294210309,
+      "min_time": 0.00012788549065589905,
+      "max_time": 0.0013551311567425728,
+      "throughput_samples_per_sec": 5327.220724993748,
+      "time_per_sample_ms": 0.18771514296531677
+    },
+    "batch_32": {
+      "mean_time": 0.0012685921415686607,
+      "std_time": 0.001435697697502922,
+      "min_time": 0.0008748695254325867,
+      "max_time": 0.009870866313576698,
+      "throughput_samples_per_sec": 25224.81335918637,
+      "time_per_sample_ms": 0.03964350442402065
+    },
+    "batch_64": {
+      "mean_time": 0.0028228347562253477,
+      "std_time": 0.005370389504247067,
+      "min_time": 0.00042968057096004486,
+      "max_time": 0.022518726997077465,
+      "throughput_samples_per_sec": 22672.244579268197,
+      "time_per_sample_ms": 0.044106793066021055
+    },
+    "batch_128": {
+      "mean_time": 0.0048853296786546705,
+      "std_time": 0.00786554575555441,
+      "min_time": 0.00041661038994789124,
+      "max_time": 0.023597615770995617,
+      "throughput_samples_per_sec": 26200.892963123184,
+      "time_per_sample_ms": 0.038166638114489615
+    },
+    "batch_256": {
+      "mean_time": 0.0006904699467122554,
+      "std_time": 9.95018158979987e-05,
+      "min_time": 0.0006322180852293968,
+      "max_time": 0.0012639891356229782,
+      "throughput_samples_per_sec": 370761.97337620653,
+      "time_per_sample_ms": 0.002697148229344748
+    }
+  },
+  "hamming_loss_analysis": {
+    "hamming_loss": 0.0055,
+    "accuracy": 0.9945,
+    "error_rate": 0.005499999999999949,
+    "total_samples": 20000,
+    "correct_predictions": 19890,
+    "incorrect_predictions": 110,
+    "true_class_distribution": {
+      "0": 14000,
+      "1": 6000
+    },
+    "pred_class_distribution": {
+      "0": 13892,
+      "1": 6108
+    }
+  },
+  "model_info": {
+    "total_parameters": 14099,
+    "trainable_parameters": 14099,
+    "model_size_mb": 0.053783416748046875
+  }
+}

@@ -10,6 +10,33 @@
 */*/models/saved_Models/*.index
 */*/models/saved_Models/*.data-00000-of-00001
 
+# Ignore Project_2 large data directories and files
+Project_2/data/raw/
+Project_2/data/processes_2/
+Project_2/data/processed_data/
+Project_2/processed_data/
+
+# Include specific Project_2 directories
+!Project_2/logs/
+!Project_2/training_results_1/
+!Project_2/training_results_processes_2_full/
+
+# Ignore large data files (CSV, NPY, etc.)
+*.npy
+*.csv
+!requirements.txt
+!config.yaml
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+
+
 # Keep other files including outputs, logs, and plots
 !*/*/outputs/
 !*/*/logs/

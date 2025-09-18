@@ -6,19 +6,19 @@ model:
   name: "GRIFFIN"
   groups: 5
   feature_groups:
-    packet_size_stats: 8      # Packet size statistics
+    packet_size_stats: 7      # Packet size statistics (reduced from 8)
     inter_arrival_times: 8    # Inter-arrival times
-    flow_duration_rates: 10   # Flow duration/rates
-    tcp_flags_states: 10      # TCP flags/states
-    protocol_port_info: 10    # Protocol/port info
+    flow_duration_rates: 9    # Flow duration/rates (reduced from 10)
+    tcp_flags_states: 8       # TCP flags/states (reduced from 10)
+    protocol_port_info: 8     # Protocol/port info (reduced from 10)
   hidden_dims: [128, 64]
   dropout_rates: [0.3, 0.2]
-  output_dim: 8              # Benign + 7 attack types
+  output_dim: 2              # Binary classification: Attack vs Benign
   activation: "relu"
 
 # Training Configuration
 training:
-  batch_size: 256
+  batch_size: 32             # Reduced from 256 to save memory
   epochs: 100
   learning_rate: 0.001
   weight_decay: 0.0001
@@ -114,9 +114,9 @@ reproducibility:
 
 # Hardware Configuration
 hardware:
-  device: "auto"            # auto, cpu, cuda
+  device: "cpu"             # Use CPU to avoid GPU memory issues  
   num_workers: 4
-  pin_memory: true
+  pin_memory: false         # Set to false for CPU
   
 # Experiment Tracking
 experiment:

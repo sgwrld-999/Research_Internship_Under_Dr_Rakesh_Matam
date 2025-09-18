@@ -53,8 +53,14 @@ class DataValidator:
         Returns:
             Dictionary with validation results
         """
+        # Check for NaN values - handle both numeric and categorical data
+        if y.dtype.kind in ['U', 'S', 'O']:  # Unicode, byte string, or object (categorical)
+            has_nan = np.any(pd.isna(y))
+        else:  # Numeric data
+            has_nan = np.any(np.isnan(y))
+            
         return {
-            'has_nan': np.any(np.isnan(y)),
+            'has_nan': has_nan,
             'is_empty': y.size == 0,
             'is_binary': len(np.unique(y)) == 2,
             'unique_classes': len(np.unique(y))
@@ -322,16 +328,17 @@ class LabelProcessor:
         Returns:
             Dictionary with class distribution
         """
-        if self._fitted and len(np.unique(y)) == self.num_classes:
-            # Assume y is encoded
-            unique, counts = np.unique(y, return_counts=True)
+        unique, counts = np.unique(y, return_counts=True)
+        
+        # Check if y contains encoded labels (integers) or original labels (strings)
+        if self._fitted and y.dtype.kind in ['i', 'f']:  # Integer or float (encoded)
+            # y is encoded, map back to class names
             return {
                 self.class_names[i]: count 
                 for i, count in zip(unique, counts)
             }
         else:
-            # Assume y is in original format
-            unique, counts = np.unique(y, return_counts=True)
+            # y is in original format (strings)
             return dict(zip(unique, counts))
 
 
@@ -466,11 +473,82 @@ class DataLoader:
         if target_column not in data.columns:
             raise ValueError(f"Target column '{target_column}' not found in data")
         
-        self.X_raw = data.drop(columns=[target_column]).values
+        # Convert to binary classification and apply sampling
+        data = self._convert_to_binary_classification(data, target_column)
+        
+        # Drop both label columns (label_encoded and label) but keep the target_column
+        columns_to_drop = [target_column]
+        if 'label_encoded' in data.columns and 'label_encoded' != target_column:
+            columns_to_drop.append('label_encoded')
+        if 'label' in data.columns and 'label' != target_column:
+            columns_to_drop.append('label')
+        
+        self.X_raw = data.drop(columns=columns_to_drop).values
         self.y_raw = data[target_column].values
-        self.feature_names = data.drop(columns=[target_column]).columns.tolist()
+        self.feature_names = data.drop(columns=columns_to_drop).columns.tolist()
         
         return self
+    
+    def _convert_to_binary_classification(self, data: pd.DataFrame, target_column: str) -> pd.DataFrame:
+        """
+        Convert multi-class labels to binary (Attack vs Benign) and apply sampling strategy.
+        Target: 70k attack samples + 30k benign samples = 100k total
+        
+        Args:
+            data: DataFrame with multi-class labels
+            target_column: Name of target column
+            
+        Returns:
+            DataFrame with binary labels and balanced sampling
+        """
+        # Create binary labels
+        data = data.copy()
+        binary_labels = data[target_column].apply(lambda x: 'Benign' if x in ['BenignTraffic', 'Benign'] else 'Attack')
+        data[target_column] = binary_labels
+        
+        # Separate benign and attack samples
+        benign_data = data[data[target_column] == 'Benign']
+        attack_data = data[data[target_column] == 'Attack']
+        
+        print(f"Original data: {len(benign_data):,} benign, {len(attack_data):,} attack samples")
+        
+        # Sample 30k benign samples (undersample)
+        if len(benign_data) >= 30000:
+            benign_sampled = benign_data.sample(n=30000, random_state=42)
+        else:
+            print(f"Warning: Only {len(benign_data)} benign samples available, using all of them")
+            benign_sampled = benign_data
+        
+        # Sample 70k attack samples (oversample if needed)
+        if len(attack_data) >= 70000:
+            attack_sampled = attack_data.sample(n=70000, random_state=42)
+        else:
+            # Oversample attack data to reach 70k
+            print(f"Oversampling attack data from {len(attack_data):,} to 70,000 samples")
+            n_repeats = 70000 // len(attack_data)
+            remainder = 70000 % len(attack_data)
+            
+            # Repeat the attack data n_repeats times
+            attack_repeated = pd.concat([attack_data] * n_repeats, ignore_index=True)
+            
+            # Add remainder samples
+            if remainder > 0:
+                attack_remainder = attack_data.sample(n=remainder, random_state=42)
+                attack_sampled = pd.concat([attack_repeated, attack_remainder], ignore_index=True)
+            else:
+                attack_sampled = attack_repeated
+        
+        # Combine the sampled data
+        balanced_data = pd.concat([benign_sampled, attack_sampled], ignore_index=True)
+        
+        # Shuffle the combined data
+        balanced_data = balanced_data.sample(frac=1, random_state=42).reset_index(drop=True)
+        
+        print(f"Final balanced dataset: {len(balanced_data):,} total samples")
+        print(f"  - Benign: {len(balanced_data[balanced_data[target_column] == 'Benign']):,}")
+        print(f"  - Attack: {len(balanced_data[balanced_data[target_column] == 'Attack']):,}")
+        
+        return balanced_data
     
     def set_data(self, X: np.ndarray, y: np.ndarray, 
                 feature_names: Optional[List[str]] = None) -> 'DataLoader':

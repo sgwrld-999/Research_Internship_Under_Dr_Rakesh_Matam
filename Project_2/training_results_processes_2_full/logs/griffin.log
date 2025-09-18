@@ -1,0 +1,121 @@
+2025-09-18 15:32:03,142 - griffin_training - INFO - Training pipeline initialized successfully
+2025-09-18 15:32:03,142 - griffin_training - INFO - Starting complete GRIFFIN training pipeline
+2025-09-18 15:32:03,142 - griffin_training - INFO - Loading data from: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_2/data/processes_2/train_data.csv
+2025-09-18 15:32:11,922 - griffin_training - INFO - Data loaded successfully:
+2025-09-18 15:32:11,922 - griffin_training - INFO -   - Samples: 100,000
+2025-09-18 15:32:11,922 - griffin_training - INFO -   - Features: 40
+2025-09-18 15:32:11,922 - griffin_training - INFO -   - Classes: 2
+2025-09-18 15:32:11,922 - griffin_training - INFO -   - Class distribution: {'Attack': np.int64(70000), 'Benign': np.int64(30000)}
+2025-09-18 15:32:11,922 - griffin_training - INFO - Creating GRIFFIN model
+2025-09-18 15:32:11,938 - griffin_training - INFO - Model created successfully:
+2025-09-18 15:32:11,938 - griffin_training - INFO -   - Total parameters: 14,099
+2025-09-18 15:32:11,938 - griffin_training - INFO -   - Trainable parameters: 14,099
+2025-09-18 15:32:11,938 - griffin_training - INFO -   - Model size: 0.05 MB
+2025-09-18 15:32:11,938 - griffin_training - INFO - Starting model training
+2025-09-18 15:32:11,938 - griffin_training - INFO - Starting GRIFFIN training...
+2025-09-18 15:33:48,667 - griffin_training - INFO - Training pipeline initialized successfully
+2025-09-18 15:33:48,667 - griffin_training - INFO - Starting complete GRIFFIN training pipeline
+2025-09-18 15:33:48,667 - griffin_training - INFO - Loading data from: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_2/data/processes_2/train_data.csv
+2025-09-18 15:33:57,923 - griffin_training - INFO - Data loaded successfully:
+2025-09-18 15:33:57,923 - griffin_training - INFO -   - Samples: 100,000
+2025-09-18 15:33:57,923 - griffin_training - INFO -   - Features: 40
+2025-09-18 15:33:57,923 - griffin_training - INFO -   - Classes: 2
+2025-09-18 15:33:57,923 - griffin_training - INFO -   - Class distribution: {'Attack': np.int64(70000), 'Benign': np.int64(30000)}
+2025-09-18 15:33:57,923 - griffin_training - INFO - Creating GRIFFIN model
+2025-09-18 15:33:57,940 - griffin_training - INFO - Model created successfully:
+2025-09-18 15:33:57,940 - griffin_training - INFO -   - Total parameters: 14,099
+2025-09-18 15:33:57,940 - griffin_training - INFO -   - Trainable parameters: 14,099
+2025-09-18 15:33:57,940 - griffin_training - INFO -   - Model size: 0.05 MB
+2025-09-18 15:33:57,940 - griffin_training - INFO - Starting model training
+2025-09-18 15:33:57,940 - griffin_training - INFO - Starting GRIFFIN training...
+2025-09-18 15:34:14,494 - griffin_training - INFO - Epoch   1 | Train Loss: 0.0576 | Train Acc: 0.9922 | Val Loss: 0.0129 | Val Acc: 0.9948
+2025-09-18 15:34:29,603 - griffin_training - INFO - Epoch   2 | Train Loss: 0.0117 | Train Acc: 0.9943 | Val Loss: 0.0091 | Val Acc: 0.9950
+2025-09-18 15:34:49,357 - griffin_training - INFO - Epoch   3 | Train Loss: 0.0087 | Train Acc: 0.9946 | Val Loss: 0.0073 | Val Acc: 0.9951
+2025-09-18 15:35:11,145 - griffin_training - INFO - Epoch   4 | Train Loss: 0.0072 | Train Acc: 0.9947 | Val Loss: 0.0066 | Val Acc: 0.9948
+2025-09-18 15:35:26,421 - griffin_training - INFO - Epoch   5 | Train Loss: 0.0067 | Train Acc: 0.9946 | Val Loss: 0.0060 | Val Acc: 0.9950
+2025-09-18 15:35:45,332 - griffin_training - INFO - Epoch   6 | Train Loss: 0.0065 | Train Acc: 0.9947 | Val Loss: 0.0061 | Val Acc: 0.9951
+2025-09-18 15:36:05,738 - griffin_training - INFO - Epoch   7 | Train Loss: 0.0065 | Train Acc: 0.9947 | Val Loss: 0.0056 | Val Acc: 0.9951
+2025-09-18 15:36:21,855 - griffin_training - INFO - Epoch   8 | Train Loss: 0.0062 | Train Acc: 0.9947 | Val Loss: 0.0062 | Val Acc: 0.9950
+2025-09-18 15:36:40,766 - griffin_training - INFO - Epoch   9 | Train Loss: 0.0061 | Train Acc: 0.9948 | Val Loss: 0.0057 | Val Acc: 0.9951
+2025-09-18 15:37:11,864 - griffin_training - INFO - Epoch  10 | Train Loss: 0.0061 | Train Acc: 0.9947 | Val Loss: 0.0056 | Val Acc: 0.9950
+2025-09-18 15:37:29,969 - griffin_training - INFO - Epoch  11 | Train Loss: 0.0060 | Train Acc: 0.9947 | Val Loss: 0.0057 | Val Acc: 0.9951
+2025-09-18 15:37:46,206 - griffin_training - INFO - Epoch  12 | Train Loss: 0.0060 | Train Acc: 0.9948 | Val Loss: 0.0054 | Val Acc: 0.9951
+2025-09-18 15:38:10,219 - griffin_training - INFO - Epoch  13 | Train Loss: 0.0060 | Train Acc: 0.9948 | Val Loss: 0.0056 | Val Acc: 0.9951
+2025-09-18 15:38:28,984 - griffin_training - INFO - Epoch  14 | Train Loss: 0.0059 | Train Acc: 0.9948 | Val Loss: 0.0055 | Val Acc: 0.9951
+2025-09-18 15:38:52,043 - griffin_training - INFO - Epoch  15 | Train Loss: 0.0059 | Train Acc: 0.9948 | Val Loss: 0.0055 | Val Acc: 0.9951
+2025-09-18 15:39:09,920 - griffin_training - INFO - Epoch  16 | Train Loss: 0.0058 | Train Acc: 0.9948 | Val Loss: 0.0057 | Val Acc: 0.9951
+2025-09-18 15:39:30,695 - griffin_training - INFO - Epoch  17 | Train Loss: 0.0058 | Train Acc: 0.9948 | Val Loss: 0.0054 | Val Acc: 0.9951
+2025-09-18 15:39:53,407 - griffin_training - INFO - Epoch  18 | Train Loss: 0.0058 | Train Acc: 0.9948 | Val Loss: 0.0054 | Val Acc: 0.9951
+2025-09-18 15:40:10,553 - griffin_training - INFO - Epoch  19 | Train Loss: 0.0057 | Train Acc: 0.9949 | Val Loss: 0.0053 | Val Acc: 0.9950
+2025-09-18 15:40:39,835 - griffin_training - INFO - Epoch  20 | Train Loss: 0.0057 | Train Acc: 0.9948 | Val Loss: 0.0053 | Val Acc: 0.9951
+2025-09-18 15:40:57,351 - griffin_training - INFO - Epoch  21 | Train Loss: 0.0058 | Train Acc: 0.9949 | Val Loss: 0.0052 | Val Acc: 0.9951
+2025-09-18 15:41:14,909 - griffin_training - INFO - Epoch  22 | Train Loss: 0.0056 | Train Acc: 0.9949 | Val Loss: 0.0051 | Val Acc: 0.9951
+2025-09-18 15:41:37,336 - griffin_training - INFO - Epoch  23 | Train Loss: 0.0057 | Train Acc: 0.9948 | Val Loss: 0.0054 | Val Acc: 0.9950
+2025-09-18 15:41:56,540 - griffin_training - INFO - Epoch  24 | Train Loss: 0.0056 | Train Acc: 0.9948 | Val Loss: 0.0052 | Val Acc: 0.9952
+2025-09-18 15:42:15,819 - griffin_training - INFO - Epoch  25 | Train Loss: 0.0056 | Train Acc: 0.9949 | Val Loss: 0.0050 | Val Acc: 0.9952
+2025-09-18 15:42:34,707 - griffin_training - INFO - Epoch  26 | Train Loss: 0.0055 | Train Acc: 0.9948 | Val Loss: 0.0050 | Val Acc: 0.9951
+2025-09-18 15:43:00,739 - griffin_training - INFO - Epoch  27 | Train Loss: 0.0054 | Train Acc: 0.9948 | Val Loss: 0.0050 | Val Acc: 0.9953
+2025-09-18 15:43:17,480 - griffin_training - INFO - Epoch  28 | Train Loss: 0.0054 | Train Acc: 0.9949 | Val Loss: 0.0051 | Val Acc: 0.9951
+2025-09-18 15:43:33,932 - griffin_training - INFO - Epoch  29 | Train Loss: 0.0054 | Train Acc: 0.9949 | Val Loss: 0.0049 | Val Acc: 0.9953
+2025-09-18 15:43:59,617 - griffin_training - INFO - Epoch  30 | Train Loss: 0.0053 | Train Acc: 0.9949 | Val Loss: 0.0049 | Val Acc: 0.9952
+2025-09-18 15:44:21,067 - griffin_training - INFO - Epoch  31 | Train Loss: 0.0054 | Train Acc: 0.9949 | Val Loss: 0.0050 | Val Acc: 0.9952
+2025-09-18 15:44:42,634 - griffin_training - INFO - Epoch  32 | Train Loss: 0.0053 | Train Acc: 0.9949 | Val Loss: 0.0049 | Val Acc: 0.9952
+2025-09-18 15:45:04,340 - griffin_training - INFO - Epoch  33 | Train Loss: 0.0052 | Train Acc: 0.9949 | Val Loss: 0.0050 | Val Acc: 0.9952
+2025-09-18 15:45:22,003 - griffin_training - INFO - Epoch  34 | Train Loss: 0.0053 | Train Acc: 0.9948 | Val Loss: 0.0048 | Val Acc: 0.9952
+2025-09-18 15:45:44,421 - griffin_training - INFO - Epoch  35 | Train Loss: 0.0051 | Train Acc: 0.9950 | Val Loss: 0.0048 | Val Acc: 0.9952
+2025-09-18 15:46:06,534 - griffin_training - INFO - Epoch  36 | Train Loss: 0.0051 | Train Acc: 0.9950 | Val Loss: 0.0049 | Val Acc: 0.9953
+2025-09-18 15:46:27,015 - griffin_training - INFO - Epoch  37 | Train Loss: 0.0051 | Train Acc: 0.9949 | Val Loss: 0.0048 | Val Acc: 0.9952
+2025-09-18 15:46:48,464 - griffin_training - INFO - Epoch  38 | Train Loss: 0.0051 | Train Acc: 0.9950 | Val Loss: 0.0048 | Val Acc: 0.9953
+2025-09-18 15:47:09,582 - griffin_training - INFO - Epoch  39 | Train Loss: 0.0050 | Train Acc: 0.9949 | Val Loss: 0.0048 | Val Acc: 0.9953
+2025-09-18 15:47:30,728 - griffin_training - INFO - Epoch  40 | Train Loss: 0.0051 | Train Acc: 0.9949 | Val Loss: 0.0048 | Val Acc: 0.9952
+2025-09-18 15:47:52,285 - griffin_training - INFO - Epoch  41 | Train Loss: 0.0049 | Train Acc: 0.9949 | Val Loss: 0.0047 | Val Acc: 0.9953
+2025-09-18 15:48:15,682 - griffin_training - INFO - Epoch  42 | Train Loss: 0.0050 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:48:33,640 - griffin_training - INFO - Epoch  43 | Train Loss: 0.0049 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:48:55,518 - griffin_training - INFO - Epoch  44 | Train Loss: 0.0049 | Train Acc: 0.9950 | Val Loss: 0.0048 | Val Acc: 0.9952
+2025-09-18 15:49:15,464 - griffin_training - INFO - Epoch  45 | Train Loss: 0.0049 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:49:31,960 - griffin_training - INFO - Epoch  46 | Train Loss: 0.0049 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:49:57,951 - griffin_training - INFO - Epoch  47 | Train Loss: 0.0048 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:50:17,195 - griffin_training - INFO - Epoch  48 | Train Loss: 0.0048 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:50:37,896 - griffin_training - INFO - Epoch  49 | Train Loss: 0.0048 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:51:06,442 - griffin_training - INFO - Epoch  50 | Train Loss: 0.0047 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:51:25,744 - griffin_training - INFO - Epoch  51 | Train Loss: 0.0049 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:51:47,560 - griffin_training - INFO - Epoch  52 | Train Loss: 0.0048 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:52:14,250 - griffin_training - INFO - Epoch  53 | Train Loss: 0.0048 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:52:30,606 - griffin_training - INFO - Epoch  54 | Train Loss: 0.0048 | Train Acc: 0.9949 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:52:47,197 - griffin_training - INFO - Epoch  55 | Train Loss: 0.0049 | Train Acc: 0.9949 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:53:05,869 - griffin_training - INFO - Epoch  56 | Train Loss: 0.0048 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:53:32,824 - griffin_training - INFO - Epoch  57 | Train Loss: 0.0048 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:53:52,764 - griffin_training - INFO - Epoch  58 | Train Loss: 0.0048 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:54:10,251 - griffin_training - INFO - Epoch  59 | Train Loss: 0.0048 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9953
+2025-09-18 15:54:34,804 - griffin_training - INFO - Epoch  60 | Train Loss: 0.0049 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:54:53,428 - griffin_training - INFO - Epoch  61 | Train Loss: 0.0050 | Train Acc: 0.9949 | Val Loss: 0.0047 | Val Acc: 0.9953
+2025-09-18 15:55:14,710 - griffin_training - INFO - Epoch  62 | Train Loss: 0.0049 | Train Acc: 0.9949 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:55:41,575 - griffin_training - INFO - Epoch  63 | Train Loss: 0.0050 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9953
+2025-09-18 15:56:01,575 - griffin_training - INFO - Epoch  64 | Train Loss: 0.0050 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:56:17,669 - griffin_training - INFO - Epoch  65 | Train Loss: 0.0050 | Train Acc: 0.9949 | Val Loss: 0.0048 | Val Acc: 0.9952
+2025-09-18 15:56:42,406 - griffin_training - INFO - Epoch  66 | Train Loss: 0.0051 | Train Acc: 0.9950 | Val Loss: 0.0047 | Val Acc: 0.9952
+2025-09-18 15:57:00,014 - griffin_training - INFO - Epoch  67 | Train Loss: 0.0050 | Train Acc: 0.9949 | Val Loss: 0.0047 | Val Acc: 0.9951
+2025-09-18 15:57:23,443 - griffin_training - INFO - Epoch  68 | Train Loss: 0.0051 | Train Acc: 0.9949 | Val Loss: 0.0049 | Val Acc: 0.9952
+2025-09-18 15:57:46,432 - griffin_training - INFO - Epoch  69 | Train Loss: 0.0052 | Train Acc: 0.9949 | Val Loss: 0.0047 | Val Acc: 0.9953
+2025-09-18 15:58:06,754 - griffin_training - INFO - Epoch  70 | Train Loss: 0.0052 | Train Acc: 0.9948 | Val Loss: 0.0048 | Val Acc: 0.9953
+2025-09-18 15:58:30,603 - griffin_training - INFO - Epoch  71 | Train Loss: 0.0052 | Train Acc: 0.9949 | Val Loss: 0.0049 | Val Acc: 0.9952
+2025-09-18 15:58:51,341 - griffin_training - INFO - Epoch  72 | Train Loss: 0.0052 | Train Acc: 0.9949 | Val Loss: 0.0048 | Val Acc: 0.9952
+2025-09-18 15:58:51,341 - griffin_training - INFO - Early stopping at epoch 72
+2025-09-18 15:59:08,336 - griffin_training - INFO - Training completed in 1492.52 seconds
+2025-09-18 15:59:08,337 - griffin_training - INFO - Training completed:
+2025-09-18 15:59:08,338 - griffin_training - INFO -   - Training time: 1492.52 seconds
+2025-09-18 15:59:08,338 - griffin_training - INFO -   - Total epochs: 72
+2025-09-18 15:59:08,338 - griffin_training - INFO -   - Best validation loss: 0.0047
+2025-09-18 15:59:08,338 - griffin_training - INFO - Starting model evaluation
+2025-09-18 15:59:08,338 - griffin_training - INFO - Starting comprehensive model evaluation...
+2025-09-18 15:59:10,436 - griffin_training - INFO - Model evaluation completed
+2025-09-18 15:59:11,879 - griffin_training - INFO - Evaluation completed:
+2025-09-18 15:59:11,879 - griffin_training - INFO -   - Test Accuracy: 0.9948
+2025-09-18 15:59:11,879 - griffin_training - INFO -   - Test F1-Score: 0.9913
+2025-09-18 15:59:11,880 - griffin_training - INFO -   - Test Precision: 0.9831
+2025-09-18 15:59:11,880 - griffin_training - INFO -   - Test Recall: 0.9997
+2025-09-18 15:59:11,880 - griffin_training - INFO -   - False Positive Rate: 0.0038
+2025-09-18 15:59:11,880 - griffin_training - INFO -   - False Negative Rate: 0.0038
+2025-09-18 15:59:11,881 - griffin_training - INFO - Results saved to: results/griffin_results_20250918_155911.json
+2025-09-18 15:59:11,883 - griffin_training - INFO - Model saved to: models/griffin_model_20250918_155911.pth
+2025-09-18 15:59:11,883 - griffin_training - INFO - Complete pipeline execution finished

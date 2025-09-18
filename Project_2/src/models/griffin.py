@@ -83,7 +83,8 @@ class ProtocolAwareGroupGate(nn.Module):
         gate_weights = self.gate_network(x)  # (batch_size, num_groups)
         
         # Expand gate weights to match feature dimensions
-        expanded_gates = gate_weights.index_select(1, self.group_indices.expand(batch_size, -1))
+        # Use gather to select the appropriate gate weight for each feature
+        expanded_gates = gate_weights.gather(1, self.group_indices.unsqueeze(0).expand(batch_size, -1))
         
         # Apply gating
         gated_features = x * expanded_gates

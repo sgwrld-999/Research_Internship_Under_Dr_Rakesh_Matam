@@ -1,0 +1,75 @@
+2025-09-16 15:30:57,609 - inference_eval - INFO - Using device: cpu
+2025-09-16 15:30:57,609 - inference_eval - INFO - Loading model from: checkpoints/best_model.pth
+2025-09-16 15:31:33,515 - inference_eval - INFO - Using device: cpu
+2025-09-16 15:31:33,515 - inference_eval - INFO - Loading model from: training_results/checkpoints/best_model.pth
+2025-09-16 15:32:45,151 - inference_eval - INFO - Using device: cpu
+2025-09-16 15:32:45,151 - inference_eval - INFO - Loading model from: training_results/checkpoints/best_model.pth
+2025-09-16 15:32:45,176 - inference_eval - INFO - Model loaded successfully
+2025-09-16 15:32:45,176 - inference_eval - INFO - Loading data from: cleaned_dataset.csv
+2025-09-16 15:33:15,672 - inference_eval - INFO - Using device: cpu
+2025-09-16 15:33:15,673 - inference_eval - INFO - Loading model from: training_results/checkpoints/best_model.pth
+2025-09-16 15:33:15,695 - inference_eval - INFO - Model loaded successfully
+2025-09-16 15:33:15,695 - inference_eval - INFO - Loading data from: ../Project_2/cleaned_dataset.csv
+2025-09-16 15:33:52,292 - inference_eval - INFO - Using device: cpu
+2025-09-16 15:33:52,292 - inference_eval - INFO - Loading model from: training_results/checkpoints/best_model.pth
+2025-09-16 15:33:52,315 - inference_eval - INFO - Model loaded successfully
+2025-09-16 15:33:52,315 - inference_eval - INFO - Loading data from: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_2/cleaned_dataset.csv
+2025-09-16 15:34:22,154 - inference_eval - INFO - Using device: cpu
+2025-09-16 15:34:22,154 - inference_eval - INFO - Loading model from: training_results/checkpoints/best_model.pth
+2025-09-16 15:34:22,180 - inference_eval - INFO - Model loaded successfully
+2025-09-16 15:34:22,180 - inference_eval - INFO - Loading data from: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Project_2/cleaned_dataset.csv
+2025-09-16 15:34:24,802 - inference_eval - INFO - Data loaded successfully:
+2025-09-16 15:34:24,802 - inference_eval - INFO -   - Test samples: 14000
+2025-09-16 15:34:24,802 - inference_eval - INFO -   - Features: 10
+2025-09-16 15:34:24,802 - inference_eval - INFO - Measuring inference time over 50 runs...
+2025-09-16 16:25:15,521 - inference_eval - INFO - Using device: cpu
+2025-09-16 16:25:15,522 - inference_eval - INFO - Loading model from: training_results/checkpoints/best_model.pth
+2025-09-16 16:25:15,543 - inference_eval - INFO - Model loaded successfully
+2025-09-16 16:25:15,543 - inference_eval - INFO - Loading data from: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_2/data/processed_data/test_data.csv
+2025-09-16 16:25:17,913 - inference_eval - INFO - Data loaded successfully:
+2025-09-16 16:25:17,913 - inference_eval - INFO -   - Test samples: 20000
+2025-09-16 16:25:17,913 - inference_eval - INFO -   - Features: 40
+2025-09-16 16:25:17,913 - inference_eval - INFO - Measuring inference time over 50 runs...
+2025-09-16 16:25:17,960 - inference_eval - INFO - Batch size 1: 0.482ms ± 1.461ms
+2025-09-16 16:25:18,019 - inference_eval - INFO - Batch size 32: 1.150ms ± 0.956ms
+2025-09-16 16:25:18,051 - inference_eval - INFO - Batch size 64: 0.608ms ± 0.248ms
+2025-09-16 16:25:18,112 - inference_eval - INFO - Batch size 128: 1.208ms ± 3.145ms
+2025-09-16 16:25:18,465 - inference_eval - INFO - Batch size 256: 7.022ms ± 9.297ms
+2025-09-16 16:25:18,465 - inference_eval - INFO - Calculating Hamming loss...
+2025-09-16 16:25:18,611 - inference_eval - INFO - Hamming Loss: 0.000400
+2025-09-16 16:25:18,611 - inference_eval - INFO - Accuracy: 0.9996
+2025-09-16 16:25:18,611 - inference_eval - INFO - Error Rate: 0.0004
+2025-09-16 16:25:57,029 - inference_eval - INFO - Using device: cpu
+2025-09-16 16:25:57,029 - inference_eval - INFO - Loading model from: training_results/checkpoints/best_model.pth
+2025-09-16 16:25:57,052 - inference_eval - INFO - Model loaded successfully
+2025-09-16 16:25:57,052 - inference_eval - INFO - Loading data from: /fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_2/data/processed_data/test_data.csv
+2025-09-16 16:25:58,938 - inference_eval - INFO - Data loaded successfully:
+2025-09-16 16:25:58,938 - inference_eval - INFO -   - Test samples: 20000
+2025-09-16 16:25:58,939 - inference_eval - INFO -   - Features: 40
+2025-09-16 16:25:58,939 - inference_eval - INFO - Measuring inference time over 50 runs...
+2025-09-16 16:25:58,971 - inference_eval - INFO - Batch size 1: 0.280ms ± 0.609ms
+2025-09-16 16:25:59,031 - inference_eval - INFO - Batch size 32: 1.161ms ± 0.648ms
+2025-09-16 16:25:59,057 - inference_eval - INFO - Batch size 64: 0.518ms ± 0.284ms
+2025-09-16 16:25:59,084 - inference_eval - INFO - Batch size 128: 0.522ms ± 0.249ms
+2025-09-16 16:25:59,117 - inference_eval - INFO - Batch size 256: 0.644ms ± 0.038ms
+2025-09-16 16:25:59,118 - inference_eval - INFO - Calculating Hamming loss...
+2025-09-16 16:25:59,147 - inference_eval - INFO - Hamming Loss: 0.000400
+2025-09-16 16:25:59,147 - inference_eval - INFO - Accuracy: 0.9996
+2025-09-16 16:25:59,147 - inference_eval - INFO - Error Rate: 0.0004
+2025-09-18 16:05:04,616 - inference_eval - INFO - Using device: cpu
+2025-09-18 16:05:04,616 - inference_eval - INFO - Loading model from: training_results_processes_2_full/models/griffin_model_20250918_155911.pth
+2025-09-18 16:05:04,635 - inference_eval - INFO - Model loaded successfully
+2025-09-18 16:05:04,635 - inference_eval - INFO - Loading data from: data/processes_2/val_data.csv
+2025-09-18 16:05:08,205 - inference_eval - INFO - Data loaded successfully:
+2025-09-18 16:05:08,205 - inference_eval - INFO -   - Test samples: 20000
+2025-09-18 16:05:08,205 - inference_eval - INFO -   - Features: 40
+2025-09-18 16:05:08,205 - inference_eval - INFO - Measuring inference time over 50 runs...
+2025-09-18 16:05:08,221 - inference_eval - INFO - Batch size 1: 0.188ms ± 0.168ms
+2025-09-18 16:05:08,286 - inference_eval - INFO - Batch size 32: 1.269ms ± 1.436ms
+2025-09-18 16:05:08,428 - inference_eval - INFO - Batch size 64: 2.823ms ± 5.370ms
+2025-09-18 16:05:08,673 - inference_eval - INFO - Batch size 128: 4.885ms ± 7.866ms
+2025-09-18 16:05:08,709 - inference_eval - INFO - Batch size 256: 0.690ms ± 0.100ms
+2025-09-18 16:05:08,709 - inference_eval - INFO - Calculating Hamming loss...
+2025-09-18 16:05:08,737 - inference_eval - INFO - Hamming Loss: 0.005500
+2025-09-18 16:05:08,738 - inference_eval - INFO - Accuracy: 0.9945
+2025-09-18 16:05:08,738 - inference_eval - INFO - Error Rate: 0.0055

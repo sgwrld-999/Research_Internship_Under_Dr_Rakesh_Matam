@@ -1,0 +1,68 @@
+{
+  "model_path": "training_results/checkpoints/best_model.pth",
+  "data_path": "/fab3/btech/2022/siddhant.gond22b@iiitg.ac.in/Research_Internship_Under_Dr_Rakesh_Matam/Project_2/data/processed_data/test_data.csv",
+  "device": "cpu",
+  "timing_analysis": {
+    "batch_1": {
+      "mean_time": 0.0002796785533428192,
+      "std_time": 0.0006092920002192652,
+      "min_time": 0.00014008767902851105,
+      "max_time": 0.0045300815254449844,
+      "throughput_samples_per_sec": 3575.5333687465068,
+      "time_per_sample_ms": 0.2796785533428192
+    },
+    "batch_32": {
+      "mean_time": 0.0011613444983959197,
+      "std_time": 0.0006480373921761416,
+      "min_time": 0.0008656773716211319,
+      "max_time": 0.005231156945228577,
+      "throughput_samples_per_sec": 27554.270110375743,
+      "time_per_sample_ms": 0.036292015574872494
+    },
+    "batch_64": {
+      "mean_time": 0.0005178792029619217,
+      "std_time": 0.0002842494287230193,
+      "min_time": 0.0004493715241551399,
+      "max_time": 0.0024724211543798447,
+      "throughput_samples_per_sec": 123580.94249385362,
+      "time_per_sample_ms": 0.008091862546280026
+    },
+    "batch_128": {
+      "mean_time": 0.0005222510360181332,
+      "std_time": 0.0002485271789800135,
+      "min_time": 0.0004458259791135788,
+      "max_time": 0.0021965065971016884,
+      "throughput_samples_per_sec": 245092.85989344725,
+      "time_per_sample_ms": 0.004080086218891665
+    },
+    "batch_256": {
+      "mean_time": 0.0006443175673484802,
+      "std_time": 3.809669973801002e-05,
+      "min_time": 0.0006161397323012352,
+      "max_time": 0.0008618189021945,
+      "throughput_samples_per_sec": 397319.6028993914,
+      "time_per_sample_ms": 0.002516865497455001
+    }
+  },
+  "hamming_loss_analysis": {
+    "hamming_loss": 0.0004,
+    "accuracy": 0.9996,
+    "error_rate": 0.00039999999999995595,
+    "total_samples": 20000,
+    "correct_predictions": 19992,
+    "incorrect_predictions": 8,
+    "true_class_distribution": {
+      "0": 14000,
+      "1": 6000
+    },
+    "pred_class_distribution": {
+      "0": 14008,
+      "1": 5992
+    }
+  },
+  "model_info": {
+    "total_parameters": 14099,
+    "trainable_parameters": 14099,
+    "model_size_mb": 0.053783416748046875
+  }
+}
