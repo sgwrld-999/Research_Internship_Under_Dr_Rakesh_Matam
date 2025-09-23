@@ -1,0 +1,54 @@
+2025-08-07 18:32:19,588 - pipeline - INFO - Pipeline initialized successfully
+2025-08-07 18:32:19,588 - pipeline - INFO - Starting data loading and preprocessing
+2025-08-07 18:32:20,376 - pipeline - INFO - Data preprocessing completed
+2025-08-07 18:32:20,376 - pipeline - INFO - Training autoencoder
+2025-08-07 18:49:06,281 - pipeline - INFO - Pipeline initialized successfully
+2025-08-07 18:49:06,281 - pipeline - INFO - Starting data loading and preprocessing
+2025-08-07 18:49:07,188 - pipeline - INFO - Data preprocessing completed
+2025-08-07 18:49:07,188 - pipeline - INFO - Training autoencoder
+2025-08-07 18:51:53,994 - pipeline - INFO - Pipeline initialized successfully
+2025-08-07 18:51:53,995 - pipeline - INFO - Starting data loading and preprocessing
+2025-08-07 18:51:54,721 - pipeline - INFO - Data preprocessing completed
+2025-08-07 18:51:54,721 - pipeline - INFO - Training autoencoder
+2025-08-07 18:52:28,935 - pipeline - INFO - Pipeline initialized successfully
+2025-08-07 18:52:28,936 - pipeline - INFO - Starting data loading and preprocessing
+2025-08-07 18:52:29,697 - pipeline - INFO - Data preprocessing completed
+2025-08-07 18:52:29,697 - pipeline - INFO - Training autoencoder
+2025-08-07 18:52:42,457 - pipeline - INFO - Autoencoder training completed
+2025-08-07 18:52:42,457 - pipeline - INFO - Extracting embeddings
+2025-08-07 18:52:44,065 - pipeline - INFO - Embeddings saved to results/embeddings.pkl
+2025-08-07 18:52:44,065 - pipeline - INFO - Embedding extraction completed
+2025-08-07 18:52:44,065 - pipeline - INFO - Training stacking ensemble
+2025-08-07 19:05:37,219 - pipeline - INFO - Ensemble training completed
+2025-08-07 19:05:37,219 - pipeline - INFO - Evaluating pipeline
+2025-08-07 19:05:40,596 - pipeline - INFO - Pipeline evaluation completed
+2025-08-07 19:05:40,626 - pipeline - INFO - Pipeline initialized successfully
+2025-08-07 19:05:40,626 - pipeline - INFO - Starting data loading and preprocessing
+2025-08-07 19:05:41,503 - pipeline - INFO - Data preprocessing completed
+2025-08-07 19:05:41,503 - pipeline - INFO - Training autoencoder
+2025-08-07 19:05:48,084 - pipeline - INFO - Autoencoder training completed
+2025-08-07 19:05:48,084 - pipeline - INFO - Extracting embeddings
+2025-08-07 19:05:49,648 - pipeline - INFO - Embeddings saved to results/embeddings.pkl
+2025-08-07 19:05:49,648 - pipeline - INFO - Embedding extraction completed
+2025-08-07 19:05:49,648 - pipeline - INFO - Training stacking ensemble
+2025-08-07 19:37:41,218 - pipeline - INFO - Ensemble training completed
+2025-08-07 19:37:42,724 - pipeline - INFO - Pipeline initialized successfully
+2025-08-07 19:37:42,724 - pipeline - INFO - Starting data loading and preprocessing
+2025-08-07 19:37:43,422 - pipeline - INFO - Data preprocessing completed
+2025-08-07 19:37:43,422 - pipeline - INFO - Training autoencoder
+2025-08-07 19:37:49,864 - pipeline - INFO - Autoencoder training completed
+2025-08-07 19:37:49,864 - pipeline - INFO - Extracting embeddings
+2025-08-07 19:37:51,522 - pipeline - INFO - Embeddings saved to results/embeddings.pkl
+2025-08-07 19:37:51,522 - pipeline - INFO - Embedding extraction completed
+2025-08-07 19:37:51,522 - pipeline - INFO - Training stacking ensemble
+2025-08-07 20:17:58,194 - pipeline - INFO - Ensemble training completed
+2025-08-07 20:17:58,869 - pipeline - INFO - Pipeline initialized successfully
+2025-08-07 20:17:58,869 - pipeline - INFO - Starting data loading and preprocessing
+2025-08-07 20:17:59,563 - pipeline - INFO - Data preprocessing completed
+2025-08-07 20:17:59,563 - pipeline - INFO - Training autoencoder
+2025-08-07 20:18:06,545 - pipeline - INFO - Autoencoder training completed
+2025-08-07 20:18:06,545 - pipeline - INFO - Extracting embeddings
+2025-08-07 20:18:07,834 - pipeline - INFO - Embeddings saved to results/embeddings.pkl
+2025-08-07 20:18:07,834 - pipeline - INFO - Embedding extraction completed
+2025-08-07 20:18:07,834 - pipeline - INFO - Training stacking ensemble
+2025-08-07 21:01:02,632 - pipeline - INFO - Ensemble training completed

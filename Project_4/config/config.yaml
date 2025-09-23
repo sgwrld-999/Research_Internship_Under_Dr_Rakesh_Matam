@@ -1,0 +1,143 @@
+# Configuration file for Autoencoder-Stacked-Ensemble Pipeline
+
+# Data configuration
+data:
+  dataset_path: "data/edgeIIoTBalancedDataset.csv"
+  target_column: "Attack_label"
+  test_size: 0.2
+  validation_size: 0.2
+  random_state: 42
+  stratify: true
+
+# Preprocessing configuration
+preprocessing:
+  scaler_type: "minmax"  # Options: "minmax", "standard", "robust"
+  handle_missing: "drop"  # Options: "drop", "impute"
+  imputation_strategy: "median"  # For numeric features
+  encoding_strategy: "onehot"  # For categorical features
+
+# Autoencoder configuration
+autoencoder:
+  architecture:
+    input_dim: null  # Will be set automatically
+    hidden_dims: [32, 16]  # Hidden layer dimensions
+    bottleneck_dim: 8  # Compressed representation size
+    dropout_rate: 0.2
+    activation: "relu"
+    output_activation: "linear"
+  
+  training:
+    batch_size: 256
+    epochs: 100
+    learning_rate: 0.001
+    weight_decay: 0.00001
+    early_stopping_patience: 10
+    early_stopping_delta: 0.0001
+    use_gpu: true
+  
+  loss:
+    type: "weighted_mse"  # Cost-sensitive loss
+    class_weight_strategy: "balanced"  # Options: "balanced", "inverse_freq"
+
+# Ensemble configuration
+ensemble:
+  base_learners:
+    lightgbm:
+      n_estimators: 100
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      class_weight: "balanced"
+    
+    xgboost:
+      n_estimators: 100
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      use_label_encoder: false
+      eval_metric: "logloss"
+    
+    catboost:
+      iterations: 100
+      depth: 6
+      learning_rate: 0.1
+      random_state: 42
+      verbose: false
+      class_weights: [0.85, 0.15]  # Adjusted for imbalance
+    
+    random_forest:
+      n_estimators: 100
+      max_depth: 6
+      random_state: 42
+      n_jobs: -1
+      class_weight: "balanced"
+  
+  stacking:
+    cv_folds: 5
+    shuffle: true
+    random_state: 42
+    
+  meta_learner:
+    type: "logistic_regression"
+    max_iter: 1000
+    random_state: 42
+
+# Optimization configuration
+optimization:
+  method: "bayesian"  # Options: "bayesian", "random", "grid"
+  n_trials: 50
+  timeout: 3600  # seconds
+  
+  search_space:
+    autoencoder:
+      bottleneck_dim: [4, 16]
+      learning_rate: [1e-4, 1e-2]
+      dropout_rate: [0.1, 0.5]
+      batch_size: [128, 512]
+    
+    ensemble:
+      lightgbm_n_estimators: [50, 200]
+      lightgbm_max_depth: [3, 10]
+      xgb_n_estimators: [50, 200]
+      xgb_max_depth: [3, 10]
+      rf_n_estimators: [50, 200]
+      rf_max_depth: [3, 15]
+
+# Evaluation configuration
+evaluation:
+  cv_folds: 5
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1"
+    - "roc_auc"
+  
+  generate_plots: true
+  save_predictions: true
+  measure_inference_time: true
+
+# Logging configuration
+logging:
+  level: "INFO"  # Options: "DEBUG", "INFO", "WARNING", "ERROR"
+  log_to_file: true
+  log_file: "results/pipeline.log"
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Model saving configuration
+model_saving:
+  save_autoencoder: true
+  save_ensemble: true
+  save_scaler: true
+  models_dir: "models"
+  
+# Results configuration
+results:
+  results_dir: "results"
+  save_embeddings: true
+  save_metrics: true
+  save_plots: true
