@@ -129,3 +129,7 @@ export_path: "models/saved_Models/voting_ensemble_experiment1.joblib" # Where to
 #   feature_selection: true
 #   selection_method: "mutual_info"
 #   n_features: 10
+
+# === GPU/CUDA Acceleration ===
+use_gpu: true # Set to true to enable GPU acceleration for supported models
+device: "cuda" # "cuda" for NVIDIA, "cpu" for CPU

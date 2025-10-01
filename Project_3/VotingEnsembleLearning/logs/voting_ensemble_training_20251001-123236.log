@@ -1,0 +1,54 @@
+2025-10-01 12:32:36,134 - __main__ - INFO - Loading configuration...
+2025-10-01 12:32:36,144 - __main__ - INFO - Configuration loaded: ['RandomForest', 'LogisticRegression', 'GradientBoosting', 'KNN', 'NaiveBayes', 'XGBoost', 'LightGBM']
+2025-10-01 12:32:36,144 - __main__ - INFO - Loading data from C:\Users\abhay\OneDrive\Desktop\SID\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\dataset\combined_dataset_short_balanced_encoded_normalised.csv
+2025-10-01 12:32:36,856 - __main__ - INFO - Data loaded: 500000 samples, 14 features, 5 classes
+2025-10-01 12:32:37,219 - __main__ - INFO - Data split - Train: 400000, Test: 100000
+2025-10-01 12:32:37,223 - __main__ - INFO - Initializing Voting Ensemble classifier...
+2025-10-01 12:32:37,223 - __main__ - INFO - Starting training...
+2025-10-01 12:40:53,910 - __main__ - INFO - Training completed in 0:08:16.686984
+2025-10-01 12:40:53,910 - __main__ - INFO - Evaluating model...
+2025-10-01 12:43:02,977 - __main__ - INFO - === TRAINING RESULTS ===
+2025-10-01 12:43:02,978 - __main__ - INFO - Accuracy: 0.9243
+2025-10-01 12:43:02,978 - __main__ - INFO - Precision: 0.9320
+2025-10-01 12:43:02,979 - __main__ - INFO - Recall: 0.9243
+2025-10-01 12:43:02,979 - __main__ - INFO - F1-Score: 0.9225
+2025-10-01 12:43:02,979 - __main__ - INFO - ROC AUC: 0.9951
+2025-10-01 12:43:02,980 - __main__ - INFO - === BASE ESTIMATOR PERFORMANCE ===
+2025-10-01 12:43:02,980 - __main__ - INFO - random_forest:
+2025-10-01 12:43:02,980 - __main__ - INFO -   accuracy: 0.9448
+2025-10-01 12:43:02,980 - __main__ - INFO -   precision: 0.9449
+2025-10-01 12:43:02,981 - __main__ - INFO -   recall: 0.9448
+2025-10-01 12:43:02,981 - __main__ - INFO -   f1_score: 0.9449
+2025-10-01 12:43:02,982 - __main__ - INFO - logistic_regression:
+2025-10-01 12:43:02,982 - __main__ - INFO -   accuracy: 0.8576
+2025-10-01 12:43:02,982 - __main__ - INFO -   precision: 0.8909
+2025-10-01 12:43:02,983 - __main__ - INFO -   recall: 0.8576
+2025-10-01 12:43:02,983 - __main__ - INFO -   f1_score: 0.8461
+2025-10-01 12:43:02,983 - __main__ - INFO - gradient_boosting:
+2025-10-01 12:43:02,984 - __main__ - INFO -   accuracy: 0.9002
+2025-10-01 12:43:02,984 - __main__ - INFO -   precision: 0.9182
+2025-10-01 12:43:02,984 - __main__ - INFO -   recall: 0.9002
+2025-10-01 12:43:02,985 - __main__ - INFO -   f1_score: 0.8945
+2025-10-01 12:43:02,985 - __main__ - INFO - knn:
+2025-10-01 12:43:02,986 - __main__ - INFO -   accuracy: 0.9572
+2025-10-01 12:43:02,986 - __main__ - INFO -   precision: 0.9583
+2025-10-01 12:43:02,986 - __main__ - INFO -   recall: 0.9572
+2025-10-01 12:43:02,987 - __main__ - INFO -   f1_score: 0.9573
+2025-10-01 12:43:02,987 - __main__ - INFO - naive_bayes:
+2025-10-01 12:43:02,988 - __main__ - INFO -   accuracy: 0.6719
+2025-10-01 12:43:02,988 - __main__ - INFO -   precision: 0.6626
+2025-10-01 12:43:02,988 - __main__ - INFO -   recall: 0.6719
+2025-10-01 12:43:02,989 - __main__ - INFO -   f1_score: 0.6115
+2025-10-01 12:43:02,989 - __main__ - INFO - xgboost:
+2025-10-01 12:43:02,990 - __main__ - INFO -   accuracy: 0.8952
+2025-10-01 12:43:02,990 - __main__ - INFO -   precision: 0.9174
+2025-10-01 12:43:02,990 - __main__ - INFO -   recall: 0.8952
+2025-10-01 12:43:02,991 - __main__ - INFO -   f1_score: 0.8879
+2025-10-01 12:43:02,991 - __main__ - INFO - lightgbm:
+2025-10-01 12:43:02,992 - __main__ - INFO -   accuracy: 0.9098
+2025-10-01 12:43:02,992 - __main__ - INFO -   precision: 0.9174
+2025-10-01 12:43:02,992 - __main__ - INFO -   recall: 0.9098
+2025-10-01 12:43:02,993 - __main__ - INFO -   f1_score: 0.9075
+2025-10-01 12:43:02,993 - __main__ - INFO - Saving model to models/saved_Models/voting_ensemble_experiment1.joblib
+2025-10-01 12:43:03,221 - __main__ - INFO - Metrics saved to C:\Users\abhay\OneDrive\Desktop\SID\Research_Internship_Under_Dr_Rakesh_Matam\Project_3\VotingEnsembleLearning\logs\training_metrics_20251001-123236.csv
+2025-10-01 12:43:03,222 - __main__ - INFO - Training pipeline completed successfully!

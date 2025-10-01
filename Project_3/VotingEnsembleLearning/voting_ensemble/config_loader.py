@@ -451,6 +451,17 @@ class VotingEnsembleConfig(BaseModel):
         description="Path to save the trained model"
     )
     
+    # === GPU/CUDA Acceleration ===
+    use_gpu: bool = Field(
+        default=False,
+        description="Enable GPU acceleration for supported models"
+    )
+    
+    device: str = Field(
+        default="cpu",
+        description="Device to use for training ('cuda' or 'cpu')"
+    )
+    
     # === Validation Methods ===
     @validator('voting_type')
     def validate_voting_type(cls, v):

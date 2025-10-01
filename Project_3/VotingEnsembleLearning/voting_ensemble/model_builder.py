@@ -339,18 +339,25 @@ class VotingEnsembleBuilder:
         """
         if XGBClassifier is None:
             return None
+        
+        params = {
+            'n_estimators': self.config.xgb_n_estimators,
+            'learning_rate': self.config.xgb_learning_rate,
+            'max_depth': self.config.xgb_max_depth,
+            'subsample': self.config.xgb_subsample,
+            'colsample_bytree': self.config.xgb_colsample_bytree,
+            'random_state': self.config.xgb_random_state,
+            'use_label_encoder': self.config.xgb_use_label_encoder,
+            'eval_metric': self.config.xgb_eval_metric,
+            'n_jobs': self.config.n_jobs,
+            'tree_method': 'hist'  # Use hist for both CPU and GPU
+        }
+
+        # Configure GPU using the new API (XGBoost 2.0+)
+        if self.config.use_gpu:
+            params['device'] = 'cuda'
             
-        return XGBClassifier(
-            n_estimators=self.config.xgb_n_estimators,
-            learning_rate=self.config.xgb_learning_rate,
-            max_depth=self.config.xgb_max_depth,
-            subsample=self.config.xgb_subsample,
-            colsample_bytree=self.config.xgb_colsample_bytree,
-            random_state=self.config.xgb_random_state,
-            use_label_encoder=self.config.xgb_use_label_encoder,
-            eval_metric=self.config.xgb_eval_metric,
-            n_jobs=self.config.n_jobs
-        )
+        return XGBClassifier(**params)
         
     def _create_lightgbm(self):
         """Create and configure LightGBM classifier.
@@ -370,16 +377,23 @@ class VotingEnsembleBuilder:
         if LGBMClassifier is None:
             return None
             
-        return LGBMClassifier(
-            n_estimators=self.config.lgbm_n_estimators,
-            learning_rate=self.config.lgbm_learning_rate,
-            max_depth=self.config.lgbm_max_depth,
-            num_leaves=self.config.lgbm_num_leaves,
-            subsample=self.config.lgbm_subsample,
-            colsample_bytree=self.config.lgbm_colsample_bytree,
-            random_state=self.config.lgbm_random_state,
-            n_jobs=self.config.n_jobs
-        )
+        params = {
+            'n_estimators': self.config.lgbm_n_estimators,
+            'learning_rate': self.config.lgbm_learning_rate,
+            'max_depth': self.config.lgbm_max_depth,
+            'num_leaves': self.config.lgbm_num_leaves,
+            'subsample': self.config.lgbm_subsample,
+            'colsample_bytree': self.config.lgbm_colsample_bytree,
+            'random_state': self.config.lgbm_random_state,
+            'n_jobs': self.config.n_jobs
+        }
+
+        if self.config.use_gpu:
+            params['device'] = 'gpu'
+            params['gpu_platform_id'] = 0
+            params['gpu_device_id'] = 0
+
+        return LGBMClassifier(**params)
     
     def _build_base_estimators(self) -> None:
         """Build the list of base estimators based on configuration."""
@@ -422,6 +436,20 @@ class VotingEnsembleBuilder:
             lgbm_model = self._create_lightgbm()
             if lgbm_model is not None:
                 self.base_estimators.append(('lightgbm', lgbm_model))
+        
+        # Configure GPU usage for XGBoost and LightGBM if enabled
+        if self.config.use_gpu:
+            # For XGBoost
+            if 'xgboost' in self.config.get_enabled_estimators():
+                xgb_model = self._create_xgboost()
+                if xgb_model is not None:
+                    xgb_model.set_params(tree_method='gpu_hist', gpu_id=0)
+            
+            # For LightGBM
+            if 'lightgbm' in self.config.get_enabled_estimators():
+                lgbm_model = self._create_lightgbm()
+                if lgbm_model is not None:
+                    lgbm_model.set_params(device='gpu', gpu_platform_id=0, gpu_device_id=0)
     
     def build_model(self) -> VotingClassifier:
         """Build the complete voting ensemble model.
