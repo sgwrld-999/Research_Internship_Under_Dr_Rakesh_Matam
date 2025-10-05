@@ -103,4 +103,30 @@ To add new datasets:
 3. Ensure column names are consistent or update preprocessing logic
 4. Run training pipeline to generate processed versions
 
+4. Run training pipeline to generate processed versions
+
 The framework is designed to be flexible and can adapt to various IoT and cybersecurity datasets with minimal configuration changes.
+
+## Dataset Construction and Processing Methodology
+
+The project employs a two-stage methodology for preparing datasets for the GRIFFIN model, as detailed in the Jupyter Notebooks `data2_construction.ipynb` and `processing_pipeline.ipynb`.
+
+### Stage 1: Dataset Construction (`data2_construction.ipynb`)
+
+This stage focuses on creating a unified dataset from multiple raw data sources.
+
+- **Data Aggregation**: The process begins by identifying and listing multiple `.pcap.csv` files, each containing a specific type of network traffic (e.g., Benign, DDoS, Reconnaissance).
+- **Manual Labeling**: Each raw dataset is loaded, and a `label` column is programmatically added to tag the traffic type. This is a critical step for supervised learning.
+- **Concatenation**: After labeling, all individual DataFrames are merged into a single, comprehensive dataset. This combined dataset is then saved as a new CSV file (e.g., `combined_data.csv`), which serves as the input for the next stage.
+
+### Stage 2: Data Processing Pipeline (`CICIoTDataPipeline`)
+
+This stage, defined in the `CICIoTDataPipeline` class, prepares the unified dataset for model training.
+
+- **Loading and Cleaning**: The pipeline loads the dataset and performs essential cleaning tasks, including standardizing column names, removing duplicates, handling infinite or missing values, and removing constant-value features.
+- **Feature Selection**: It uses a predefined list of feature groups (e.g., `packet_stats`, `time_features`, `flow_rates`) to select the most relevant features for intrusion detection.
+- **Transformation**:
+    - **Label Encoding**: Categorical attack labels are converted to numerical format using `LabelEncoder`.
+    - **Feature Scaling**: Numerical features are standardized with `StandardScaler` to ensure they have a zero mean and unit variance.
+- **Data Splitting**: The cleaned and transformed data is split into stratified training, validation, and test sets to ensure each set is representative of the overall data distribution.
+- **Saving Artifacts**: The pipeline saves the processed data splits, fitted preprocessors (scaler and encoder), and a metadata file for reproducibility and future use in inference.
