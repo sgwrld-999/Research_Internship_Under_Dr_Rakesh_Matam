@@ -1,0 +1,35 @@
+# Linformer-IDS Requirements (Standard Environment)
+# Python 3.8+
+
+# Core ML/DL Libraries
+torch>=2.0.0
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+scipy>=1.7.0
+
+# Visualization
+matplotlib>=3.4.0
+seaborn>=0.11.0
+
+# Progress bars
+tqdm>=4.62.0
+
+# Configuration management
+PyYAML>=6.0
+
+# Data processing
+openpyxl>=3.0.0  # For Excel file support if needed
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=3.0.0
+
+# Code quality
+black>=22.0.0
+flake8>=4.0.0
+mypy>=0.950
+
+# Optional: For advanced features
+# tensorboard>=2.8.0  # For training visualization
+# wandb>=0.12.0  # For experiment tracking

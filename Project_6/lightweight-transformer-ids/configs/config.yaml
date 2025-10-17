@@ -1,0 +1,292 @@
+# =============================================================================
+# Linformer-IDS Configuration File
+# =============================================================================
+# This configuration file contains all hyperparameters, file paths, and
+# environment-specific settings for the Linformer-based Intrusion Detection
+# System. Different profiles can be selected for different deployment
+# =============================================================================
+
+# Profile selection: Specify which configuration profile to use
+# Options: 'default', 'iteration', 'production'
+active_profile: default
+
+# =============================================================================
+# DEFAULT PROFILE - For standard development and deployment environments
+# =============================================================================
+default:
+  # Model Architecture Configuration
+  model:
+    dim: 64                    # Embedding dimension per token
+    depth: 4                   # Number of Linformer encoder layers
+    heads: 4                   # Number of attention heads
+    k: 16                      # Projection dimension for Linformer (k << seq_len)
+    dropout: 0.1               # Dropout rate for regularization
+    ff_hidden_mult: 4          # Feed-forward network hidden layer multiplier
+
+  # Training Configuration
+  training:
+    epochs: 50                 # Maximum number of training epochs
+    batch_size: 128            # Training batch size
+    learning_rate: 0.001       # Initial learning rate for Adam optimizer
+    weight_decay: 0.0001       # L2 regularization weight decay
+    early_stopping_patience: 10 # Number of epochs without improvement before stopping
+    gradient_clip_val: 1.0     # Gradient clipping value (null to disable)
+    seed: 42                   # Random seed for reproducibility
+    device: cuda               # Computation device: 'cuda' or 'cpu'
+    num_workers: 4             # Number of data loading workers
+    pin_memory: true           # Pin memory for faster GPU transfer
+
+  # Data Configuration
+  data:
+    dataset_name: nsl_kdd      # Dataset identifier
+    task_type: binary          # Classification task: 'binary' or 'multi'
+    label_column: label        # Name of the label column in CSV
+    test_size: 0.2             # Proportion of data for testing
+    val_size: 0.1              # Proportion of training data for validation
+    drop_columns: []           # Additional columns to drop from dataset
+    
+  # File Paths
+  paths:
+    data_dir: data/            # Directory containing dataset files
+    train_file: null           # Path to training CSV (null = auto-detect)
+    test_file: null            # Path to test CSV (null = use train_test_split)
+    model_dir: models/         # Directory to save trained models
+    results_dir: results/      # Directory to save evaluation results
+    log_dir: logs/             # Directory for log files
+
+  # Logging Configuration
+  logging:
+    level: INFO                # Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+    console_output: true       # Enable console logging
+    file_output: true          # Enable file logging
+    log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+  # Evaluation Configuration
+  evaluation:
+    save_confusion_matrix: true
+    save_roc_curves: true
+    save_precision_recall_curves: true
+    compute_statistical_tests: true
+    metrics_averaging: macro   # For multi-class: 'macro', 'micro', or 'weighted'
+    grid_alpha: 0.3            # Grid transparency for plots
+    permutation_test_n_permutations: 10000  # Number of permutations for statistical test
+
+  # Preprocessing Configuration
+  preprocessing:
+    # Binary encoding
+    binary_encode_column: label
+    positive_class: BenignTraffic
+    
+    # Feature selection thresholds
+    correlation_threshold: 0.9  # Drop features with correlation > threshold
+    variance_threshold: 0.0     # Drop features with variance < threshold
+    
+    # Columns to drop
+    columns_to_drop:
+      - ece_flag_number
+      - cwr_flag_number
+      - Telnet
+      - SMTP
+      - IRC
+      - DHCP
+    
+    # Columns for log1p transformation
+    log_transform_columns:
+      - flow_duration
+      - Header_Length
+      - Protocol
+      - Type
+      - Rate
+      - Srate
+      - Drate
+      - fin_flag_number
+      - syn_flag_number
+      - rst_flag_number
+      - psh_flag_number
+      - ack_count
+      - fin_count
+      - urg_count
+      - rst_count
+      - HTTP
+      - DNS
+      - SSH
+      - UDP
+      - ARP
+      - ICMP
+      - IPv
+      - LLC
+      - Tot sum
+      - Min
+      - Max
+      - AVG
+      - Std
+      - Tot size
+      - Radius
+      - Covariance
+
+  # Loss Function Configuration
+  loss:
+    use_focal_loss: false       # Whether to use Focal Loss
+    focal_loss_alpha: 0.25     # Weighting factor for Focal Loss
+    focal_loss_gamma: 2.0      # Focusing parameter for Focal Loss
+    reduction: mean            # Loss reduction method ('mean' or 'sum')
+
+  # Early Stopping Configuration
+  early_stopping:
+    min_delta: 0.0            # Minimum change to qualify as improvement
+    mode: max                 # 'min' for loss, 'max' for accuracy/F1
+
+  # Preprocessing Configuration
+  preprocessing:
+    # Binary encoding
+    binary_encode_column: label
+    positive_class: BenignTraffic
+    
+    # Feature selection thresholds
+    correlation_threshold: 0.9  # Drop features with correlation > threshold
+    variance_threshold: 0.0     # Drop features with variance < threshold
+    
+    # Columns to drop
+    columns_to_drop: []
+    
+    # Columns for log1p transformation
+    log_transform_columns: []
+
+  # Loss Function Configuration
+  loss:
+    use_focal_loss: false       # Whether to use Focal Loss
+    focal_loss_alpha: 0.25     # Weighting factor for Focal Loss
+    focal_loss_gamma: 2.0      # Focusing parameter for Focal Loss
+    reduction: mean            # Loss reduction method ('mean' or 'sum')
+
+  # Early Stopping Configuration
+  early_stopping:
+    min_delta: 0.0            # Minimum change to qualify as improvement
+    mode: max                 # 'min' for loss, 'max' for accuracy/F1
+
+
+# =============================================================================
+# Iteration-1-cic_iot - For standard development and deployment environments
+first:
+  # Model Architecture Configuration
+  model:
+    dim: 64                    # Embedding dimension per token (increased from 16)
+    depth: 6                   # Number of Linformer encoder layers (increased from 4)
+    heads: 4                   # Number of attention heads (increased from 2)
+    k: 16                      # Projection dimension for Linformer (increased from 4)
+    dropout: 0.1               # Dropout rate for regularization (reduced from 0.15)
+    ff_hidden_mult: 4          # Feed-forward network hidden layer multiplier
+
+  # Training Configuration
+  training:
+    epochs: 15                 # Maximum number of training epochs (increased from 10)
+    batch_size: 128            # Training batch size (increased from 64)
+    learning_rate: 0.0005      # Initial learning rate (reduced for stability)
+    weight_decay: 0.0001       # L2 regularization weight decay
+    early_stopping_patience: 3 # Number of epochs without improvement (increased from 3)
+    gradient_clip_val: 1.0     # Gradient clipping value (null to disable)
+    seed: 42                   # Random seed for reproducibility
+    device: cuda               # Computation device: 'cuda' or 'cpu'
+    num_workers: 4             # Number of data loading workers
+    pin_memory: true           # Pin memory for faster GPU transfer
+
+  # Data Configuration
+  data:
+    dataset_name: ciciot      # Dataset identifier
+    task_type: binary          # Classification task: 'binary' or 'multi'
+    label_column: label        # Name of the label column in CSV
+    test_size: 0.2             # Proportion of data for testing
+    val_size: 0.1              # Proportion of training data for validation
+    drop_columns: []           # Additional columns to drop from dataset
+    
+  # File Paths
+  paths:
+    data_dir: data/            # Directory containing dataset files
+    train_file: "C:\\Users\\abhay\\OneDrive\\Desktop\\SID\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_6\\lightweight-transformer-ids\\data\\raw\\ciciot\\ciciot_training_50_50.csv"           # Path to training CSV (null = auto-detect)
+    test_file: ["C:\\Users\\abhay\\OneDrive\\Desktop\\SID\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_6\\lightweight-transformer-ids\\data\\raw\\ciciot\\ciciot_test_50_50.csv", "C:\\Users\\abhay\\OneDrive\\Desktop\\SID\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_6\\lightweight-transformer-ids\\data\\raw\\ciciot\\ciciot_testing_0_100.csv","C:\\Users\\abhay\\OneDrive\\Desktop\\SID\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_6\\lightweight-transformer-ids\\data\\raw\\ciciot\\ciciot_testing_10_90.csv", "C:\\Users\\abhay\\OneDrive\\Desktop\\SID\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_6\\lightweight-transformer-ids\\data\\raw\\ciciot\\ciciot_testing_90_10.csv", "C:\\Users\\abhay\\OneDrive\\Desktop\\SID\\Research_Internship_Under_Dr_Rakesh_Matam\\Project_6\\lightweight-transformer-ids\\data\\raw\\ciciot\\ciciot_testing_100_0.csv"]            # Path to test CSV (null = use train_test_split)
+    model_dir: models/         # Directory to save trained models
+    results_dir: results/      # Directory to save evaluation results
+    log_dir: logs/             # Directory for log files
+
+  # Logging Configuration
+  logging:
+    level: INFO                # Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+    console_output: true       # Enable console logging
+    file_output: true          # Enable file logging
+    log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+  # Evaluation Configuration
+  evaluation:
+    save_confusion_matrix: true
+    save_roc_curves: true
+    save_precision_recall_curves: true
+    compute_statistical_tests: true
+    metrics_averaging: macro   # For multi-class: 'macro', 'micro', or 'weighted'
+    grid_alpha: 0.3            # Grid transparency for plots
+    permutation_test_n_permutations: 10000  # Number of permutations for statistical test
+
+  # Preprocessing Configuration
+  preprocessing:
+    # Binary encoding
+    binary_encode_column: label
+    positive_class: BenignTraffic
+    
+    # Feature selection thresholds
+    correlation_threshold: 0.9  # Drop features with correlation > threshold
+    variance_threshold: 0.0     # Drop features with variance < threshold
+    
+    # Columns to drop (CIC-IoT specific)
+    columns_to_drop:
+      - ece_flag_number
+      - cwr_flag_number
+      - Telnet
+      - SMTP
+      - IRC
+      - DHCP
+    
+    # Columns for log1p transformation (CIC-IoT specific)
+    log_transform_columns:
+      - flow_duration
+      - Header_Length
+      - Protocol
+      - Type
+      - Rate
+      - Srate
+      - Drate
+      - fin_flag_number
+      - syn_flag_number
+      - rst_flag_number
+      - psh_flag_number
+      - ack_count
+      - fin_count
+      - urg_count
+      - rst_count
+      - HTTP
+      - DNS
+      - SSH
+      - UDP
+      - ARP
+      - ICMP
+      - IPv
+      - LLC
+      - Tot sum
+      - Min
+      - Max
+      - AVG
+      - Std
+      - Tot size
+      - Radius
+      - Covariance
+
+  # Loss Function Configuration
+  loss:
+    use_focal_loss: true        # Use Focal Loss for imbalanced CIC-IoT dataset
+    focal_loss_alpha: 0.25     # Weighting factor for Focal Loss
+    focal_loss_gamma: 2.0      # Focusing parameter for Focal Loss
+    reduction: mean            # Loss reduction method ('mean' or 'sum')
+
+  # Early Stopping Configuration
+  early_stopping:
+    min_delta: 0.0            # Minimum change to qualify as improvement
+    mode: max                 # 'min' for loss, 'max' for accuracy/F1
+

@@ -1,0 +1,208 @@
+# =============================================================================
+# Preprocessing Configuration File
+# =============================================================================
+# Configuration for data preprocessing pipeline including encoding, feature
+# selection, transformations, and statistical test parameters.
+# =============================================================================
+
+# Default preprocessing configuration
+default:
+  # Binary encoding configuration
+  binary_encoding:
+    column_name: label
+    positive_class: BenignTraffic  # Class to encode as 0
+    negative_value: 1               # Value for all other classes
+
+  # Feature selection thresholds
+  feature_selection:
+    correlation_threshold: 0.9      # Drop features with correlation > threshold
+    variance_threshold: 0.0         # Drop features with variance < threshold
+
+  # Columns to drop (dataset-specific)
+  columns_to_drop:
+    - ece_flag_number
+    - cwr_flag_number
+    - Telnet
+    - SMTP
+    - IRC
+    - DHCP
+
+  # Columns for log1p transformation
+  log_transform_columns:
+    - flow_duration
+    - Header_Length
+    - Protocol
+    - Type
+    - Rate
+    - Srate
+    - Drate
+    - fin_flag_number
+    - syn_flag_number
+    - rst_flag_number
+    - psh_flag_number
+    - ack_count
+    - fin_count
+    - urg_count
+    - rst_count
+    - HTTP
+    - DNS
+    - SSH
+    - UDP
+    - ARP
+    - ICMP
+    - IPv
+    - LLC
+    - Tot sum
+    - Min
+    - Max
+    - AVG
+    - Std
+    - Tot size
+    - Radius
+    - Covariance
+
+  # Loss function configuration
+  loss_function:
+    use_focal_loss: false           # Whether to use Focal Loss instead of CrossEntropy
+    focal_loss_alpha: 0.25         # Weighting factor for Focal Loss (class balance)
+    focal_loss_gamma: 2.0          # Focusing parameter (harder examples weight)
+    reduction: mean                # Loss reduction method ('mean' or 'sum')
+
+  # Early stopping configuration
+  early_stopping:
+    min_delta: 0.0                 # Minimum change to qualify as improvement
+    mode: max                      # 'min' for loss, 'max' for accuracy/F1
+
+  # Evaluation visualization configuration
+  visualization:
+    grid_alpha: 0.3                # Grid transparency for plots (0.0 to 1.0)
+    figure_dpi: 100                # DPI for saved figures
+    save_format: png               # Format for saved plots ('png', 'pdf', 'svg')
+
+  # Statistical testing configuration
+  statistical_tests:
+    permutation_test_n_permutations: 10000  # Number of permutations
+    alpha_level: 0.05                       # Significance level for tests
+
+
+# CIC-IoT specific preprocessing configuration
+ciciot:
+  # Binary encoding configuration
+  binary_encoding:
+    column_name: label
+    positive_class: BenignTraffic
+    negative_value: 1
+
+  # Feature selection thresholds
+  feature_selection:
+    correlation_threshold: 0.9
+    variance_threshold: 0.0
+
+  # CIC-IoT specific columns to drop
+  columns_to_drop:
+    - ece_flag_number
+    - cwr_flag_number
+    - Telnet
+    - SMTP
+    - IRC
+    - DHCP
+
+  # Log transformation columns (CIC-IoT specific)
+  log_transform_columns:
+    - flow_duration
+    - Header_Length
+    - Protocol
+    - Type
+    - Rate
+    - Srate
+    - Drate
+    - fin_flag_number
+    - syn_flag_number
+    - rst_flag_number
+    - psh_flag_number
+    - ack_count
+    - fin_count
+    - urg_count
+    - rst_count
+    - HTTP
+    - DNS
+    - SSH
+    - UDP
+    - ARP
+    - ICMP
+    - IPv
+    - LLC
+    - Tot sum
+    - Min
+    - Max
+    - AVG
+    - Std
+    - Tot size
+    - Radius
+    - Covariance
+
+  # Loss function configuration
+  loss_function:
+    use_focal_loss: true           # Use Focal Loss for imbalanced CIC-IoT dataset
+    focal_loss_alpha: 0.25
+    focal_loss_gamma: 2.0
+    reduction: mean
+
+  # Early stopping configuration
+  early_stopping:
+    min_delta: 0.0
+    mode: max
+
+  # Visualization configuration
+  visualization:
+    grid_alpha: 0.3
+    figure_dpi: 100
+    save_format: png
+
+  # Statistical testing configuration
+  statistical_tests:
+    permutation_test_n_permutations: 10000
+    alpha_level: 0.05
+
+
+# Edge-IIoT specific preprocessing configuration
+edge_iiot:
+  # Binary encoding configuration
+  binary_encoding:
+    column_name: Attack_label
+    positive_class: Normal
+    negative_value: 1
+
+  # Feature selection thresholds
+  feature_selection:
+    correlation_threshold: 0.95
+    variance_threshold: 0.01
+
+  # Edge-IIoT specific columns to drop
+  columns_to_drop: []
+
+  # Log transformation columns (Edge-IIoT specific)
+  log_transform_columns: []
+
+  # Loss function configuration
+  loss_function:
+    use_focal_loss: false
+    focal_loss_alpha: 0.25
+    focal_loss_gamma: 2.0
+    reduction: mean
+
+  # Early stopping configuration
+  early_stopping:
+    min_delta: 0.001
+    mode: max
+
+  # Visualization configuration
+  visualization:
+    grid_alpha: 0.3
+    figure_dpi: 100
+    save_format: png
+
+  # Statistical testing configuration
+  statistical_tests:
+    permutation_test_n_permutations: 10000
+    alpha_level: 0.05

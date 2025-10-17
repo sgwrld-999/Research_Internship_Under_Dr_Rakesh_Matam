@@ -21,6 +21,9 @@ Project_2/processed_data/
 !Project_2/training_results_1/
 !Project_2/training_results_processes_2_full/
 
+# Ignore Project_5 entirely
+Project_5/
+
 # Ignore large data files (CSV, NPY, etc.)
 *.npy
 *.csv
