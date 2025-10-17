@@ -1,0 +1,143 @@
+2025-10-15 16:18:39 - root - INFO - Logging to file: logs\linformer_ids_2025-10-15_16-18-39.log
+2025-10-15 16:18:39 - src.config_manager - INFO - Ensured directories exist: models/, results/, logs/
+2025-10-15 16:18:39 - __main__ - INFO - ======================================================================
+2025-10-15 16:18:39 - __main__ - INFO - LINFORMER-IDS: Lightweight Transformer for Intrusion Detection
+2025-10-15 16:18:39 - __main__ - INFO - ======================================================================
+2025-10-15 16:18:39 - __main__ - INFO - Mode: TRAIN
+2025-10-15 16:18:39 - __main__ - INFO - Configuration profile: first
+2025-10-15 16:18:39 - __main__ - INFO - Input file: data\raw\ciciot\ciciot_training_50_50.csv
+2025-10-15 16:18:39 - __main__ - INFO - Configuration file: configs\config.yaml
+2025-10-15 16:18:39 - __main__ - INFO - 
+======================================================================
+2025-10-15 16:18:39 - __main__ - INFO - STARTING TRAINING MODE
+2025-10-15 16:18:39 - __main__ - INFO - ======================================================================
+2025-10-15 16:18:39 - __main__ - INFO - Set random seed to 42
+2025-10-15 16:18:39 - __main__ - INFO - 
+--- Data Loading and Preprocessing Pipeline ---
+2025-10-15 16:18:39 - __main__ - INFO - Loading data from: data\raw\ciciot\ciciot_training_50_50.csv
+2025-10-15 16:18:40 - __main__ - INFO - Loaded DataFrame shape: (200000, 47)
+2025-10-15 16:18:40 - __main__ - INFO - Initializing preprocessing pipeline...
+2025-10-15 16:18:40 - __main__ - INFO - Step 1/6: Binary encoding labels...
+2025-10-15 16:18:40 - pipeline.pipeline - INFO - Binary encoded column: label (positive_class=BenignTraffic)
+2025-10-15 16:18:40 - __main__ - INFO - Step 2/6: Normalizing features...
+2025-10-15 16:18:41 - pipeline.pipeline - INFO - Normalized 46 columns using StandardScaler (excluded: label)
+2025-10-15 16:18:41 - __main__ - INFO - Step 3/6: Dropping highly correlated features...
+2025-10-15 16:18:42 - pipeline.pipeline - INFO - Dropped columns due to high correlation (threshold=0.9): ['Srate', 'rst_flag_number', 'rst_count', 'LLC', 'Std', 'Number', 'Magnitue', 'Radius', 'Weight']
+2025-10-15 16:18:42 - __main__ - INFO - Step 4/6: Dropping low variance features...
+2025-10-15 16:18:42 - pipeline.pipeline - INFO - Dropped low variance columns (threshold=0.0): ['ece_flag_number', 'cwr_flag_number', 'Telnet', 'SMTP', 'IRC', 'DHCP']
+2025-10-15 16:18:42 - __main__ - INFO - Step 5/6: Dropping specified columns...
+2025-10-15 16:18:42 - pipeline.pipeline - INFO - Dropped specified columns: []
+2025-10-15 16:18:42 - __main__ - INFO - Step 6/6: Applying log1p transformation...
+2025-10-15 16:18:42 - pipeline.pipeline - INFO - Applied log1p transformation to 23 columns
+2025-10-15 16:18:42 - pipeline.pipeline - WARNING - Columns not found in DataFrame: ['Protocol', 'Type', 'Srate', 'rst_flag_number', 'rst_count']...
+2025-10-15 16:18:42 - __main__ - INFO - Processed DataFrame shape: (200000, 32)
+2025-10-15 16:18:42 - __main__ - INFO - Number of features: 31
+2025-10-15 16:18:42 - __main__ - INFO - Number of classes: 2
+2025-10-15 16:18:42 - __main__ - INFO - Class distribution: {np.int64(0): np.int64(100000), np.int64(1): np.int64(100000)}
+2025-10-15 16:18:42 - __main__ - INFO - 
+--- Splitting Data ---
+2025-10-15 16:18:43 - __main__ - INFO - Train set: 140000 samples
+2025-10-15 16:18:43 - __main__ - INFO - Validation set: 20000 samples
+2025-10-15 16:18:43 - __main__ - INFO - Test set: 40000 samples
+2025-10-15 16:18:43 - __main__ - INFO - 
+--- Model Initialization ---
+2025-10-15 16:18:43 - src.model - INFO - Initialized LinformerIDS: seq_len=31, num_classes=2, dim=64, depth=6, heads=4, k=16
+2025-10-15 16:18:43 - src.model - INFO - Created LinformerIDS model with 326,978 trainable parameters
+2025-10-15 16:18:43 - __main__ - INFO - Model will be saved to: models\best_model_20251015_161843.pth
+2025-10-15 16:18:43 - __main__ - INFO - 
+--- Trainer Initialization ---
+2025-10-15 16:18:44 - src.trainer - INFO - ✓ Using GPU: NVIDIA RTX A2000 12GB (11.99 GB)
+2025-10-15 16:18:44 - src.trainer - INFO - ✓ CUDA Version: 12.1
+2025-10-15 16:18:44 - src.trainer - INFO - ✓ GPU Memory Available: 11.99 GB
+2025-10-15 16:18:45 - src.trainer - INFO - Model moved to device: cuda
+2025-10-15 16:18:45 - src.trainer - INFO - Using Focal Loss: alpha=0.25, gamma=2.0
+2025-10-15 16:18:48 - src.trainer - INFO - Initialized Adam optimizer: lr=0.0005, weight_decay=0.0001
+2025-10-15 16:18:48 - src.trainer - INFO - Early stopping enabled: patience=3, min_delta=0.0, mode=max
+2025-10-15 16:18:48 - __main__ - INFO - 
+--- Starting Training ---
+2025-10-15 16:18:48 - src.trainer - INFO - Starting training for 15 epochs
+2025-10-15 16:18:48 - src.trainer - INFO - Training samples: 140000
+2025-10-15 16:18:48 - src.trainer - INFO - Validation samples: 20000
+2025-10-15 16:18:48 - src.trainer - INFO - 
+============================================================
+2025-10-15 16:18:48 - src.trainer - INFO - Epoch 1/15
+2025-10-15 16:18:48 - src.trainer - INFO - ============================================================
+2025-10-15 16:19:25 - src.trainer - INFO - Training Loss: 0.0086
+2025-10-15 16:19:32 - src.trainer - INFO - Validation Loss: 0.0037
+2025-10-15 16:19:32 - src.trainer - INFO - Validation Accuracy: 0.9892
+2025-10-15 16:19:32 - src.trainer - INFO - Saved model checkpoint to models\best_model_20251015_161843.pth
+2025-10-15 16:19:32 - src.trainer - INFO - ★ New best validation accuracy: 0.9892
+2025-10-15 16:19:32 - src.trainer - INFO - 
+============================================================
+2025-10-15 16:19:32 - src.trainer - INFO - Epoch 2/15
+2025-10-15 16:19:32 - src.trainer - INFO - ============================================================
+2025-10-15 16:20:12 - src.trainer - INFO - Training Loss: 0.0034
+2025-10-15 16:20:18 - src.trainer - INFO - Validation Loss: 0.0035
+2025-10-15 16:20:18 - src.trainer - INFO - Validation Accuracy: 0.9899
+2025-10-15 16:20:18 - src.trainer - INFO - Saved model checkpoint to models\best_model_20251015_161843.pth
+2025-10-15 16:20:18 - src.trainer - INFO - ★ New best validation accuracy: 0.9899
+2025-10-15 16:20:18 - src.trainer - INFO - 
+============================================================
+2025-10-15 16:20:18 - src.trainer - INFO - Epoch 3/15
+2025-10-15 16:20:18 - src.trainer - INFO - ============================================================
+2025-10-15 16:20:53 - src.trainer - INFO - Training Loss: 0.0033
+2025-10-15 16:20:59 - src.trainer - INFO - Validation Loss: 0.0035
+2025-10-15 16:20:59 - src.trainer - INFO - Validation Accuracy: 0.9899
+2025-10-15 16:20:59 - src.trainer - INFO - 
+============================================================
+2025-10-15 16:20:59 - src.trainer - INFO - Epoch 4/15
+2025-10-15 16:20:59 - src.trainer - INFO - ============================================================
+2025-10-15 16:21:36 - src.trainer - INFO - Training Loss: 0.0032
+2025-10-15 16:21:43 - src.trainer - INFO - Validation Loss: 0.0034
+2025-10-15 16:21:43 - src.trainer - INFO - Validation Accuracy: 0.9899
+2025-10-15 16:21:43 - src.trainer - INFO - 
+============================================================
+2025-10-15 16:21:43 - src.trainer - INFO - Epoch 5/15
+2025-10-15 16:21:43 - src.trainer - INFO - ============================================================
+2025-10-15 16:22:21 - src.trainer - INFO - Training Loss: 0.0032
+2025-10-15 16:22:27 - src.trainer - INFO - Validation Loss: 0.0034
+2025-10-15 16:22:27 - src.trainer - INFO - Validation Accuracy: 0.9899
+2025-10-15 16:22:27 - src.trainer - INFO - Early stopping triggered after 3 epochs without improvement
+2025-10-15 16:22:27 - src.trainer - INFO - Early stopping at epoch 5
+2025-10-15 16:22:27 - src.trainer - INFO - 
+============================================================
+2025-10-15 16:22:27 - src.trainer - INFO - Training completed!
+2025-10-15 16:22:27 - src.trainer - INFO - Best validation accuracy: 0.9899
+2025-10-15 16:22:27 - src.trainer - INFO - Best model saved at: models\best_model_20251015_161843.pth
+2025-10-15 16:22:27 - src.trainer - INFO - ============================================================
+2025-10-15 16:22:27 - __main__ - INFO - 
+--- Final Evaluation on Test Set ---
+2025-10-15 16:22:27 - src.evaluator - INFO - Initialized Evaluator for binary classification with 2 classes
+2025-10-15 16:22:27 - src.evaluator - INFO - 
+============================================================
+2025-10-15 16:22:27 - src.evaluator - INFO - STARTING MODEL EVALUATION
+2025-10-15 16:22:27 - src.evaluator - INFO - ============================================================
+2025-10-15 16:22:27 - src.evaluator - INFO - Generating predictions on test set...
+2025-10-15 16:22:35 - src.evaluator - INFO - Generated predictions for 40000 samples
+2025-10-15 16:22:35 - src.evaluator - INFO - 
+--- Classification Metrics ---
+2025-10-15 16:22:35 - src.evaluator - INFO - Accuracy: 0.9904
+2025-10-15 16:22:35 - src.evaluator - INFO - Precision: 0.9997
+2025-10-15 16:22:35 - src.evaluator - INFO - Recall: 0.9811
+2025-10-15 16:22:35 - src.evaluator - INFO - F1_score: 0.9903
+2025-10-15 16:22:35 - src.evaluator - INFO - Saved confusion matrix to results\confusion_matrix.png
+2025-10-15 16:22:36 - src.evaluator - INFO - Saved ROC curves to results\roc_curves.png
+2025-10-15 16:22:36 - src.evaluator - INFO - 
+--- AUC Scores ---
+2025-10-15 16:22:36 - src.evaluator - INFO - binary: 0.9938
+2025-10-15 16:22:36 - src.evaluator - INFO - Saved Precision-Recall curves to results\precision_recall_curves.png
+2025-10-15 16:22:36 - src.evaluator - INFO - 
+--- Average Precision Scores ---
+2025-10-15 16:22:36 - src.evaluator - INFO - binary: 0.9959
+2025-10-15 16:22:36 - src.evaluator - INFO - 
+============================================================
+2025-10-15 16:22:36 - src.evaluator - INFO - EVALUATION COMPLETED
+2025-10-15 16:22:36 - src.evaluator - INFO - ============================================================
+
+2025-10-15 16:22:36 - __main__ - INFO - 
+======================================================================
+2025-10-15 16:22:36 - __main__ - INFO - TRAINING MODE COMPLETED SUCCESSFULLY
+2025-10-15 16:22:36 - __main__ - INFO - ======================================================================
+2025-10-15 16:22:36 - __main__ - INFO - Best model saved at: models\best_model_20251015_161843.pth
+2025-10-15 16:22:36 - __main__ - INFO - Results saved in: results/
+

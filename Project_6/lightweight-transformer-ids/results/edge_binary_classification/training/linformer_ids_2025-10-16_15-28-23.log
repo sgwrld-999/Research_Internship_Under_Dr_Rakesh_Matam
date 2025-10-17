@@ -1,0 +1,164 @@
+2025-10-16 15:28:23 - root - INFO - Logging to file: logs\linformer_ids_2025-10-16_15-28-23.log
+2025-10-16 15:28:23 - src.config_manager - INFO - Ensured directories exist: models/, results/, logs/
+2025-10-16 15:28:23 - __main__ - INFO - ======================================================================
+2025-10-16 15:28:23 - __main__ - INFO - LINFORMER-IDS: EDGE-IIOT DATASET (BINARY CLASSIFICATION)
+2025-10-16 15:28:23 - __main__ - INFO - Binary Encoding: 'normal' = 0, 'attack' = 1
+2025-10-16 15:28:23 - __main__ - INFO - ======================================================================
+2025-10-16 15:28:23 - __main__ - INFO - Mode: TRAIN
+2025-10-16 15:28:23 - __main__ - INFO - Configuration profile: edge
+2025-10-16 15:28:23 - __main__ - INFO - Input file: C:\Users\abhay\OneDrive\Desktop\SID\Datasets\Edge-IIoTset dataset\train_dataset_processed_normalized.csv
+2025-10-16 15:28:23 - __main__ - INFO - Configuration file: C:\Users\abhay\OneDrive\Desktop\SID\Research_Internship_Under_Dr_Rakesh_Matam\Project_5\configs\config.yaml
+2025-10-16 15:28:23 - __main__ - INFO - 
+======================================================================
+2025-10-16 15:28:23 - __main__ - INFO - STARTING TRAINING MODE - EDGE-IIOT DATASET (BINARY CLASSIFICATION)
+2025-10-16 15:28:23 - __main__ - INFO - ======================================================================
+2025-10-16 15:28:23 - __main__ - INFO - Set random seed to 42
+2025-10-16 15:28:23 - __main__ - INFO - 
+--- Data Loading and Preprocessing Pipeline (Edge-IIoT) ---
+2025-10-16 15:28:23 - __main__ - INFO - Loading Edge-IIoT data from: C:\Users\abhay\OneDrive\Desktop\SID\Datasets\Edge-IIoTset dataset\train_dataset_processed_normalized.csv
+2025-10-16 15:28:24 - __main__ - INFO - Loaded DataFrame shape: (95086, 65)
+2025-10-16 15:28:24 - __main__ - INFO - Columns: ['frame.time', 'ip.src_host', 'ip.dst_host', 'arp.dst.proto_ipv4', 'arp.opcode', 'arp.hw.size', 'arp.src.proto_ipv4', 'icmp.checksum', 'icmp.seq_le', 'icmp.transmit_timestamp', 'icmp.unused', 'http.file_data', 'http.content_length', 'http.request.uri.query', 'http.request.method', 'http.referer', 'http.request.full_uri', 'http.request.version', 'http.response', 'http.tls_port', 'tcp.ack', 'tcp.ack_raw', 'tcp.checksum', 'tcp.connection.fin', 'tcp.connection.rst', 'tcp.connection.syn', 'tcp.connection.synack', 'tcp.dstport', 'tcp.flags', 'tcp.flags.ack', 'tcp.len', 'tcp.options', 'tcp.payload', 'tcp.seq', 'tcp.srcport', 'udp.port', 'udp.stream', 'udp.time_delta', 'dns.qry.name', 'dns.qry.name.len', 'dns.qry.qu', 'dns.qry.type', 'dns.retransmission', 'dns.retransmit_request', 'dns.retransmit_request_in', 'mqtt.conack.flags', 'mqtt.conflag.cleansess', 'mqtt.conflags', 'mqtt.hdrflags', 'mqtt.len', 'mqtt.msg_decoded_as', 'mqtt.msg', 'mqtt.msgtype', 'mqtt.proto_len', 'mqtt.protoname', 'mqtt.topic', 'mqtt.topic_len', 'mqtt.ver', 'mbtcp.len', 'mbtcp.trans_id', 'mbtcp.unit_id', 'Attack_label', 'Attack_type', 'label', 'potential_target_final']
+2025-10-16 15:28:24 - __main__ - INFO - 
+Original label distribution:
+2025-10-16 15:28:24 - __main__ - INFO -   normal: 50000 (52.58%)
+2025-10-16 15:28:24 - __main__ - INFO -   attack: 45086 (47.42%)
+2025-10-16 15:28:24 - __main__ - INFO - 
+--- Binary Label Encoding ---
+2025-10-16 15:28:24 - __main__ - INFO - Encoding: 'normal' (BenignTraffic) = 0, 'attack' = 1
+2025-10-16 15:28:24 - __main__ - INFO - Binary label distribution:
+2025-10-16 15:28:24 - __main__ - INFO -   Class 0 (Normal): 50000 (52.58%)
+2025-10-16 15:28:24 - __main__ - INFO -   Class 1 (Attack): 45086 (47.42%)
+2025-10-16 15:28:24 - __main__ - INFO - 
+--- Applying Edge-IIoT Preprocessing Pipeline ---
+2025-10-16 15:28:24 - __main__ - INFO - Initializing Edge-IIoT preprocessor...
+2025-10-16 15:28:24 - pipeline.edge_iiot_pipeline - INFO - Initialized Edge-IIoT preprocessor with 95086 samples and 65 features
+2025-10-16 15:28:24 - __main__ - INFO - Step 1/4: Dropping low variance features...
+2025-10-16 15:28:24 - pipeline.edge_iiot_pipeline - INFO - Dropping features with variance <= 0.0...
+2025-10-16 15:28:24 - pipeline.edge_iiot_pipeline - INFO - Dropped 5 low variance features: ['icmp.unused', 'dns.retransmit_request', 'dns.retransmit_request_in', 'mqtt.msg_decoded_as', 'mbtcp.unit_id']
+2025-10-16 15:28:24 - pipeline.edge_iiot_pipeline - INFO - Shape after variance filtering: (95086, 27)
+2025-10-16 15:28:24 - __main__ - INFO - Step 2/4: Dropping specified columns...
+2025-10-16 15:28:24 - pipeline.edge_iiot_pipeline - INFO - No columns specified for dropping
+2025-10-16 15:28:24 - __main__ - INFO - Step 3/4: Dropping highly correlated features...
+2025-10-16 15:28:24 - pipeline.edge_iiot_pipeline - INFO - Dropping features with correlation > 0.9...
+2025-10-16 15:28:24 - pipeline.edge_iiot_pipeline - INFO - Dropped 1 highly correlated features: ['mqtt.proto_len']
+2025-10-16 15:28:24 - pipeline.edge_iiot_pipeline - INFO - Shape after correlation filtering: (95086, 26)
+2025-10-16 15:28:24 - __main__ - INFO - Step 4/4: Normalizing features...
+2025-10-16 15:28:24 - __main__ - INFO - Data appears already normalized, skipping normalization step
+2025-10-16 15:28:24 - __main__ - INFO - Processed DataFrame shape: (95086, 26)
+2025-10-16 15:28:24 - __main__ - INFO - 
+--- Dataset Summary ---
+2025-10-16 15:28:24 - __main__ - INFO - Number of features: 25
+2025-10-16 15:28:24 - __main__ - INFO - Number of classes: 2 (Binary Classification)
+2025-10-16 15:28:24 - __main__ - INFO - Total samples: 95086
+2025-10-16 15:28:24 - __main__ - INFO - Class distribution:
+2025-10-16 15:28:24 - __main__ - INFO -   Class 0 (Normal): 50000 samples (52.58%)
+2025-10-16 15:28:24 - __main__ - INFO -   Class 1 (Attack): 45086 samples (47.42%)
+2025-10-16 15:28:24 - __main__ - INFO - 
+--- Splitting Data ---
+2025-10-16 15:28:25 - __main__ - INFO - Train set: 66559 samples
+2025-10-16 15:28:25 - __main__ - INFO -   - Class 0 (Normal): 35000 (52.58%)
+2025-10-16 15:28:25 - __main__ - INFO -   - Class 1 (Attack): 31559 (47.42%)
+2025-10-16 15:28:25 - __main__ - INFO - Validation set: 9509 samples
+2025-10-16 15:28:25 - __main__ - INFO -   - Class 0 (Normal): 5000 (52.58%)
+2025-10-16 15:28:25 - __main__ - INFO -   - Class 1 (Attack): 4509 (47.42%)
+2025-10-16 15:28:25 - __main__ - INFO - Test set: 19018 samples
+2025-10-16 15:28:25 - __main__ - INFO -   - Class 0 (Normal): 10000 (52.58%)
+2025-10-16 15:28:25 - __main__ - INFO -   - Class 1 (Attack): 9018 (47.42%)
+2025-10-16 15:28:25 - __main__ - INFO - 
+--- Model Initialization ---
+2025-10-16 15:28:25 - src.model - INFO - Initialized LinformerIDS: seq_len=25, num_classes=2, dim=64, depth=6, heads=4, k=16
+2025-10-16 15:28:25 - src.model - INFO - Created LinformerIDS model with 322,370 trainable parameters
+2025-10-16 15:28:25 - __main__ - INFO - Model will be saved to: models\best_model_edge_20251016_152825.pth
+2025-10-16 15:28:25 - __main__ - INFO - 
+--- Trainer Initialization ---
+2025-10-16 15:28:25 - src.trainer - ERROR - ======================================================================
+2025-10-16 15:28:25 - src.trainer - ERROR - CUDA requested but not available!
+2025-10-16 15:28:25 - src.trainer - ERROR - Your PyTorch installation does not support CUDA.
+2025-10-16 15:28:25 - src.trainer - ERROR - Please install CUDA-enabled PyTorch:
+2025-10-16 15:28:25 - src.trainer - ERROR -   pip uninstall torch torchvision torchaudio
+2025-10-16 15:28:25 - src.trainer - ERROR -   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+2025-10-16 15:28:25 - src.trainer - ERROR - ======================================================================
+2025-10-16 15:28:25 - src.trainer - WARNING - Falling back to CPU (training will be slower)
+2025-10-16 15:28:25 - src.trainer - INFO - Model moved to device: cpu
+2025-10-16 15:28:25 - src.trainer - INFO - Using Focal Loss: alpha=0.25, gamma=2.0
+2025-10-16 15:28:27 - src.trainer - INFO - Initialized Adam optimizer: lr=0.0005, weight_decay=0.0001
+2025-10-16 15:28:27 - src.trainer - INFO - Early stopping enabled: patience=3, min_delta=0.0, mode=max
+2025-10-16 15:28:27 - __main__ - INFO - 
+--- Starting Training ---
+2025-10-16 15:28:27 - src.trainer - INFO - Starting training for 15 epochs
+2025-10-16 15:28:27 - src.trainer - INFO - Training samples: 66559
+2025-10-16 15:28:27 - src.trainer - INFO - Validation samples: 9509
+2025-10-16 15:28:27 - src.trainer - INFO - 
+============================================================
+2025-10-16 15:28:27 - src.trainer - INFO - Epoch 1/15
+2025-10-16 15:28:27 - src.trainer - INFO - ============================================================
+2025-10-16 15:29:44 - src.trainer - INFO - Training Loss: 0.0064
+2025-10-16 15:29:50 - src.trainer - INFO - Validation Loss: 0.0000
+2025-10-16 15:29:50 - src.trainer - INFO - Validation Accuracy: 1.0000
+2025-10-16 15:29:50 - src.trainer - INFO - Saved model checkpoint to models\best_model_edge_20251016_152825.pth
+2025-10-16 15:29:50 - src.trainer - INFO - ★ New best validation accuracy: 1.0000
+2025-10-16 15:29:50 - src.trainer - INFO - 
+============================================================
+2025-10-16 15:29:50 - src.trainer - INFO - Epoch 2/15
+2025-10-16 15:29:50 - src.trainer - INFO - ============================================================
+2025-10-16 15:31:09 - src.trainer - INFO - Training Loss: 0.0001
+2025-10-16 15:31:14 - src.trainer - INFO - Validation Loss: 0.0000
+2025-10-16 15:31:14 - src.trainer - INFO - Validation Accuracy: 1.0000
+2025-10-16 15:31:14 - src.trainer - INFO - 
+============================================================
+2025-10-16 15:31:14 - src.trainer - INFO - Epoch 3/15
+2025-10-16 15:31:14 - src.trainer - INFO - ============================================================
+2025-10-16 15:32:39 - src.trainer - INFO - Training Loss: 0.0000
+2025-10-16 15:32:45 - src.trainer - INFO - Validation Loss: 0.0000
+2025-10-16 15:32:45 - src.trainer - INFO - Validation Accuracy: 1.0000
+2025-10-16 15:32:45 - src.trainer - INFO - 
+============================================================
+2025-10-16 15:32:45 - src.trainer - INFO - Epoch 4/15
+2025-10-16 15:32:45 - src.trainer - INFO - ============================================================
+2025-10-16 15:34:00 - src.trainer - INFO - Training Loss: 0.0000
+2025-10-16 15:34:05 - src.trainer - INFO - Validation Loss: 0.0000
+2025-10-16 15:34:05 - src.trainer - INFO - Validation Accuracy: 1.0000
+2025-10-16 15:34:05 - src.trainer - INFO - Early stopping triggered after 3 epochs without improvement
+2025-10-16 15:34:05 - src.trainer - INFO - Early stopping at epoch 4
+2025-10-16 15:34:05 - src.trainer - INFO - 
+============================================================
+2025-10-16 15:34:05 - src.trainer - INFO - Training completed!
+2025-10-16 15:34:05 - src.trainer - INFO - Best validation accuracy: 1.0000
+2025-10-16 15:34:05 - src.trainer - INFO - Best model saved at: models\best_model_edge_20251016_152825.pth
+2025-10-16 15:34:05 - src.trainer - INFO - ============================================================
+2025-10-16 15:34:05 - __main__ - INFO - 
+--- Final Evaluation on Test Set ---
+2025-10-16 15:34:05 - src.evaluator - INFO - Initialized Evaluator for binary classification with 2 classes
+2025-10-16 15:34:05 - src.evaluator - INFO - 
+============================================================
+2025-10-16 15:34:05 - src.evaluator - INFO - STARTING MODEL EVALUATION
+2025-10-16 15:34:05 - src.evaluator - INFO - ============================================================
+2025-10-16 15:34:05 - src.evaluator - INFO - Generating predictions on test set...
+2025-10-16 15:34:11 - src.evaluator - INFO - Generated predictions for 19018 samples
+2025-10-16 15:34:11 - src.evaluator - INFO - 
+--- Classification Metrics ---
+2025-10-16 15:34:11 - src.evaluator - INFO - Accuracy: 0.9899
+2025-10-16 15:34:11 - src.evaluator - INFO - Precision: 0.9898
+2025-10-16 15:34:11 - src.evaluator - INFO - Recall: 1.0000
+2025-10-16 15:34:11 - src.evaluator - INFO - F1_score: 0.9949
+2025-10-16 15:34:12 - src.evaluator - INFO - Saved confusion matrix to results\confusion_matrix.png
+2025-10-16 15:34:12 - src.evaluator - INFO - Saved ROC curves to results\roc_curves.png
+2025-10-16 15:34:12 - src.evaluator - INFO - 
+--- AUC Scores ---
+2025-10-16 15:34:12 - src.evaluator - INFO - binary: 1.0000
+2025-10-16 15:34:12 - src.evaluator - INFO - Saved Precision-Recall curves to results\precision_recall_curves.png
+2025-10-16 15:34:12 - src.evaluator - INFO - 
+--- Average Precision Scores ---
+2025-10-16 15:34:12 - src.evaluator - INFO - binary: 1.0000
+2025-10-16 15:34:12 - src.evaluator - INFO - 
+============================================================
+2025-10-16 15:34:12 - src.evaluator - INFO - EVALUATION COMPLETED
+2025-10-16 15:34:12 - src.evaluator - INFO - ============================================================
+
+2025-10-16 15:34:12 - __main__ - INFO - 
+======================================================================
+2025-10-16 15:34:12 - __main__ - INFO - TRAINING MODE COMPLETED SUCCESSFULLY - EDGE-IIOT DATASET
+2025-10-16 15:34:12 - __main__ - INFO - ======================================================================
+2025-10-16 15:34:12 - __main__ - INFO - Best model saved at: models\best_model_edge_20251016_152825.pth
+2025-10-16 15:34:12 - __main__ - INFO - Results saved in: results/
+

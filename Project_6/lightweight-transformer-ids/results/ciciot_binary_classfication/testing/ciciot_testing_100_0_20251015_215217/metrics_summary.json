@@ -1,0 +1,20 @@
+{
+    "dataset": "ciciot_testing_100_0",
+    "num_samples": 200000,
+    "num_features": 31,
+    "num_classes": 2,
+    "class_distribution": {
+        "0": 200000,
+        "1": 0
+    },
+    "accuracy": 0.98983,
+    "precision": 0.99834,
+    "recall": 0.99284,
+    "f1_score": 0.98380,
+    "auc_scores": {
+        "binary": 0.99749
+    },
+    "ap_scores": {
+        "binary": 0.99827
+    }
+}
