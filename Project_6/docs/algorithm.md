@@ -1,4 +1,4 @@
-# ITE-IDS: A Linear-Complexity Transformer-Based Framework for Real-Time IoT Intrusion Detection
+# LITE-IDS: A Linear-Complexity Transformer-Based Framework for Real-Time IoT Intrusion Detection
 
 ## Algorithm 1: Linformer-IDS Training and Evaluation
 
